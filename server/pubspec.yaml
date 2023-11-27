@@ -4,7 +4,7 @@ version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
 environment:
-  sdk: ^3.2.0
+  sdk: ^3.1.0
 
 dependencies:
   args: ^2.4.0
@@ -20,7 +20,8 @@ dependencies:
   shelf_web_socket: ^1.0.4
 
   # Http client
-  http: ^1.1.1
+  http: ^1.1.0
+  html: ^0.15.4 
 
   # Json
   json_annotation: ^4.8.1

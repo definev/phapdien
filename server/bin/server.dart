@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:server/v0/routes/phapdien/get_phapdien_children_nodes.dart';
 import 'package:server/v0/routes/phapdien/get_phapdien_root_nodes.dart';
+import 'package:server/v0/routes/phapdien/post_phapdien_children_nodes.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_router/shelf_router.dart';
@@ -10,7 +10,7 @@ import 'package:shelf_router/shelf_router.dart';
 final _router = Router()
   ..get('/ping', _pingHandler)
   ..get('/phapdien/root', getPhapdienRootNodesHandler)
-  ..get('/phapdien/children/<id>', getPhapdienChildrenNodesHandler);
+  ..post('/phapdien/children', postPhapdienChildrenNodesHandler);
 
 // A handler that responds to `/ping` requests.
 Response _pingHandler(Request request) => Response.ok('pong');

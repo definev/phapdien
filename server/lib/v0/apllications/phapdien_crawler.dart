@@ -14,4 +14,6 @@ abstract class PhapdienCrawler {
   Future<List<PhapdienNode>> getPhapdienRootNodes();
 
   Future<List<PhapdienNode>> getPhapdienChildrenNodes(PhapdienNode node);
+
+  Future<List<PhapdienNode>> getPhapdienChildrenNodesById(String id, int level);
 }

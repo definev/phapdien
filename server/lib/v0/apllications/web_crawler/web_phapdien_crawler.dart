@@ -9,15 +9,6 @@ sealed class PhapdienCrawlerType {
   const PhapdienCrawlerType();
 }
 
-// enum PhapdienCrawlerType {
-//   actionHandler('ActionHandler.aspx'),
-//   treeBoPD('TreeBoPD.aspx'),
-//   ;
-
-//   const PhapdienCrawlerType(this.type);
-//   final String type;
-// }
-
 class PhapdienCrawlerGetNode implements PhapdienCrawlerType {
   const PhapdienCrawlerGetNode({
     this.lenmpc = 20,
@@ -131,5 +122,54 @@ class WebPhapDienCrawler implements PhapdienCrawler {
       nodes.add(node);
     }
     return nodes;
+  }
+
+  @override
+  Future<List<PhapdienNode>> getPhapdienChildrenNodesById(String id, int level) async {
+    final response = await http.post(
+      Uri.https(
+        'phapdien.moj.gov.vn',
+        '/TraCuuPhapDien/ActionHandler.aspx',
+        {
+          'do': 'loadnodes',
+          'lenmpc': (20 * level).toString(),
+        },
+      ),
+      headers: {
+        'Accept': '*/*',
+        'Accept-Language': 'en-US,en;q=0.9,vi;q=0.8',
+        'Connection': 'keep-alive',
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Origin': 'https://phapdien.moj.gov.vn',
+        'Referer': 'https://phapdien.moj.gov.vn/TraCuuPhapDien/MainBoPD.aspx?mapc=',
+        'Sec-Fetch-Dest': 'empty',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Site': 'same-origin',
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+      body: 'ItemId=$id',
+      encoding: Utf8Codec(),
+    );
+
+    final raw = json.decode(response.body);
+    if (raw['Erros'] != false) throw Exception(raw);
+    
+    final rawData = json.decode(raw['Data']) as List<dynamic>;
+    return rawData
+        .map(
+          (e) => PhapdienNode.fromRawCrawlerData(
+            e,
+            switch (level) {
+              0 => DeMucPhapdienNodeType(),
+              1 => ChuongPhapdienNodeType(),
+              2 => switch ((e['text'] as String).split(' ')[0].toLowerCase().trim()) {
+                  'mục' => MucPhapdienNodeType(),
+                  _ => DieuPhapdienNodeType(0),
+                },
+              _ => DieuPhapdienNodeType(level),
+            },
+          ),
+        )
+        .toList();
   }
 }

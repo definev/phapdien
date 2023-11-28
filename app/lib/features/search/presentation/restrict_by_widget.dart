@@ -36,10 +36,8 @@ class RestrictByWidget extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final targetSize = useMemoized(() {
-      final targetRenderBox = targetKey.currentContext?.findRenderObject() as RenderBox?;
-      return targetRenderBox?.size;
-    }, [targetKey]);
+    final targetRenderBox = targetKey.currentContext?.findRenderObject() as RenderBox?;
+    final targetSize = targetRenderBox?.size;
 
     return ConstrainedBox(
       constraints: BoxConstraints(

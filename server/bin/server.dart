@@ -1,14 +1,17 @@
 import 'dart:io';
 
+import 'package:server/v0/api_docs/swagger.dart';
 import 'package:server/v0/routes/phapdien/get_phapdien_root_nodes.dart';
 import 'package:server/v0/routes/phapdien/post_phapdien_children_nodes.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_router/shelf_router.dart';
+import 'package:shelf_static/shelf_static.dart';
 
 // Configure routes.
 final _router = Router()
   ..get('/ping', _pingHandler)
+  ..get('/api_docs', swaggerUIHandler)
   ..get('/phapdien/root', getPhapdienRootNodesHandler)
   ..post('/phapdien/children', postPhapdienChildrenNodesHandler);
 
@@ -22,7 +25,11 @@ void main(List<String> args) async {
   // Configure a pipeline that logs requests.
   final handler = Pipeline() //
       .addMiddleware(logRequests())
-      .addHandler(_router);
+      .addHandler((Cascade() //
+              .add(createStaticHandler('specs', defaultDocument: 'index.html'))
+              .add(_router)
+              .add(swaggerUIHandler))
+          .handler);
 
   // For running in containers, we respect the PORT environment variable.
   final port = int.parse(Platform.environment['PORT'] ?? '7777');

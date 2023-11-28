@@ -666,13 +666,21 @@ packages:
     source: hosted
     version: "1.1.4"
   shelf_static:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: shelf_static
       sha256: a41d3f53c4adf0f57480578c1d61d90342cd617de7fc8077b1304643c2d85c1e
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
+  shelf_swagger_ui:
+    dependency: "direct main"
+    description:
+      name: shelf_swagger_ui
+      sha256: "36793398760659311d767f2fd9760bac18784b7bf8fca2756d83a387b6268443"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0+2"
   shelf_web_socket:
     dependency: "direct main"
     description:

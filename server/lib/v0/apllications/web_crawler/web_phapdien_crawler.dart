@@ -166,7 +166,7 @@ class WebPhapDienCrawler implements PhapdienCrawler {
                   'mục' => MucPhapdienNodeType(),
                   _ => DieuPhapdienNodeType(0),
                 },
-              _ => DieuPhapdienNodeType(level),
+              _ => DieuPhapdienNodeType(level - 2),
             },
           ),
         )

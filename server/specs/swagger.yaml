@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  description: "API system"
+  version: "1.0.10"
+  title: "Pháp điển API"
+servers:
+  - url: http://my-service.info
+    description: Remote server
+  - url: localhost:7777
+    description: Local server
+
+tags:
+- name: "user"
+  description: "Access to User"
+  
+paths:
+  /phapdien/root:
+    get:
+      tags:
+        - "user"
+      summary: "Get root"
+      description: "Get root"
+      operationId: "getRoot"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Root"
+        400:
+          description: "Invalid status value"
+      deprecated: false
+  
+  /phapdien/children:
+    post:
+      tags:
+        - "user"
+      summary: "Get children"
+      description: "Get children"
+      operationId: "getChildren"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChildrenRequest"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ChildrenResponse"
+        400:
+          description: "Invalid status value"
+      deprecated: false

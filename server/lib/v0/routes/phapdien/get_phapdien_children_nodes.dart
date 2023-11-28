@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:shelf/shelf.dart';
 
-part 'get.g.dart';
+part 'get_phapdien_children_nodes.g.dart';
 
 @JsonSerializable()
 class GetPhapdienRequest {

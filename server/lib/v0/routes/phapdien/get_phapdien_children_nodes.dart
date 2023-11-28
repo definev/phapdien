@@ -13,7 +13,7 @@ class GetPhapdienRequest {
   Map<String, dynamic> toJson() => _$GetPhapdienRequestToJson(this);
 }
 
-Future<Response> getPhapdienHandler(Request req) async {
+Future<Response> getPhapdienChildrenNodesHandler(Request req) async {
   final GetPhapdienRequest entity;
   try {
     entity = GetPhapdienRequest.fromJson(req.url.queryParameters);

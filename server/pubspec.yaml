@@ -26,9 +26,16 @@ dependencies:
   # Json
   json_annotation: ^4.8.1
 
+  # Dependency injection
+  riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
+  copy_with_extension: ^5.0.4
+
 dev_dependencies:
   lints: ^2.1.0
   test: ^1.24.0
 
   build_runner: ^2.4.6
   json_serializable: ^6.7.1
+  riverpod_generator: ^2.3.9
+  copy_with_extension_gen: ^5.0.4

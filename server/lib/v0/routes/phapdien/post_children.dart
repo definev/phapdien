@@ -1,29 +1,15 @@
 import 'dart:convert';
 
-import 'package:json_annotation/json_annotation.dart';
 import 'package:server/v0/apllications/phapdien_crawler.dart';
 import 'package:server/v0/data/provider_container.dart';
+import 'package:server/v0/domain/phapdien_children_request.dart';
 import 'package:shelf/shelf.dart';
-
-part 'post_phapdien_children_nodes.g.dart';
-
-@JsonSerializable()
-class PostPhapdienChildrenNodesRequest {
-  const PostPhapdienChildrenNodesRequest({required this.id, required this.level});
-  factory PostPhapdienChildrenNodesRequest.fromJson(Map<String, dynamic> json) =>
-      _$PostPhapdienChildrenNodesRequestFromJson(json);
-
-  final String id;
-  final int level;
-
-  Map<String, dynamic> toJson() => _$PostPhapdienChildrenNodesRequestToJson(this);
-}
 
 Future<Response> postPhapdienChildrenNodesHandler(Request req) async {
   try {
-    final PostPhapdienChildrenNodesRequest entity;
+    final PhapdienChildrenRequest entity;
     try {
-      entity = PostPhapdienChildrenNodesRequest.fromJson(json.decode(await req.readAsString()));
+      entity = PhapdienChildrenRequest.fromJson(json.decode(await req.readAsString()));
     } catch (error) {
       return Response.badRequest(body: 'Invalid request: ${error.toString()}');
     }

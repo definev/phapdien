@@ -7,7 +7,7 @@ import 'package:shelf/shelf.dart';
 
 Future<Response> getPhapdienRootNodesHandler(Request req) async {
   final crawler = providerContainer.read(phapdienCrawlerProvider);
-  final response = await crawler.getPhapdienRootNodes();
+  final response = await crawler.getRootNodes();
 
   return Response.ok(
     json.encode(response.toJson()),

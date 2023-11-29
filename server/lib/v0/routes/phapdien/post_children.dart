@@ -15,7 +15,7 @@ Future<Response> postPhapdienChildrenNodesHandler(Request req) async {
     }
 
     final crawler = providerContainer.read(phapdienCrawlerProvider);
-    final nodes = await crawler.getPhapdienChildrenNodesById(entity.id, entity.level);
+    final nodes = await crawler.getChildrenNodesById(entity.id, entity.level);
 
     return Response.ok(
       json.encode(nodes.map((e) => e.toJson()).toList()),

@@ -44,7 +44,7 @@ class WebPhapDienCrawler implements PhapdienCrawler {
   }
 
   @override
-  Future<List<PhapdienNode>> getPhapdienChildrenNodes(PhapdienNode node) async {
+  Future<List<PhapdienNode>> getChildrenNodes(PhapdienNode node) async {
     final response = await http.post(
       Uri.https(
         'phapdien.moj.gov.vn',
@@ -100,7 +100,7 @@ class WebPhapDienCrawler implements PhapdienCrawler {
   }
 
   @override
-  Future<List<PhapdienNode>> getPhapdienRootNodes() async {
+  Future<List<PhapdienNode>> getRootNodes() async {
     final client = await http.post(
       Uri.parse('https://phapdien.moj.gov.vn/TraCuuPhapDien/TreeBoPD.aspx'),
       headers: {
@@ -125,7 +125,7 @@ class WebPhapDienCrawler implements PhapdienCrawler {
   }
 
   @override
-  Future<List<PhapdienNode>> getPhapdienChildrenNodesById(String id, int level) async {
+  Future<List<PhapdienNode>> getChildrenNodesById(String id, int level) async {
     final response = await http.post(
       Uri.https(
         'phapdien.moj.gov.vn',
@@ -153,7 +153,7 @@ class WebPhapDienCrawler implements PhapdienCrawler {
 
     final raw = json.decode(response.body);
     if (raw['Erros'] != false) throw Exception(raw);
-    
+
     final rawData = json.decode(raw['Data']) as List<dynamic>;
     return rawData
         .map(
@@ -171,5 +171,29 @@ class WebPhapDienCrawler implements PhapdienCrawler {
           ),
         )
         .toList();
+  }
+
+  @override
+  Future<String?> getDemucContentById(String id) async {
+    try {
+      final response = await http.get(
+        Uri.parse('https://phapdien.moj.gov.vn/TraCuuPhapDien/BPD/demuc/$id.html'),
+        headers: {
+          'Accept': '*/*',
+          'Accept-Language': 'en-US,en;q=0.9',
+          'Connection': 'keep-alive',
+          'Sec-Fetch-Mode': 'cors',
+          'Sec-Fetch-Site': 'same-origin'
+        },
+      );
+      // This is a hack to fix the encoding issue
+      response.headers['content-type'] = 'text/html; charset=utf-8';
+
+      return response.body;
+    } catch (error, stackTrace) {
+      print(error);
+      print(stackTrace);
+      return null;
+    }
   }
 }

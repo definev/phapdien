@@ -11,9 +11,11 @@ PhapdienCrawler phapdienCrawler(PhapdienCrawlerRef ref) {
 }
 
 abstract class PhapdienCrawler {
-  Future<List<PhapdienNode>> getPhapdienRootNodes();
+  Future<String?> getDemucContentById(String id);
 
-  Future<List<PhapdienNode>> getPhapdienChildrenNodes(PhapdienNode node);
+  Future<List<PhapdienNode>> getRootNodes();
 
-  Future<List<PhapdienNode>> getPhapdienChildrenNodesById(String id, int level);
+  Future<List<PhapdienNode>> getChildrenNodes(PhapdienNode node);
+
+  Future<List<PhapdienNode>> getChildrenNodesById(String id, int level);
 }

@@ -122,8 +122,8 @@ PhapdienNode _$PhapdienNodeFromJson(Map<String, dynamic> json) => PhapdienNode(
       id: json['id'] as String,
       parent: json['parent'] as String?,
       text: json['text'] as String,
-      canOpenDetail: json['canOpenDetail'] as bool,
-      canOpenCategory: json['canOpenCategory'] as bool,
+      canOpenDetail: json['can_open_detail'] as bool,
+      canOpenCategory: json['can_open_category'] as bool,
       type: PhapdienNodeType.fromJson(json['type']),
     );
 
@@ -132,7 +132,7 @@ Map<String, dynamic> _$PhapdienNodeToJson(PhapdienNode instance) =>
       'id': instance.id,
       'parent': instance.parent,
       'text': instance.text,
-      'canOpenDetail': instance.canOpenDetail,
-      'canOpenCategory': instance.canOpenCategory,
+      'can_open_detail': instance.canOpenDetail,
+      'can_open_category': instance.canOpenCategory,
       'type': PhapdienNodeType.toJson(instance.type),
     };

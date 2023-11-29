@@ -11,9 +11,8 @@ import 'package:shelf_static/shelf_static.dart';
 // Configure routes.
 final _router = Router()
   ..get('/ping', _pingHandler)
-  ..get('/api_docs', swaggerUIHandler)
-  ..get('/phapdien/root', getPhapdienRootNodesHandler)
-  ..post('/phapdien/children', postPhapdienChildrenNodesHandler);
+  ..get('/v0/phapdien/root', getPhapdienRootNodesHandler)
+  ..post('/v0/phapdien/children', postPhapdienChildrenNodesHandler);
 
 // A handler that responds to `/ping` requests.
 Response _pingHandler(Request request) => Response.ok('pong');
@@ -26,7 +25,7 @@ void main(List<String> args) async {
   final handler = Pipeline() //
       .addMiddleware(logRequests())
       .addHandler((Cascade() //
-              .add(createStaticHandler('specs', defaultDocument: 'index.html'))
+              .add(createStaticHandler('specs'))
               .add(_router)
               .add(swaggerUIHandler))
           .handler);

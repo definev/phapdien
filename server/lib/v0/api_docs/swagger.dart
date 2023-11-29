@@ -17,7 +17,7 @@ SwaggerUI swaggerUI(SwaggerUIRef ref) {
 FutureOr<Response> Function(Request) get swaggerUIHandler {
   final swaggerUI = providerContainer.read(swaggerUIProvider);
   return (req) {
-    if (!req.url.pathSegments.contains('api_docs')) {
+    if (!req.url.pathSegments.join('/').contains('api_docs')) {
       return Response.notFound('Not found');
     }
     return swaggerUI(req);

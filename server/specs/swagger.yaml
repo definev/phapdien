@@ -4,38 +4,34 @@ info:
   version: "1.0.10"
   title: "Pháp điển API"
 servers:
-  - url: http://my-service.info
-    description: Remote server
-  - url: localhost:7777
+  - url: http://localhost:7777/v0
     description: Local server
 
 tags:
-- name: "user"
-  description: "Access to User"
-  
+  - name: "Dữ liệu pháp điển"
+    description: "Dữ liệu pháp điển"
+
 paths:
   /phapdien/root:
     get:
       tags:
-        - "user"
-      summary: "Get root"
-      description: "Get root"
-      operationId: "getRoot"
+        - "Dữ liệu pháp điển"
+      summary: "Lấy cây pháp điển mẫu"
+      operationId: "phapdien/root"
       responses:
         200:
-          description: "successful operation"
+          description: "Thành công"
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Root"
-        400:
-          description: "Invalid status value"
+                $ref: "#/components/schemas/PhapdienRootResponse"
       deprecated: false
-  
+
+
   /phapdien/children:
     post:
       tags:
-        - "user"
+        - "Dữ liệu pháp điển"
       summary: "Get children"
       description: "Get children"
       operationId: "getChildren"
@@ -43,14 +39,66 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/ChildrenRequest"
+              $ref: "#/components/schemas/PhapdienChildrenRequest"
       responses:
         200:
           description: "successful operation"
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ChildrenResponse"
+                $ref: "#/components/schemas/PhapdienChildrenResponse"
         400:
           description: "Invalid status value"
       deprecated: false
+
+components:
+  schemas:
+    PhapdienNode:
+      type: object
+      properties:
+        id:
+          type: string
+        parent:
+          type: string 
+        text:
+          type: string
+        can_open_detail:
+          type: boolean
+        can_open_category:
+          type: boolean
+        type:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - ChuDePhapdienNodeType
+                - DeMucPhapdienNodeType
+                - ChuongPhapdienNodeType
+                - DieuPhapdienNodeType
+            level:
+              type: integer
+              nullable: true
+
+    PhapdienRootResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/PhapdienNode"
+
+    PhapdienChildrenRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        level:
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+    PhapdienChildrenResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/PhapdienNode"

@@ -145,6 +145,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.3"
+  chromadb:
+    dependency: "direct main"
+    description:
+      name: chromadb
+      sha256: "73ee7850fae38158c8d61d08c4d8c7fb7500c17d3ca9c863aea1aca3f38a69b7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.0+2"
   ci:
     dependency: transitive
     description:
@@ -538,7 +546,7 @@ packages:
     source: hosted
     version: "2.0.2"
   openai_dart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: openai_dart
       sha256: "3dae6b44880f3815a33d1d0a672ea456cbbf722111a20118084146f6a9758bb6"

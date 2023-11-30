@@ -188,8 +188,10 @@ class WebPhapDienCrawler implements PhapdienCrawler {
       );
       // This is a hack to fix the encoding issue
       response.headers['content-type'] = 'text/html; charset=utf-8';
-
-      return response.body;
+      return switch (response.statusCode) {
+        200 => response.body,
+        _ => null,
+      };
     } catch (error, stackTrace) {
       print(error);
       print(stackTrace);

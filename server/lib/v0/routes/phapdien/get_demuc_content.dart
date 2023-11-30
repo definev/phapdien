@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:server/v0/apllications/demuc_handler.dart' as demuc_handler;
 import 'package:server/v0/apllications/phapdien_crawler.dart';
@@ -26,7 +27,7 @@ FutureOr<Response> getPhapdienDemucContentHandler(Request req) async {
     _ => await () async {
         final contents = await demuc_handler.convertVBPLHtmlToVBPLContents(content);
         return Response.ok(
-          contents,
+          json.encode([for (final content in contents) content.toJson()]),
           headers: {'Content-Type': 'application/json; charset=utf-8'},
         );
       }(),

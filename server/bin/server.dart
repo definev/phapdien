@@ -7,7 +7,6 @@ import 'package:server/v0/routes/phapdien/post_children.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
 import 'package:shelf_cors_headers/shelf_cors_headers.dart';
-import 'package:shelf_hotreload/shelf_hotreload.dart';
 import 'package:shelf_router/shelf_router.dart';
 import 'package:shelf_static/shelf_static.dart';
 
@@ -21,9 +20,7 @@ final _router = Router()
 // A handler that responds to `/ping` requests.
 Response _pingHandler(Request request) => Response.ok('pong');
 
-void main() {
-  withHotreload(() => serveServer());
-}
+void main() => serveServer();
 
 Future<HttpServer> serveServer() async {
   // Use any available host or container IP (usually `0.0.0.0`).

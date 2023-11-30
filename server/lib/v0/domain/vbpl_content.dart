@@ -1,7 +1,7 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'phapdien_node_content.g.dart';
+part 'vbpl_content.g.dart';
 
 @JsonSerializable()
 @CopyWith()

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'phapdien_node_content.dart';
+part of 'vbpl_content.dart';
 
 // **************************************************************************
 // CopyWithGenerator

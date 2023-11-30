@@ -27,13 +27,11 @@ paths:
                 $ref: "#/components/schemas/PhapdienRootResponse"
       deprecated: false
 
-
   /phapdien/children:
     post:
       tags:
         - "Dữ liệu pháp điển"
-      summary: "Get children"
-      description: "Get children"
+      summary: "Lấy danh sách con của một PhapdienNode"
       operationId: "getChildren"
       requestBody:
         content:
@@ -51,8 +49,52 @@ paths:
           description: "Invalid status value"
       deprecated: false
 
+  /phapdien/demuc_content:
+    parameters:
+      - name: id
+        in: query
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: show_raw
+        in: query
+        description: show_raw
+        required: false
+        schema:
+          type: boolean
+    get:
+      tags:
+        - "Dữ liệu pháp điển"
+      summary: "Lấy nội dung đề mục"
+      operationId: "phapdien/demuc_content"
+      responses:
+        200:
+          description: "Thành công"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemucContentResponse"
+      deprecated: false
+
 components:
   schemas:
+    VBPLContent:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        source_title:
+          type: string
+        source_url:
+          type: string
+        item_id:
+          type: string
+        location_in_vbpl:
+          type: string
+
     PhapdienNode:
       type: object
       properties:
@@ -98,7 +140,13 @@ components:
             - 3
             - 4
             - 5
+
     PhapdienChildrenResponse:
       type: array
       items:
         $ref: "#/components/schemas/PhapdienNode"
+
+    DemucContentResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/VBPLContent"

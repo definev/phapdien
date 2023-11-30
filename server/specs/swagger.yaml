@@ -60,7 +60,7 @@ paths:
       - name: show_raw
         in: query
         description: show_raw
-        required: false
+        required: true
         schema:
           type: boolean
     get:

@@ -7,8 +7,6 @@ part 'phapdien_demuc_content_request.g.dart';
 class PhapdienDemucContentRequest {
   const PhapdienDemucContentRequest({
     required this.id,
-    this.showContent = true,
-    this.showLink = true,
     this.showRaw = false,
   });
 
@@ -16,10 +14,6 @@ class PhapdienDemucContentRequest {
       _$PhapdienDemucContentRequestFromJson(json);
 
   final String id;
-  @JsonKey(fromJson: JsonSerializableUtils.stringToBoolFromJson, toJson: JsonSerializableUtils.stringToBoolToJson)
-  final bool showContent;
-  @JsonKey(fromJson: JsonSerializableUtils.stringToBoolFromJson, toJson: JsonSerializableUtils.stringToBoolToJson)
-  final bool showLink;
   @JsonKey(fromJson: JsonSerializableUtils.stringToBoolFromJson, toJson: JsonSerializableUtils.stringToBoolToJson)
   final bool showRaw;
 

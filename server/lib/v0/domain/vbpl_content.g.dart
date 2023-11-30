@@ -15,6 +15,14 @@ abstract class _$VBPLContentCWProxy {
 
   VBPLContent sourceUrl(String sourceUrl);
 
+  VBPLContent demucId(String demucId);
+
+  VBPLContent demucTitle(String demucTitle);
+
+  VBPLContent chuongId(String chuongId);
+
+  VBPLContent chuongTitle(String chuongTitle);
+
   VBPLContent itemId(String itemId);
 
   VBPLContent locationInVbpl(String locationInVbpl);
@@ -30,6 +38,10 @@ abstract class _$VBPLContentCWProxy {
     String? content,
     String? sourceTitle,
     String? sourceUrl,
+    String? demucId,
+    String? demucTitle,
+    String? chuongId,
+    String? chuongTitle,
     String? itemId,
     String? locationInVbpl,
   });
@@ -54,6 +66,18 @@ class _$VBPLContentCWProxyImpl implements _$VBPLContentCWProxy {
   VBPLContent sourceUrl(String sourceUrl) => this(sourceUrl: sourceUrl);
 
   @override
+  VBPLContent demucId(String demucId) => this(demucId: demucId);
+
+  @override
+  VBPLContent demucTitle(String demucTitle) => this(demucTitle: demucTitle);
+
+  @override
+  VBPLContent chuongId(String chuongId) => this(chuongId: chuongId);
+
+  @override
+  VBPLContent chuongTitle(String chuongTitle) => this(chuongTitle: chuongTitle);
+
+  @override
   VBPLContent itemId(String itemId) => this(itemId: itemId);
 
   @override
@@ -73,6 +97,10 @@ class _$VBPLContentCWProxyImpl implements _$VBPLContentCWProxy {
     Object? content = const $CopyWithPlaceholder(),
     Object? sourceTitle = const $CopyWithPlaceholder(),
     Object? sourceUrl = const $CopyWithPlaceholder(),
+    Object? demucId = const $CopyWithPlaceholder(),
+    Object? demucTitle = const $CopyWithPlaceholder(),
+    Object? chuongId = const $CopyWithPlaceholder(),
+    Object? chuongTitle = const $CopyWithPlaceholder(),
     Object? itemId = const $CopyWithPlaceholder(),
     Object? locationInVbpl = const $CopyWithPlaceholder(),
   }) {
@@ -94,6 +122,24 @@ class _$VBPLContentCWProxyImpl implements _$VBPLContentCWProxy {
           ? _value.sourceUrl
           // ignore: cast_nullable_to_non_nullable
           : sourceUrl as String,
+      demucId: demucId == const $CopyWithPlaceholder() || demucId == null
+          ? _value.demucId
+          // ignore: cast_nullable_to_non_nullable
+          : demucId as String,
+      demucTitle:
+          demucTitle == const $CopyWithPlaceholder() || demucTitle == null
+              ? _value.demucTitle
+              // ignore: cast_nullable_to_non_nullable
+              : demucTitle as String,
+      chuongId: chuongId == const $CopyWithPlaceholder() || chuongId == null
+          ? _value.chuongId
+          // ignore: cast_nullable_to_non_nullable
+          : chuongId as String,
+      chuongTitle:
+          chuongTitle == const $CopyWithPlaceholder() || chuongTitle == null
+              ? _value.chuongTitle
+              // ignore: cast_nullable_to_non_nullable
+              : chuongTitle as String,
       itemId: itemId == const $CopyWithPlaceholder() || itemId == null
           ? _value.itemId
           // ignore: cast_nullable_to_non_nullable
@@ -122,6 +168,10 @@ VBPLContent _$VBPLContentFromJson(Map<String, dynamic> json) => VBPLContent(
       content: json['content'] as String,
       sourceTitle: json['source_title'] as String,
       sourceUrl: json['source_url'] as String,
+      demucId: json['demuc_id'] as String,
+      demucTitle: json['demuc_title'] as String,
+      chuongId: json['chuong_id'] as String,
+      chuongTitle: json['chuong_title'] as String,
       itemId: json['item_id'] as String,
       locationInVbpl: json['location_in_vbpl'] as String,
     );
@@ -132,6 +182,10 @@ Map<String, dynamic> _$VBPLContentToJson(VBPLContent instance) =>
       'content': instance.content,
       'source_title': instance.sourceTitle,
       'source_url': instance.sourceUrl,
+      'demuc_id': instance.demucId,
+      'demuc_title': instance.demucTitle,
+      'chuong_id': instance.chuongId,
+      'chuong_title': instance.chuongTitle,
       'item_id': instance.itemId,
       'location_in_vbpl': instance.locationInVbpl,
     };

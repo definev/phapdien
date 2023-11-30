@@ -11,6 +11,10 @@ class VBPLContent {
     required this.content,
     required this.sourceTitle,
     required this.sourceUrl,
+    required this.demucId,
+    required this.demucTitle,
+    required this.chuongId,
+    required this.chuongTitle,
     required this.itemId,
     required this.locationInVbpl,
   });
@@ -22,6 +26,11 @@ class VBPLContent {
 
   final String sourceTitle;
   final String sourceUrl;
+
+  final String demucId;
+  final String demucTitle;
+  final String chuongId;
+  final String chuongTitle;
 
   final String itemId;
   final String locationInVbpl;

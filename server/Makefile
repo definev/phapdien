@@ -12,3 +12,8 @@ docker_up:
 
 docker_down:
 	@docker-compose down
+
+
+# Dart-scripts
+crawling:
+	@dart run bin/crawl_data.dart

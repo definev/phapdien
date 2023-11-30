@@ -22,19 +22,14 @@ FutureOr<Response> getPhapdienDemucContentHandler(Request req) async {
   return switch (true) {
     _ when entity.showRaw => Response.ok(
         content,
-        headers: {'Content-Type': 'text/plain; charset=utf-8'},
+        headers: {'Content-Type': 'text/html; charset=utf-8'},
       ),
     _ => await () async {
-        final contents = await demuc_handler.convertVBPLHtmlToVBPLContents(content);
+        final contents = await demuc_handler.convertVBPLHtmlToVBPLContents(entity.id, content);
         return Response.ok(
           json.encode([for (final content in contents) content.toJson()]),
           headers: {'Content-Type': 'application/json; charset=utf-8'},
         );
       }(),
   };
-
-  return Response.ok(
-    content,
-    headers: {'Content-Type': 'text/html; charset=utf-8'},
-  );
 }

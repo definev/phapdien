@@ -8,16 +8,18 @@ import 'package:server/v0/data/provider_container.dart';
 part 'openai.g.dart';
 
 @riverpod
-OpenAIClient openAIClient(OpenAIClientRef ref) {
-  return OpenAIClient(apiKey: Platform.environment['OPENAI_API_KEY']);
+OpenAIClient openAIClient(OpenAIClientRef ref, [String? apiKey]) {
+  return OpenAIClient(apiKey: apiKey ?? Platform.environment['OPENAI_API_KEY']);
 }
 
 class OpenAIEmbedding implements EmbeddingFunction {
-  const OpenAIEmbedding();
+  const OpenAIEmbedding([this.apiKey]);
+
+  final String? apiKey;
 
   @override
   Future<List<List<double>>> generate(List<Embeddable> input) async {
-    final client = providerContainer.read(openAIClientProvider);
+    final client = providerContainer.read(openAIClientProvider(apiKey));
 
     final response = await client.createEmbedding(
       request: CreateEmbeddingRequest(

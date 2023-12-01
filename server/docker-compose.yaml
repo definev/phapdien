@@ -9,6 +9,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 7777:7777
+    env_file:
+      - env/production.env
     depends_on:
       - db
     networks:

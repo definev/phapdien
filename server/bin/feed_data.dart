@@ -79,7 +79,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
     final chromaDocuments = nodes.map((e) => e.content).toList();
     final chromaMetadatas = nodes
         .map((e) => {
-              'itemId': e.itemId,
+              'item_id': e.itemId,
               'chuong_id': e.chuongId,
               'chuong_title': e.chuongTitle,
               'demuc_id': e.demucId,

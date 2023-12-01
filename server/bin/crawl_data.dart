@@ -24,7 +24,7 @@ Future<void> crawlingData() async {
   for (final node in phapdienNodes) {
     ids.add(node.id);
     File file = File('crawl_data/${node.id}.json');
-    final content = await http.get(Uri.parse('$sourceUrl/v0/phapdien/demuc_content?id=${phapdienNodes.first.id}'));
+    final content = await http.get(Uri.parse('$sourceUrl/v0/phapdien/demuc_content?id=${node.id}'));
     await file.writeAsString(content.body);
   }
 

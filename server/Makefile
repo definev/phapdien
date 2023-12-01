@@ -7,11 +7,11 @@ define setup_env
 endef
 
 
-# Define a target that uses the environment variables
-example_target:
-
 watch_gen:
 	@fvm flutter pub run build_runner watch --delete-conflicting-outputs
+
+docker_clean:
+	@docker-compose down --rmi all --volumes --remove-orphans
 
 docker_build:
 	@docker-compose build

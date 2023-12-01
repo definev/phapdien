@@ -9,7 +9,15 @@
             "request": "launch",
             "type": "dart",
             "program": "bin/server.dart",
-            "toolArgs": ["--enable-vm-service"]
+            "toolArgs": [
+                "--enable-vm-service"
+            ]
+        },
+        {
+            "name": "feed_data",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/feed_data.dart",
         }
     ]
 }

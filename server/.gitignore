@@ -4,3 +4,4 @@
 
 crawl_data/
 env/production.env
+env/production.json

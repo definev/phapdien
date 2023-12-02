@@ -41,6 +41,8 @@ class VBPLContent {
 }
 
 extension EmbeddableVBPLContent on VBPLContent {
+  String get embeddableId => '$itemId$locationInVbpl';
+
   EmbeddableDocument get embeddableContent => EmbeddableDocument(document: '''
 Đề mục: "$demucTitle"
 Chương: "$chuongTitle"

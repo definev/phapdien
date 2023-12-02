@@ -110,13 +110,15 @@ Future<void> handlingDocuments((int, List<String>) message) async {
         vectorValues = await embedding.generate(
           [for (final node in nodes) node.embeddableContent],
         );
+        print('generated vector for $index thread: $id');
         break;
       } catch (e) {
+        print('ERROR AT VECTOR GENERATION $index thread: $id');
         if (e is OpenAIClientException) {
-          print('OPENAI Exception: ${e.message}');
+          print('$index | $id: OPENAI Exception: ${e.body}');
           print('Waiting 60s...');
         } else {
-          print(e.runtimeType);
+          print('$index | $id: Exception: $e');
           print('Waiting 60s...');
         }
         await Future.delayed(const Duration(seconds: 60));
@@ -128,7 +130,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
     final vectors = [
       for (final (index, node) in nodes.indexed)
         Vector(
-          id: '${node.itemId}${node.locationInVbpl}',
+          id: node.embeddableId,
           values: vectorValues[index],
           metadata: node.toJson()..remove('content'),
         ),
@@ -137,9 +139,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
     int chunkSize = vectors.length ~/ chunkCount;
     for (int i = 0; i < chunkCount; i += 1) {
       final chunk = () {
-        if (i == chunkCount - 1) {
-          return List<Vector>.from(vectors.sublist(i * chunkSize, vectors.length));
-        }
+        if (i == chunkCount - 1) return List<Vector>.from(vectors.sublist(i * chunkSize, vectors.length));
         return vectors.sublist(i * chunkSize, (i + 1) * chunkSize);
       }();
 

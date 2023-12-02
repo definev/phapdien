@@ -76,7 +76,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
     final jsonContent = json.decode(content) as List<dynamic>;
     final nodes = jsonContent.map((e) => VBPLContent.fromJson(e)).toList();
 
-    final chromaIds = nodes.map((e) => '${e.itemId}${e.locationInVbpl}').toList();
+    final chromaIds = nodes.map((e) => e.embeddableId).toList();
     final chromaDocuments = nodes.map((e) => e.embeddableContent.document).toList();
     final chromaMetadatas = nodes.map((e) => e.toJson()).toList();
 

@@ -12,7 +12,8 @@ void main() async {
   print(
     (await embeddingFunction.generate([
       // Embeddable.document('QUẢN LÝ MỸ PHẨM'),
-      Embeddable.document('Những lưu ý khi đi nghĩa vụ quân sự')
+      // Embeddable.document('Những lưu ý khi đi nghĩa vụ quân sự'),
+      Embeddable.document('Các thủ tục cần thiết khi thành lập công ty'),
     ])).first,
   );
 }

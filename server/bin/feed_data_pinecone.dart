@@ -5,11 +5,32 @@ import 'dart:isolate';
 
 import 'package:openai_dart/openai_dart.dart';
 import 'package:pinecone/pinecone.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:server/v0/data/openai.dart';
+import 'package:server/v0/data/provider_container.dart';
 import 'package:server/v0/domain/vbpl_content.dart';
 
 const environment = 'gcp-starter';
-final client = PineconeClient(apiKey: '9037687b-e0ef-4a4e-85ec-be6fafa68139');
+
+final envFileProvider = Provider(
+  (ref) => json.decode(File('env/production.json').readAsStringSync()) as Map<String, dynamic>,
+);
+
+final indexNameProvider = Provider((ref) {
+  final envFile = ref.watch(envFileProvider);
+  return envFile['PINECONE_INDEX_NAME'] as String;
+});
+final projectIdProvider = Provider((ref) {
+  final envFile = ref.watch(envFileProvider);
+  return envFile['PINECONE_PROJECT_ID'] as String;
+});
+
+final pineconeClientProvider = Provider((ref) {
+  final envFile = json.decode(File('env/production.json').readAsStringSync()) as Map<String, dynamic>;
+  final apiKey = envFile['PINECONE_API_KEY'] as String;
+  final client = PineconeClient(apiKey: apiKey);
+  return client;
+});
 
 void main() async {
   const threads = 8;
@@ -54,6 +75,11 @@ void main() async {
 }
 
 Future<void> handlingDocuments((int, List<String>) message) async {
+  final indexName = providerContainer.read(indexNameProvider);
+  final projectId = providerContainer.read(projectIdProvider);
+
+  final client = providerContainer.read(pineconeClientProvider);
+
   final (index, docIds) = message;
   final idsFile = File('crawl_data/threads/t$index.json');
   idsFile.createSync(recursive: true);
@@ -123,8 +149,8 @@ Future<void> handlingDocuments((int, List<String>) message) async {
           print('Size of chunk: ${chunk.length}');
           if (chunk.isEmpty) break;
           await client.upsertVectors(
-            indexName: 'phapdien',
-            projectId: 'dihq7j6',
+            indexName: indexName,
+            projectId: projectId,
             environment: environment,
             request: UpsertRequest(vectors: chunk),
           );

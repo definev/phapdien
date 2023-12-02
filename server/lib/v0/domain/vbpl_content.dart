@@ -1,6 +1,7 @@
 import 'package:chromadb/chromadb.dart';
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:server/utils/strings.dart';
 
 part 'vbpl_content.g.dart';
 
@@ -40,12 +41,10 @@ class VBPLContent {
 }
 
 extension EmbeddableVBPLContent on VBPLContent {
-  EmbeddableDocument get embeddableContent => EmbeddableDocument(
-        document: '''
+  EmbeddableDocument get embeddableContent => EmbeddableDocument(document: '''
 Đề mục: "$demucTitle"
 Chương: "$chuongTitle"
 Nguồn VBPL: "$sourceTitle"
 Tiêu đề: "$title"
-''',
-      );
+Nội dung: "${content.limit(1000)}"''');
 }

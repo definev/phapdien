@@ -130,7 +130,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
         Vector(
           id: '${node.itemId}${node.locationInVbpl}',
           values: vectorValues[index],
-          metadata: node.toJson(),
+          metadata: node.toJson()..remove('content'),
         ),
     ];
     int chunkCount = 8;

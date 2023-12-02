@@ -11,7 +11,8 @@ void main() async {
   final embeddingFunction = OpenAIEmbedding(apiKeys);
   print(
     (await embeddingFunction.generate([
-      Embeddable.document('QUẢN LÝ MỸ PHẨM'),
+      // Embeddable.document('QUẢN LÝ MỸ PHẨM'),
+      Embeddable.document('Những lưu ý khi đi nghĩa vụ quân sự')
     ])).first,
   );
 }

@@ -114,6 +114,8 @@ Future<void> handlingDocuments((int, List<String>) message) async {
 
       while (true) {
         try {
+          print('Size of chunk: ${chunk.length}');
+          if (chunk.isEmpty) break;
           await client.upsertVectors(
             indexName: 'phapdien',
             projectId: 'dihq7j6',
@@ -136,6 +138,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
               }
             }
           }
+          print('Pinecone Exception: ${e.runtimeType}');
           await Future.delayed(const Duration(seconds: 60));
           continue;
         }

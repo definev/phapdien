@@ -44,7 +44,10 @@ class OpenAIEmbedding implements EmbeddingFunction {
 
   @override
   Future<List<List<double>>> generate(List<Embeddable> input) async {
-    final inputStrings = input.map((e) => e.toString()).toList();
+    final inputStrings = input.map((e) => switch (e) {
+      EmbeddableDocument(:final document) => document,
+      EmbeddableImage(:final image) => image,
+    }).toList();
     return await _generateFromOpenAI(_apiIndex, _apiIndex, inputStrings);
   }
 }

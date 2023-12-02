@@ -15,11 +15,13 @@ void main() async {
           .cast<String>(),
     ),
   );
+  
+
   final items = await collection.count();
   print('collection has $items items');
   final result = await collection.query(
-    nResults: 1,
-    queryTexts: ['dân tộc việt nam'],
+    nResults: 20,
+    queryTexts: ['QUẢN LÝ SẢN XUẤT KINH DOANH MUỐI'],
   );
 
   print('document related to query:');

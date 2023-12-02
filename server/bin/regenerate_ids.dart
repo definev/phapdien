@@ -11,4 +11,5 @@ void main() {
     ids.add(idName.split('.').first);
   }
   File('crawl_data/ids.json').writeAsStringSync(json.encode(ids));
+  File('crawl_data/concrete_ids.json').writeAsStringSync(json.encode(ids));
 }

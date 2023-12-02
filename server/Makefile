@@ -24,6 +24,12 @@ docker_down:
 
 
 # Dart-scripts
+regen_ids:
+	@dart run bin/regenerate_ids.dart
+
+convert_crawl_data_to_map:
+	@dart run bin/convert_crawl_data_to_map.dart
+
 crawling:
 	@dart run bin/crawl_data.dart
 

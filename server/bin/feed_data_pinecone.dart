@@ -107,7 +107,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
           metadata: node.toJson(),
         ),
     ];
-    int chunkCount = 4;
+    int chunkCount = 8;
     int chunkSize = vectors.length ~/ chunkCount;
     for (int i = 0; i < chunkCount; i += 1) {
       final chunk = () {
@@ -117,6 +117,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
         return vectors.sublist(i * chunkSize, (i + 1) * chunkSize);
       }();
 
+      chunk_loop:
       while (true) {
         try {
           print('Size of chunk: ${chunk.length}');
@@ -134,16 +135,15 @@ Future<void> handlingDocuments((int, List<String>) message) async {
             if (body is Map<String, dynamic>) {
               switch (body['code']) {
                 case 11:
-                  print('Waiting 60s...');
-                  break;
+                case 3:
+                  break chunk_loop;
                 default:
                   print('PINECONE Exception: ${body['message']}');
                   print('Waiting 60s...');
-                  break;
               }
             }
+            print('Pinecone Exception: ${e.body}');
           }
-          print('Pinecone Exception: ${e.runtimeType}');
           await Future.delayed(const Duration(seconds: 60));
           continue;
         }

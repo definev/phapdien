@@ -93,35 +93,58 @@ Future<void> handlingDocuments((int, List<String>) message) async {
       }
     }
 
-    while (true) {
-      try {
-        print('try pushing to pinecone $index thread: $id');
-        await client.upsertVectors(
-          indexName: 'phapdien',
-          projectId: 'dihq7j6',
-          environment: environment,
-          request: UpsertRequest(
-            vectors: [
-              for (final (index, node) in nodes.indexed)
-                Vector(
-                  id: '${node.itemId}${node.locationInVbpl}',
-                  values: vectorValues[index],
-                  metadata: node.toJson(),
-                ),
-            ],
-          ),
-        );
-        print('done at $index thread: $id');
-        completedIds.add(id);
-        idsFile.writeAsStringSync(json.encode(completedIds));
-        break;
-      } catch (e) {
-        print(e);
-        print('Waiting 60s...');
-        await Future.delayed(const Duration(seconds: 60));
-        continue;
+    print('try pushing to pinecone $index thread: $id');
+    final vectors = [
+      for (final (index, node) in nodes.indexed)
+        Vector(
+          id: '${node.itemId}${node.locationInVbpl}',
+          values: vectorValues[index],
+          metadata: node.toJson(),
+        ),
+    ];
+    int chunkCount = 4;
+    int chunkSize = vectors.length ~/ chunkCount;
+    for (int i = 0; i < chunkCount; i += 1) {
+      final chunk = () {
+        if (i == chunkCount - 1) {
+          return List<Vector>.from(vectors.sublist(i * chunkSize, vectors.length));
+        }
+        return vectors.sublist(i * chunkSize, (i + 1) * chunkSize);
+      }();
+
+      while (true) {
+        try {
+          await client.upsertVectors(
+            indexName: 'phapdien',
+            projectId: 'dihq7j6',
+            environment: environment,
+            request: UpsertRequest(vectors: chunk),
+          );
+          break;
+        } catch (e) {
+          if (e is PineconeClientException) {
+            final body = e.body;
+            if (body is Map<String, dynamic>) {
+              switch (body['code']) {
+                case 11:
+                  print('Waiting 60s...');
+                  break;
+                default:
+                  print('PINECONE Exception: ${body['message']}');
+                  print('Waiting 60s...');
+                  break;
+              }
+            }
+          }
+          await Future.delayed(const Duration(seconds: 60));
+          continue;
+        }
       }
     }
+
+    print('done at $index thread: $id');
+    completedIds.add(id);
+    idsFile.writeAsStringSync(json.encode(completedIds));
   } while (idsQueue.isNotEmpty);
   print('completed thread $index processing ${docIds.length} documents');
 }

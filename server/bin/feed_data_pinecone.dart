@@ -3,14 +3,13 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
-import 'package:chromadb/chromadb.dart';
 import 'package:openai_dart/openai_dart.dart';
 import 'package:pinecone/pinecone.dart';
 import 'package:server/v0/data/openai.dart';
 import 'package:server/v0/domain/vbpl_content.dart';
 
 const environment = 'gcp-starter';
-final client = PineconeClient(apiKey: 'ec69afdd-5533-46ae-bf0a-aaf9de912de0');
+final client = PineconeClient(apiKey: '9037687b-e0ef-4a4e-85ec-be6fafa68139');
 
 void main() async {
   const threads = 8;
@@ -74,34 +73,12 @@ Future<void> handlingDocuments((int, List<String>) message) async {
     final content = file.readAsStringSync();
     final jsonContent = json.decode(content) as List<dynamic>;
     final nodes = jsonContent.map((e) => VBPLContent.fromJson(e)).toList();
-
-    while (true) {
+    List<List<double>>? vectorValues;
+    while (vectorValues == null) {
       try {
-        await client.upsertVectors(
-          indexName: 'phapdien',
-          projectId: 'dihq7j6',
-          environment: environment,
-          request: UpsertRequest(
-            vectors: [
-              for (final node in nodes)
-                Vector(
-                  id: '${node.itemId}${node.locationInVbpl}',
-                  values: (await embedding.generate([Embeddable.document(node.content)])).first,
-                  metadata: {
-                    'item_id': node.itemId,
-                    'chuong_id': node.chuongId,
-                    'chuong_title': node.chuongTitle,
-                    'demuc_id': node.demucId,
-                    'demuc_title': node.demucTitle,
-                    'source_url': node.sourceUrl,
-                  },
-                ),
-            ],
-          ),
+        vectorValues = await embedding.generate(
+          [for (final node in nodes) node.embeddableContent],
         );
-        print('done at $index thread: $id');
-        completedIds.add(id);
-        idsFile.writeAsStringSync(json.encode(completedIds));
         break;
       } catch (e) {
         if (e is OpenAIClientException) {
@@ -111,6 +88,36 @@ Future<void> handlingDocuments((int, List<String>) message) async {
           print(e.runtimeType);
           print('Waiting 60s...');
         }
+        await Future.delayed(const Duration(seconds: 60));
+        continue;
+      }
+    }
+
+    while (true) {
+      try {
+        print('try pushing to pinecone $index thread: $id');
+        await client.upsertVectors(
+          indexName: 'phapdien',
+          projectId: 'dihq7j6',
+          environment: environment,
+          request: UpsertRequest(
+            vectors: [
+              for (final (index, node) in nodes.indexed)
+                Vector(
+                  id: '${node.itemId}${node.locationInVbpl}',
+                  values: vectorValues[index],
+                  metadata: node.toJson(),
+                ),
+            ],
+          ),
+        );
+        print('done at $index thread: $id');
+        completedIds.add(id);
+        idsFile.writeAsStringSync(json.encode(completedIds));
+        break;
+      } catch (e) {
+        print(e);
+        print('Waiting 60s...');
         await Future.delayed(const Duration(seconds: 60));
         continue;
       }

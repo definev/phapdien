@@ -18,6 +18,7 @@ void main() async {
   for (final fileSystem in threadsDir.listSync()) {
     final file = File(fileSystem.path);
     final content = file.readAsStringSync();
+    if (content.isEmpty) continue;
     final jsonContent = json.decode(content) as List<dynamic>;
     crawledIds.addAll(jsonContent.cast<String>());
   }
@@ -76,28 +77,22 @@ Future<void> handlingDocuments((int, List<String>) message) async {
     final nodes = jsonContent.map((e) => VBPLContent.fromJson(e)).toList();
 
     final chromaIds = nodes.map((e) => '${e.itemId}${e.locationInVbpl}').toList();
-    final chromaDocuments = nodes.map((e) => e.content).toList();
-    final chromaMetadatas = nodes
-        .map((e) => {
-              'item_id': e.itemId,
-              'chuong_id': e.chuongId,
-              'chuong_title': e.chuongTitle,
-              'demuc_id': e.demucId,
-              'demuc_title': e.demucTitle,
-              'source_url': e.sourceUrl,
-            })
-        .toList();
+    final chromaDocuments = nodes.map((e) => e.embeddableContent.document).toList();
+    final chromaMetadatas = nodes.map((e) => e.toJson()).toList();
 
-    try {
-      await collection.add(
-        ids: chromaIds,
-        documents: chromaDocuments,
-        metadatas: chromaMetadatas,
-      );
-    } catch (e) {
-      print('Waiting 60s...');
-      await Future.delayed(const Duration(seconds: 60));
-      continue;
+    while (true) {
+      try {
+        await collection.add(
+          ids: chromaIds,
+          documents: chromaDocuments,
+          metadatas: chromaMetadatas,
+        );
+        break;
+      } catch (e) {
+        print('Waiting 60s...');
+        await Future.delayed(const Duration(seconds: 60));
+        continue;
+      }
     }
     print('done at $index thread: $id');
     completedIds.add(id);

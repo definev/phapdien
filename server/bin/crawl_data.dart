@@ -23,11 +23,13 @@ Future<void> crawlingData() async {
 
   for (final node in phapdienNodes) {
     ids.add(node.id);
-    File file = File('crawl_data/${node.id}.json');
+    File file = File('crawl_data/raw/${node.id}.json');
     final content = await http.get(Uri.parse('$sourceUrl/v0/phapdien/demuc_content?id=${node.id}'));
     await file.writeAsString(content.body);
   }
 
   File file = File('crawl_data/ids.json');
+  await file.writeAsString(json.encode(ids));
+  file = File('crawl_data/concrete_ids.json');
   await file.writeAsString(json.encode(ids));
 }

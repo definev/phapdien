@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 void main() {
-  final dir = Directory('crawl_data');
+  final dir = Directory('crawl_data/raw');
   final entities = dir.listSync();
   final ids = <String>[];
   for (final entity in entities.whereType<File>()) {

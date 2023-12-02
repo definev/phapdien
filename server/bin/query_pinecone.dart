@@ -14,6 +14,7 @@ void main() async {
   final apiKeys = json //
       .decode(File('env/production.json').readAsStringSync())['OPENAI_API_KEYS']
       .cast<String>();
+
   final vector = (await OpenAIEmbedding(apiKeys).generate([Embeddable.document('ĐIỀU KIỆN THI HÀNH ÁN DÂN SỰ là gì?')])).first;
   final response = await client.queryVectors(
     indexName: indexName,

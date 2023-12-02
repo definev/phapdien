@@ -5,7 +5,7 @@ import 'package:server/v0/data/chroma.dart';
 import 'package:server/v0/data/openai.dart';
 import 'package:server/v0/data/provider_container.dart';
 
-void main() async {
+void main(List<String> args) async {
   final chromaClient = providerContainer.read(chromaClientProvider);
   final collection = await chromaClient.getCollection(
     name: 'phapdien',
@@ -15,24 +15,12 @@ void main() async {
           .cast<String>(),
     ),
   );
-  
 
-  final items = await collection.count();
-  print('collection has $items items');
   final result = await collection.query(
-    nResults: 20,
-    queryTexts: ['QUẢN LÝ SẢN XUẤT KINH DOANH MUỐI'],
+    nResults: 5,
+    queryTexts: ['Chế độ thai sản'],
   );
 
-  print('document related to query:');
-  for (var element in result.documents ?? <List<String?>>[]) {
-    print(element.join('\n'));
-  }
-  print('data related to query:');
-  for (final data in result.data ?? <List<String>>[]) {
-    print(data.join('\n'));
-  }
-  print('metadata related to query:');
   for (var element in result.metadatas ?? <Map<String, dynamic>>[]) {
     print(JsonEncoder.withIndent('  ').convert(element));
   }

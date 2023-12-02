@@ -27,9 +27,16 @@ docker_down:
 crawling:
 	@dart run bin/crawl_data.dart
 
-feeding:
+chroma_feeding:
 	$(call setup_env,production)
-	@dart run bin/feed_data.dart
+	@dart run bin/feed_data_chroma.dart
 
-query:
+chroma_query:
 	@dart run bin/query_chroma.dart
+
+pinecone_feeding:
+	$(call setup_env,production)
+	@dart run bin/feed_data_pinecone.dart
+
+pinecone_query:
+	@dart run bin/query_pinecone.dart

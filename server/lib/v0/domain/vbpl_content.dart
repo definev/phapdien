@@ -46,7 +46,6 @@ extension EmbeddableVBPLContent on VBPLContent {
 Chương: "$chuongTitle"
 Nguồn VBPL: "$sourceTitle"
 Tiêu đề: "$title"
-Nội dung: "$content"
 ''',
       );
 }

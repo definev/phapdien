@@ -13,7 +13,7 @@ void main() {
     return;
   }
   for (final id in ids) {
-    final file = File('crawl_data/$id.json');
+    final file = File('crawl_data/raw/$id.json');
     final content = file.readAsStringSync();
     final jsonContent = json.decode(content) as List<dynamic>;
     final vbplContents = jsonContent.map((e) => VBPLContent.fromJson(e as Map<String, dynamic>)).toList();

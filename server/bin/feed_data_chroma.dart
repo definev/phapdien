@@ -71,7 +71,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
 
   do {
     id = idsQueue.removeFirst();
-    final file = File('crawl_data/$id.json');
+    final file = File('crawl_data/raw/$id.json');
     final content = file.readAsStringSync();
     final jsonContent = json.decode(content) as List<dynamic>;
     final nodes = jsonContent.map((e) => VBPLContent.fromJson(e)).toList();

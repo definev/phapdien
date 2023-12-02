@@ -64,7 +64,12 @@ Future<void> handlingDocuments((int, List<String>) message) async {
   final embedding = OpenAIEmbedding((envFile['OPENAI_API_KEYS'].cast<String>() as List<String>)..shuffle());
 
   final idsQueue = Queue<String>.from(docIds);
-  final completedIds = [];
+  final completedIds = <String>[];
+  final rawOldIds = idsFile.readAsStringSync();
+  if (rawOldIds.isNotEmpty) {
+    final oldIds = (json.decode(rawOldIds) as List<dynamic>).cast<String>();
+    completedIds.addAll(oldIds);
+  }
   String id;
 
   do {

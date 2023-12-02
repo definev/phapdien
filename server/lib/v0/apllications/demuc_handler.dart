@@ -81,6 +81,7 @@ Future<List<VBPLContent>> convertVBPLHtmlToVBPLContents(String demucId, String r
   final pDieus = document.querySelectorAll('.pDieu');
   for (final dieu in pDieus) {
     var content = VBPLContent(
+      id: dieu.querySelector('a')?.attributes['name'] ?? '',
       title: dieu.text.trim(),
       content: '',
       sourceTitle: '',

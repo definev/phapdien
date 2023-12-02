@@ -9,6 +9,7 @@ part 'vbpl_content.g.dart';
 @CopyWith()
 class VBPLContent {
   const VBPLContent({
+    required this.id,
     required this.title,
     required this.content,
     required this.sourceTitle,
@@ -22,6 +23,8 @@ class VBPLContent {
   });
 
   factory VBPLContent.fromJson(Map<String, dynamic> json) => _$VBPLContentFromJson(json);
+
+  final String id;
 
   final String title;
   final String content;
@@ -41,7 +44,7 @@ class VBPLContent {
 }
 
 extension EmbeddableVBPLContent on VBPLContent {
-  String get embeddableId => '$itemId$locationInVbpl';
+  String get embeddableId => id;
 
   EmbeddableDocument get embeddableContent => EmbeddableDocument(document: '''
 Đề mục: "$demucTitle"

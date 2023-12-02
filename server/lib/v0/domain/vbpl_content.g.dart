@@ -7,6 +7,8 @@ part of 'vbpl_content.dart';
 // **************************************************************************
 
 abstract class _$VBPLContentCWProxy {
+  VBPLContent id(String id);
+
   VBPLContent title(String title);
 
   VBPLContent content(String content);
@@ -34,6 +36,7 @@ abstract class _$VBPLContentCWProxy {
   /// VBPLContent(...).copyWith(id: 12, name: "My name")
   /// ````
   VBPLContent call({
+    String? id,
     String? title,
     String? content,
     String? sourceTitle,
@@ -52,6 +55,9 @@ class _$VBPLContentCWProxyImpl implements _$VBPLContentCWProxy {
   const _$VBPLContentCWProxyImpl(this._value);
 
   final VBPLContent _value;
+
+  @override
+  VBPLContent id(String id) => this(id: id);
 
   @override
   VBPLContent title(String title) => this(title: title);
@@ -93,6 +99,7 @@ class _$VBPLContentCWProxyImpl implements _$VBPLContentCWProxy {
   /// VBPLContent(...).copyWith(id: 12, name: "My name")
   /// ````
   VBPLContent call({
+    Object? id = const $CopyWithPlaceholder(),
     Object? title = const $CopyWithPlaceholder(),
     Object? content = const $CopyWithPlaceholder(),
     Object? sourceTitle = const $CopyWithPlaceholder(),
@@ -105,6 +112,10 @@ class _$VBPLContentCWProxyImpl implements _$VBPLContentCWProxy {
     Object? locationInVbpl = const $CopyWithPlaceholder(),
   }) {
     return VBPLContent(
+      id: id == const $CopyWithPlaceholder() || id == null
+          ? _value.id
+          // ignore: cast_nullable_to_non_nullable
+          : id as String,
       title: title == const $CopyWithPlaceholder() || title == null
           ? _value.title
           // ignore: cast_nullable_to_non_nullable
@@ -164,6 +175,7 @@ extension $VBPLContentCopyWith on VBPLContent {
 // **************************************************************************
 
 VBPLContent _$VBPLContentFromJson(Map<String, dynamic> json) => VBPLContent(
+      id: json['id'] as String,
       title: json['title'] as String,
       content: json['content'] as String,
       sourceTitle: json['source_title'] as String,
@@ -178,6 +190,7 @@ VBPLContent _$VBPLContentFromJson(Map<String, dynamic> json) => VBPLContent(
 
 Map<String, dynamic> _$VBPLContentToJson(VBPLContent instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'content': instance.content,
       'source_title': instance.sourceTitle,

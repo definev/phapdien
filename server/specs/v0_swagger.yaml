@@ -28,11 +28,30 @@ paths:
       deprecated: false
 
   /phapdien/children:
-    post:
+    parameters:
+      - name: id
+        in: query
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: level
+        in: query
+        description: level
+        required: true
+        schema:
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+    get:
       tags:
         - "Dữ liệu pháp điển"
       summary: "Lấy danh sách con của một PhapdienNode"
-      operationId: "getChildren"
+      operationId: "phapdien/children"
       requestBody:
         content:
           application/json:

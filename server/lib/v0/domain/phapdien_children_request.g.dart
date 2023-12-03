@@ -10,12 +10,13 @@ PhapdienChildrenRequest _$PhapdienChildrenRequestFromJson(
         Map<String, dynamic> json) =>
     PhapdienChildrenRequest(
       id: json['id'] as String,
-      level: json['level'] as int,
+      level:
+          JsonSerializableUtils.stringToIntFromJson(json['level'] as String?),
     );
 
 Map<String, dynamic> _$PhapdienChildrenRequestToJson(
         PhapdienChildrenRequest instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'level': instance.level,
+      'level': JsonSerializableUtils.stringToIntToJson(instance.level),
     };

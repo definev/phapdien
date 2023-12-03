@@ -62,10 +62,14 @@ void main() async {
   for (int index = 0; index < threads; index += 1) {
     final exitPort = ReceivePort();
     exitPorts.add(exitPort);
+    final indexIds = () {
+      if (index == threads - 1) return List<String>.from(ids.sublist(index * batchSize, ids.length));
+      return ids.sublist(index * batchSize, (index + 1) * batchSize);
+    }();
 
     Isolate.spawn<(int, List<String>)>(
       handlingDocuments,
-      (index, [for (int i = index * batchSize; i < ids.length && i < (index + 1) * batchSize; i += 1) ids[i]]),
+      (index, indexIds),
       onExit: exitPort.sendPort,
     );
   }

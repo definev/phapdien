@@ -12,21 +12,21 @@ Dự án Pháp điển là một hệ thống tra cứu pháp luật toàn diệ
 
 ## Bước 1: Tạo `production.json` trong thư mục `env`
 
-Tạo tệp `production.json` trong thư mục `env`. Tệp này sẽ chứa các cấu hình cần thiết cho server. Dưới đây là mô tả tổng quan về các trường chính trong `production.json`:
+Tạo tệp `production.json` trong thư mục `env` (tự tạo) . Tệp này sẽ chứa các cấu hình cần thiết cho server. Dưới đây là mô tả tổng quan về các phần chính trong `production.json`:
 
 ```json
 {
   "OPENAI_API_KEYS": ["KEY-1", "KEY-2"],
-  "PINECONE_API_KEY": "KEY_DEMO",
-  "PINECONE_INDEX_NAME": "KEY_DEMO",
-  "PINECONE_ENVIRONMENT": "KEY_DEMO",
-  "PINECONE_PROJECT_ID": "KEY_DEMO"
+  "PINECONE_API_KEY": "paste here",
+  "PINECONE_INDEX_NAME": "paste here",
+  "PINECONE_ENVIRONMENT": "paste here",
+  "PINECONE_PROJECT_ID": "paste here"
 }
 ```
 
 ## Bước 2: Chạy Server Local
 
-Thực hiện lệnh sau để bắt đầu máy chủ local:
+Thực hiện lệnh sau để bắt đầu chạy máy chủ local:
 
 ```bash
 make start_local_server
@@ -34,7 +34,7 @@ make start_local_server
 
 ## Bước 3: Crawl Dữ Liệu
 
-Trong cửa sổ terminal mới, chạy lệnh sau để bắt đầu quá trình crawl dữ liệu. Lưu ý rằng quá trình này có thể mất một khoảng thời gian:
+Tạo cửa sổ terminal mới ( giữ cửa sổ server local hoạt động), chạy lệnh sau để bắt đầu quá trình crawl dữ liệu. Lưu ý rằng quá trình này có thể mất một khoảng thời gian:
 
 ```bash
 make crawling
@@ -42,7 +42,7 @@ make crawling
 
 ## Bước 4: Chuyển Dữ Liệu Crawl Thành Map
 
-Chuyển đổi dữ liệu crawl thô thành map bằng cách chạy lệnh sau:
+Chuyển đổi dữ liệu thô thành map bằng cách chạy lệnh sau:
 
 ```bash
 make convert_crawl_data_to_map
@@ -57,7 +57,7 @@ Truy cập [Đăng Ký Pinecone](https://app.pinecone.io/?sessionType=signup) đ
 1. Chọn mô hình "OpenAI".
 2. Tạo các indexes như hình dưới đây:
 
-![Thiết Lập Pinecone](https://prod-files-secure.s3.us-west-2.amazonaws.com/93ec6950-f751-467e-a19b-2d79981b8848/218340d2-fad1-40fa-b0f6-7304ff092f57/Untitled.png)
+![Thiết Lập Pinecone](assets/pinecone.png)
 
 ## Bước 7: Cấu Hình Thông Tin Pinecone
 

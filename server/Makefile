@@ -24,6 +24,9 @@ docker_down:
 
 
 # Dart-scripts
+start_local_server:
+	@dart run bin/server.dart
+
 regen_ids:
 	@dart run bin/regenerate_ids.dart
 
@@ -31,7 +34,8 @@ convert_crawl_data_to_map:
 	@dart run bin/convert_crawl_data_to_map.dart
 
 crawling:
-	@dart run bin/crawl_data.dart
+	echo "Start crawling"
+	@dart run bin/crawl_data.dartcrawling
 
 chroma_feeding:
 	$(call setup_env,production)

@@ -51,7 +51,10 @@ dependencies:
   pinecone: ^0.7.2
   
   shared:
-    path: '../shared'
+    git: 
+      url: https://github.com/definev/phapdien.git
+      ref: duong-branch
+      path: shared
 
 dev_dependencies:
   lints: ^2.1.0

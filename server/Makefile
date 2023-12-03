@@ -35,7 +35,7 @@ convert_crawl_data_to_map:
 
 crawling:
 	echo "Start crawling"
-	@dart run bin/crawl_data.dartcrawling
+	@dart run bin/crawl_data.dart
 
 chroma_feeding:
 	$(call setup_env,production)

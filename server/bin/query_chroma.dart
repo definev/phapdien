@@ -1,19 +1,14 @@
 import 'dart:convert';
-import 'dart:io';
 
+import 'package:server/v0/apllications/vector_database/embedding_function/embedding_function.dart';
 import 'package:server/v0/data/chroma.dart';
-import 'package:server/v0/data/openai.dart';
 import 'package:server/v0/data/provider_container.dart';
 
 void main(List<String> args) async {
   final chromaClient = providerContainer.read(chromaClientProvider);
   final collection = await chromaClient.getCollection(
     name: 'phapdien',
-    embeddingFunction: OpenAIEmbedding(
-      json //
-          .decode(File('env/production.json').readAsStringSync())['OPENAI_API_KEYS']
-          .cast<String>(),
-    ),
+    embeddingFunction: providerContainer.read(embeddingFunctionProvider),
   );
 
   final result = await collection.query(

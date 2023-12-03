@@ -1,9 +1,9 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:chromadb/chromadb.dart';
 import 'package:pinecone/pinecone.dart';
-import 'package:server/v0/data/openai.dart';
+import 'package:server/v0/apllications/vector_database/embedding_function/embedding_function.dart';
+import 'package:server/v0/data/provider_container.dart';
 
 const environment = 'gcp-starter';
 const indexName = 'phapdien';
@@ -11,11 +11,9 @@ const projectId = 'dihq7j6';
 final client = PineconeClient(apiKey: '9037687b-e0ef-4a4e-85ec-be6fafa68139');
 
 void main() async {
-  final apiKeys = json //
-      .decode(File('env/production.json').readAsStringSync())['OPENAI_API_KEYS']
-      .cast<String>();
+  final embeddingFunction = providerContainer.read(embeddingFunctionProvider);
 
-  final vector = (await OpenAIEmbedding(apiKeys).generate([Embeddable.document('ĐIỀU KIỆN THI HÀNH ÁN DÂN SỰ là gì?')])).first;
+  final vector = (await embeddingFunction.generate([Embeddable.document('ĐIỀU KIỆN THI HÀNH ÁN DÂN SỰ là gì?')])).first;
   final response = await client.queryVectors(
     indexName: indexName,
     projectId: projectId,

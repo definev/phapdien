@@ -6,7 +6,7 @@ import 'dart:isolate';
 import 'package:openai_dart/openai_dart.dart';
 import 'package:pinecone/pinecone.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:server/v0/data/openai.dart';
+import 'package:server/v0/apllications/vector_database/embedding_function/embedding_function.dart';
 import 'package:server/v0/data/provider_container.dart';
 import 'package:server/v0/domain/vbpl_content.dart';
 
@@ -89,9 +89,7 @@ Future<void> handlingDocuments((int, List<String>) message) async {
   idsFile.createSync(recursive: true);
   print('start thread $index processing ${docIds.length} documents');
 
-  final envFile = json.decode(File('env/production.json').readAsStringSync()) as Map<String, dynamic>;
-
-  final embedding = OpenAIEmbedding((envFile['OPENAI_API_KEYS'].cast<String>() as List<String>)..shuffle());
+  final embedding = providerContainer.read(embeddingFunctionProvider);
 
   final idsQueue = Queue<String>.from(docIds);
   final completedIds = <String>[];

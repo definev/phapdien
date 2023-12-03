@@ -6,7 +6,7 @@ part of 'openai.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$openAIClientHash() => r'85d64fe77a7107bf1ed116f8fead8408bf5865a3';
+String _$openAIClientHash() => r'af049e737cd4ecd583f93d98eda70c13cc12234b';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -39,9 +39,9 @@ class OpenAIClientFamily extends Family<OpenAIClient> {
   const OpenAIClientFamily();
 
   /// See also [openAIClient].
-  OpenAIClientProvider call([
-    String? apiKey,
-  ]) {
+  OpenAIClientProvider call(
+    String apiKey,
+  ) {
     return OpenAIClientProvider(
       apiKey,
     );
@@ -74,9 +74,9 @@ class OpenAIClientFamily extends Family<OpenAIClient> {
 /// See also [openAIClient].
 class OpenAIClientProvider extends AutoDisposeProvider<OpenAIClient> {
   /// See also [openAIClient].
-  OpenAIClientProvider([
-    String? apiKey,
-  ]) : this._internal(
+  OpenAIClientProvider(
+    String apiKey,
+  ) : this._internal(
           (ref) => openAIClient(
             ref as OpenAIClientRef,
             apiKey,
@@ -103,7 +103,7 @@ class OpenAIClientProvider extends AutoDisposeProvider<OpenAIClient> {
     required this.apiKey,
   }) : super.internal();
 
-  final String? apiKey;
+  final String apiKey;
 
   @override
   Override overrideWith(
@@ -144,7 +144,7 @@ class OpenAIClientProvider extends AutoDisposeProvider<OpenAIClient> {
 
 mixin OpenAIClientRef on AutoDisposeProviderRef<OpenAIClient> {
   /// The parameter `apiKey` of this provider.
-  String? get apiKey;
+  String get apiKey;
 }
 
 class _OpenAIClientProviderElement
@@ -152,7 +152,7 @@ class _OpenAIClientProviderElement
   _OpenAIClientProviderElement(super.provider);
 
   @override
-  String? get apiKey => (origin as OpenAIClientProvider).apiKey;
+  String get apiKey => (origin as OpenAIClientProvider).apiKey;
 }
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

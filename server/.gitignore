@@ -3,5 +3,6 @@
 .dart_tool/
 
 crawl_data/
-env/production.env
-env/production.json
+!env/production.env.example
+!env/production.json.example
+env/

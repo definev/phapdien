@@ -9,4 +9,6 @@ build/
 .packages
 
 env/
+!env/production.json
 crawl_data/
+!crawl_data/mapped

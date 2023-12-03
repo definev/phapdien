@@ -17,6 +17,7 @@ COPY --from=build /runtime/ /
 COPY --from=build /app/specs/ /app/specs/
 COPY --from=build /app/bin/server /app/bin/
 COPY --from=build /app/env/production.json /app/env/
+COPY --from=build /app/crawl_data/mapped /app/crawl_data/mapped 
 
 WORKDIR /app
 

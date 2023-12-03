@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:server/v0/api_docs/swagger.dart';
 import 'package:server/v0/routes/phapdien/get_demuc_content.dart';
 import 'package:server/v0/routes/phapdien/get_root.dart';
+import 'package:server/v0/routes/phapdien/get_search.dart';
 import 'package:server/v0/routes/phapdien/post_children.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart' as shelf_io;
@@ -15,7 +16,8 @@ final _router = Router()
   ..get('/ping', _pingHandler)
   ..get('/v0/phapdien/root', getPhapdienRootNodesHandler)
   ..post('/v0/phapdien/children', postPhapdienChildrenNodesHandler)
-  ..get('/v0/phapdien/demuc_content', getPhapdienDemucContentHandler);
+  ..get('/v0/phapdien/demuc_content', getPhapdienDemucContentHandler)
+  ..get('/v0/phapdien/search', getPhapdienSearchHandler);
 
 // A handler that responds to `/ping` requests.
 Response _pingHandler(Request request) => Response.ok('pong');

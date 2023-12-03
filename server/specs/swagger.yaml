@@ -77,6 +77,35 @@ paths:
                 $ref: "#/components/schemas/DemucContentResponse"
       deprecated: false
 
+  /phapdien/search:
+    parameters:
+      - name: query
+        in: query
+        description: Câu hỏi của người dùng
+        required: true
+        schema:
+          type: string
+      - name: count
+        in: query
+        description: Số lượng kết quả trả về
+        required: true
+        schema:
+          type: integer
+
+    get:
+      tags:
+        - "Dữ liệu pháp điển"
+      summary: "Lấy nội dung đề mục"
+      operationId: "phapdien/search"
+      responses:
+        200:
+          description: "Thành công"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhapdienSearchResponse"
+      deprecated: false
+
 components:
   schemas:
     VBPLContent:
@@ -147,6 +176,11 @@ components:
         $ref: "#/components/schemas/PhapdienNode"
 
     DemucContentResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/VBPLContent"
+
+    PhapdienSearchResponse:
       type: array
       items:
         $ref: "#/components/schemas/VBPLContent"

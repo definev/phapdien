@@ -12,6 +12,7 @@ class Env {
     required this.openAIKeys,
     required this.pineconeApiKey,
     required this.pineconeEnvironment,
+    required this.pineconeIndexName,
     required this.pineconeProjectId,
   });
 
@@ -23,14 +24,16 @@ class Env {
   final String pineconeApiKey;
   @JsonKey(name: 'PINECONE_ENVIRONMENT')
   final String pineconeEnvironment;
+  @JsonKey(name: 'PINECONE_INDEX_NAME')
+  final String pineconeIndexName;
   @JsonKey(name: 'PINECONE_PROJECT_ID')
   final String pineconeProjectId;
 
   Map<String, dynamic> toJson() => _$EnvToJson(this);
 }
 
-@riverpod
+@Riverpod(keepAlive: true)
 Env environment(EnvironmentRef ref) {
-  final file = File('env/production.json');
+  final file = File('./env/production.json');
   return Env.fromJson(json.decode(file.readAsStringSync()));
 }

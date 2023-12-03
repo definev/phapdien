@@ -29,13 +29,13 @@ class FilePhapdienDB implements PhapdienDB {
 
   @override
   Future<List<VBPLContent>> getVbplContentByDemucId(String demucId) async {
-    final map = await ref.read(demucContentMapProvider(demucId).future);
+    final map = await ref.watch(demucContentMapProvider(demucId).future);
     return map.values.map((e) => VBPLContent.fromJson(e)).toList();
   }
 
   @override
   Future<VBPLContent?> getVbplContentById(String demucId, String id) async {
-    final map = await ref.read(demucContentMapProvider(demucId).future);
+    final map = await ref.watch(demucContentMapProvider(demucId).future);
     final raw = map[id];
     if (raw != null) return VBPLContent.fromJson(raw);
     return null;

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:server/v0/api_docs/swagger.dart';
+import 'package:server/api_docs/swagger.dart';
 import 'package:server/v0/routes/phapdien/get_demuc_content.dart';
 import 'package:server/v0/routes/phapdien/get_root.dart';
 import 'package:server/v0/routes/phapdien/get_search.dart';
@@ -33,8 +33,8 @@ Future<HttpServer> serveServer() async {
       .addMiddleware(corsHeaders())
       .addMiddleware(logRequests())
       .addHandler((Cascade() //
-              .add(createStaticHandler('specs'))
               .add(_router)
+              .add(createStaticHandler('./specs'))
               .add(swaggerUIHandler))
           .handler);
 

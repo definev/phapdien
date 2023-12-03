@@ -11,7 +11,7 @@ VectorDatabase vectorDatabase(VectorDatabaseRef ref) {
 
 abstract class VectorDatabase {
   Future<List<Map<String, dynamic>>> searchVector({
-    required String indexName,
+    String? indexName,
     required List<double> vector,
     required int count,
   });

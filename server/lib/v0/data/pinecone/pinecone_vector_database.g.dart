@@ -7,7 +7,7 @@ part of 'pinecone_vector_database.dart';
 // **************************************************************************
 
 String _$pineconeVectorDatabaseHash() =>
-    r'c85c2876ffb10f0baa552d32ed3cda2ca54ed68f';
+    r'4b4262740492f153d9532495175cd01814162de5';
 
 /// See also [pineconeVectorDatabase].
 @ProviderFor(pineconeVectorDatabase)

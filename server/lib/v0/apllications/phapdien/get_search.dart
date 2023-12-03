@@ -30,7 +30,6 @@ class ImplGetPhapdienSearchController implements GetPhapdienSearchController {
     final vector = await embeddingFunction.generate([EmbeddableDocument(document: query)]);
     final client = ref.watch(vectorDatabaseProvider);
     final raw = await client.searchVector(
-      indexName: 'phapdien',
       vector: vector.first,
       count: count,
     );

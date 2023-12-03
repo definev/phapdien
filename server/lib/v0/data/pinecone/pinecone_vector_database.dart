@@ -12,12 +12,19 @@ VectorDatabase pineconeVectorDatabase(PineconeVectorDatabaseRef ref) {
     apiKey: env.pineconeApiKey,
     environment: env.pineconeEnvironment,
     projectId: env.pineconeProjectId,
+    rootIndexName: env.pineconeIndexName,
   );
 }
 
 class PineconeVectorDatabase implements VectorDatabase {
-  PineconeVectorDatabase({required this.apiKey, required this.environment, required this.projectId});
+  PineconeVectorDatabase({
+    required this.apiKey,
+    required this.environment,
+    required this.projectId,
+    required this.rootIndexName,
+  });
 
+  final String rootIndexName;
   final String apiKey;
   final String environment;
   final String projectId;
@@ -27,10 +34,11 @@ class PineconeVectorDatabase implements VectorDatabase {
 
   @override
   Future<List<Map<String, dynamic>>> searchVector({
-    required String indexName,
+    String? indexName,
     required List<double> vector,
     required int count,
   }) async {
+    indexName ??= rootIndexName;
     final response = await _client.queryVectors(
       indexName: indexName,
       projectId: projectId,

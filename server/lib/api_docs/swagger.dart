@@ -8,7 +8,7 @@ part 'swagger.g.dart';
 @Riverpod(keepAlive: true)
 SwaggerUI swaggerUI(SwaggerUIRef ref) {
   return SwaggerUI(
-    './specs/swagger.yaml',
+    './specs/v0_swagger.yaml',
     syntaxHighlightTheme: SyntaxHighlightTheme.tomorrowNight,
     title: 'Pháp Điển API',
   );

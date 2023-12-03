@@ -1,14 +1,9 @@
-import 'dart:convert';
-import 'dart:io';
-
 import 'package:chromadb/chromadb.dart';
-import 'package:server/v0/data/openai.dart';
+import 'package:server/v0/apllications/vector_database/embedding_function/embedding_function.dart';
+import 'package:server/v0/data/provider_container.dart';
 
 void main() async {
-  final apiKeys = json //
-      .decode(File('env/production.json').readAsStringSync())['OPENAI_API_KEYS']
-      .cast<String>();
-  final embeddingFunction = OpenAIEmbedding(apiKeys);
+  final embeddingFunction = providerContainer.read(embeddingFunctionProvider);
   print(
     (await embeddingFunction.generate([
       // Embeddable.document('QUẢN LÝ MỸ PHẨM'),

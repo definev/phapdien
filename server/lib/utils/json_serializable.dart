@@ -7,4 +7,13 @@ class JsonSerializableUtils {
   static String stringToBoolToJson(bool value) {
     return value.toString();
   }
+
+  static int stringToIntFromJson(String? json) {
+    if (json == null) return 0;
+    return int.parse(json);
+  }
+
+  static String stringToIntToJson(int value) {
+    return value.toString();
+  }
 }

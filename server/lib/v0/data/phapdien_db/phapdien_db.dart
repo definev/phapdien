@@ -1,5 +1,5 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:server/v0/domain/vbpl_content.dart';
+import 'package:shared/shared.dart';
 
 import 'file/file_phapdien_db.dart';
 

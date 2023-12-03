@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:server/v0/domain/vbpl_content.dart';
+import 'package:shared/shared.dart';
 
 void main() {
   final dir = Directory('crawl_data/mapped');

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:server/utils/json_serializable.dart';
+import 'package:shared/shared.dart';
 
 part 'get_phapdien_search_request.g.dart';
 

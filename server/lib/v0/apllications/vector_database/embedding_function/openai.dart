@@ -2,7 +2,7 @@ import 'package:chromadb/chromadb.dart';
 import 'package:openai_dart/openai_dart.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:server/utils/env.dart';
+import 'package:server/internal/env.dart';
 import 'package:server/v0/apllications/vector_database/llm/openai.dart';
 
 part 'openai.g.dart';

@@ -1,4 +1,4 @@
-import 'package:app/features/search/presentation/search_view.dart';
+import 'package:app/features/phapdien_tree/view/phapdien_tree_view.dart';
 import 'package:app/utils/spacing.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,7 @@ class MainApp extends StatelessWidget {
     );
     return MaterialApp(
       theme: flexColorScheme.toTheme,
-      home: const SearchView(),
+      home: const PhapdienTreeView(),
     );
   }
 }

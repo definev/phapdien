@@ -118,12 +118,12 @@ Future<void> handlingDocuments((int, List<String>) message) async {
         print('ERROR AT VECTOR GENERATION $index thread: $id');
         if (e is OpenAIClientException) {
           print('$index | $id: OPENAI Exception: ${e.body}');
-          print('Waiting 60s...');
+          print('Waiting 30s...');
         } else {
           print('$index | $id: Exception: $e');
-          print('Waiting 60s...');
+          print('Waiting 30s...');
         }
-        await Future.delayed(const Duration(seconds: 60));
+        await Future.delayed(const Duration(seconds: 30));
         continue;
       }
     }
@@ -172,15 +172,16 @@ Future<void> handlingDocuments((int, List<String>) message) async {
             }
             print('Pinecone Exception: ${e.body}');
           }
-          await Future.delayed(const Duration(seconds: 60));
+          await Future.delayed(const Duration(seconds: 30));
           continue;
         }
       }
     }
 
-    print('done at $index thread: $id');
+    print('done at $index thread: $id, start cold down');
     completedIds.add(id);
     idsFile.writeAsStringSync(json.encode(completedIds));
+    await Future.delayed(const Duration(seconds: 5));
   } while (idsQueue.isNotEmpty);
   print('completed thread $index processing ${docIds.length} documents');
 }

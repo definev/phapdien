@@ -33,6 +33,16 @@ sealed class PhapdienNodeType {
       };
 }
 
+extension PhapdienNodeTypeExt on PhapdienNodeType {
+  int get level => switch (this) {
+      ChuDePhapdienNodeType() => 0,
+      DeMucPhapdienNodeType() => 1,
+      ChuongPhapdienNodeType() => 2,
+      MucPhapdienNodeType() => 3,
+      DieuPhapdienNodeType(:final level) => 4 + level,
+  };
+}
+
 class ChuDePhapdienNodeType implements PhapdienNodeType {
   const ChuDePhapdienNodeType();
 }

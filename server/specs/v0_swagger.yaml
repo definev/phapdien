@@ -1,0 +1,186 @@
+openapi: 3.0.0
+info:
+  description: "API system"
+  version: "1.0.10"
+  title: "Pháp điển API"
+servers:
+  - url: http://localhost:7777/v0
+    description: Local server
+
+tags:
+  - name: "Dữ liệu pháp điển"
+    description: "Dữ liệu pháp điển"
+
+paths:
+  /phapdien/root:
+    get:
+      tags:
+        - "Dữ liệu pháp điển"
+      summary: "Lấy cây pháp điển mẫu"
+      operationId: "phapdien/root"
+      responses:
+        200:
+          description: "Thành công"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhapdienRootResponse"
+      deprecated: false
+
+  /phapdien/children:
+    post:
+      tags:
+        - "Dữ liệu pháp điển"
+      summary: "Lấy danh sách con của một PhapdienNode"
+      operationId: "getChildren"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PhapdienChildrenRequest"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhapdienChildrenResponse"
+        400:
+          description: "Invalid status value"
+      deprecated: false
+
+  /phapdien/demuc_content:
+    parameters:
+      - name: id
+        in: query
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: show_raw
+        in: query
+        description: show_raw
+        required: true
+        schema:
+          type: boolean
+    get:
+      tags:
+        - "Dữ liệu pháp điển"
+      summary: "Lấy nội dung đề mục"
+      operationId: "phapdien/demuc_content"
+      responses:
+        200:
+          description: "Thành công"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DemucContentResponse"
+      deprecated: false
+
+  /phapdien/search:
+    parameters:
+      - name: query
+        in: query
+        description: Câu hỏi của người dùng
+        required: true
+        schema:
+          type: string
+      - name: count
+        in: query
+        description: Số lượng kết quả trả về
+        required: true
+        schema:
+          type: integer
+
+    get:
+      tags:
+        - "Dữ liệu pháp điển"
+      summary: "Lấy nội dung đề mục"
+      operationId: "phapdien/search"
+      responses:
+        200:
+          description: "Thành công"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PhapdienSearchResponse"
+      deprecated: false
+
+components:
+  schemas:
+    VBPLContent:
+      type: object
+      properties:
+        title:
+          type: string
+        content:
+          type: string
+        source_title:
+          type: string
+        source_url:
+          type: string
+        item_id:
+          type: string
+        location_in_vbpl:
+          type: string
+
+    PhapdienNode:
+      type: object
+      properties:
+        id:
+          type: string
+        parent:
+          type: string 
+        text:
+          type: string
+        can_open_detail:
+          type: boolean
+        can_open_category:
+          type: boolean
+        type:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - ChuDePhapdienNodeType
+                - DeMucPhapdienNodeType
+                - ChuongPhapdienNodeType
+                - DieuPhapdienNodeType
+            level:
+              type: integer
+              nullable: true
+
+    PhapdienRootResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/PhapdienNode"
+
+    PhapdienChildrenRequest:
+      type: object
+      properties:
+        id:
+          type: string
+        level:
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+
+    PhapdienChildrenResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/PhapdienNode"
+
+    DemucContentResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/VBPLContent"
+
+    PhapdienSearchResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/VBPLContent"

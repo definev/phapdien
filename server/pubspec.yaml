@@ -1,0 +1,58 @@
+name: server
+description: A server app using the shelf package and Docker.
+version: 1.0.0
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.1.0
+
+dependencies:
+  args: ^2.4.0
+
+  # LLM-Server
+  langchain: ^0.1.1+1
+  langchain_google: ^0.1.0+4
+  langchain_openai: ^0.1.2+2
+
+  # Server
+  shelf: ^1.4.0
+  shelf_router: ^1.1.0
+  shelf_web_socket: ^1.0.4
+  shelf_cors_headers: ^0.1.5
+
+  # Http client
+  http: ^1.1.0
+  html: ^0.15.4 
+
+  # Json
+  json_annotation: ^4.8.1
+
+  # Dependency injection
+  riverpod: ^2.4.9
+  riverpod_annotation: ^2.3.3
+  copy_with_extension: ^5.0.4
+
+  # API documentation
+  shelf_swagger_ui: ^1.0.0+2
+
+  # Static files
+  shelf_static: ^1.1.2
+
+  # Hot reload
+  shelf_hotreload: ^1.4.0
+
+  # Database
+  chromadb: ^0.1.0+2
+
+  # AI
+  openai_dart: ^0.1.1+2
+  pinecone: ^0.7.2
+
+dev_dependencies:
+  lints: ^2.1.0
+  test: ^1.24.0
+
+  build_runner: ^2.4.6
+  json_serializable: ^6.7.1
+  riverpod_generator: ^2.3.9
+  copy_with_extension_gen: ^5.0.4

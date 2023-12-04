@@ -15,6 +15,8 @@ sealed class PhapdienNodeType {
           return const ChuDePhapdienNodeType();
         case 'DeMucPhapdienNodeType':
           return const DeMucPhapdienNodeType();
+        case 'MucPhapdienNodeType':
+          return const MucPhapdienNodeType();
         case 'ChuongPhapdienNodeType':
           return const ChuongPhapdienNodeType();
         case 'DieuPhapdienNodeType':

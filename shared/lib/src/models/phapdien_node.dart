@@ -37,12 +37,12 @@ sealed class PhapdienNodeType {
 
 extension PhapdienNodeTypeExt on PhapdienNodeType {
   int get level => switch (this) {
-      ChuDePhapdienNodeType() => 0,
-      DeMucPhapdienNodeType() => 1,
-      ChuongPhapdienNodeType() => 2,
-      MucPhapdienNodeType() => 3,
-      DieuPhapdienNodeType(:final level) => 4 + level,
-  };
+        ChuDePhapdienNodeType() => 0,
+        DeMucPhapdienNodeType() => 1,
+        ChuongPhapdienNodeType() => 2,
+        MucPhapdienNodeType() => 3,
+        DieuPhapdienNodeType(:final level) => 4 + level,
+      };
 }
 
 class ChuDePhapdienNodeType implements PhapdienNodeType {
@@ -122,6 +122,17 @@ class PhapdienNode {
   final PhapdienNodeType type;
 
   Map<String, dynamic> toJson() => _$PhapdienNodeToJson(this);
+
+  @override
+  operator ==(Object other) {
+    if (other is PhapdienNode) {
+      return other.id == id;
+    }
+    return false;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
 
 extension PhapdienNodeListExt on List<PhapdienNode> {

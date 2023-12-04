@@ -13,18 +13,18 @@ typedef PhapdienNodeSelectedCallback = void Function(PhapdienNode node);
 class PhapdienDanhmucView extends HookConsumerWidget {
   const PhapdienDanhmucView({
     super.key,
-    required this.onNodeSelected,
+    required this.sourcePageController,
+    required this.selectedNodes,
   });
 
-  final PhapdienNodeSelectedCallback onNodeSelected;
+  final PageController sourcePageController;
+  final ValueNotifier<List<PhapdienNode>> selectedNodes;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
 
-    final sourcePageController = usePageController();
-    final pageCount = useState(1);
-    final selectedNodes = useState(<PhapdienNode>[]);
+    useListenable(selectedNodes);
 
     return Stack(
       children: [

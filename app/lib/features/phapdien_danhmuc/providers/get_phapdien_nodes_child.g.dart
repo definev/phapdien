@@ -7,7 +7,7 @@ part of 'get_phapdien_nodes_child.dart';
 // **************************************************************************
 
 String _$getPhapdienRootNodesHash() =>
-    r'7be3b9cf7ae5f12b9ed929852dbb0e0eaccadcde';
+    r'f71c22191209c2ae41393e6347e9dc37596d2d19';
 
 /// See also [_getPhapdienRootNodes].
 @ProviderFor(_getPhapdienRootNodes)
@@ -24,7 +24,7 @@ final _getPhapdienRootNodesProvider =
 
 typedef _GetPhapdienRootNodesRef = FutureProviderRef<List<PhapdienNode>>;
 String _$getPhapdienNodesChildHash() =>
-    r'747dccac37b13b7ea5cf31c156994856cebe7dc4';
+    r'6b0311ad5670b196d0af509c5ae31d7d519c5b04';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -175,5 +175,23 @@ class _GetPhapdienNodesChildProviderElement
   @override
   PhapdienNode? get parent => (origin as GetPhapdienNodesChildProvider).parent;
 }
+
+String _$cachedPhapdienNodesHash() =>
+    r'da0d3e833bc7c75a721b7b1663e2f0deccf7039c';
+
+/// See also [CachedPhapdienNodes].
+@ProviderFor(CachedPhapdienNodes)
+final cachedPhapdienNodesProvider =
+    NotifierProvider<CachedPhapdienNodes, Set<PhapdienNode>>.internal(
+  CachedPhapdienNodes.new,
+  name: r'cachedPhapdienNodesProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$cachedPhapdienNodesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$CachedPhapdienNodes = Notifier<Set<PhapdienNode>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

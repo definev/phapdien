@@ -668,9 +668,11 @@ packages:
   shared:
     dependency: "direct main"
     description:
-      path: "../shared"
-      relative: true
-    source: path
+      path: shared
+      ref: duong-branch
+      resolved-ref: "03d9133b7d6281803584fccb3fb3424dfe6b8aed"
+      url: "https://github.com/definev/phapdien.git"
+    source: git
     version: "1.0.0"
   shelf:
     dependency: "direct main"

@@ -11,32 +11,35 @@ class GetPhapdienDanhmucModel extends _$GetPhapdienDanhmucModel {
   Future<PhapdienDanhmucModel> build() async {
     final repository = ref.watch(restPhapdienDanhmucRepositoryProvider);
     final root = await repository.getRoot();
-    final nodes = <String, PhapdienNode>{};
+    final relatedMaps = <String?, List<PhapdienNode>>{};
     for (final node in root) {
-      nodes[node.id] = node;
+      final oldRelateNodes = relatedMaps[node.parent];
+      if (oldRelateNodes != null) {
+        relatedMaps[node.parent] = [...oldRelateNodes, node];
+      } else {
+        relatedMaps[node.parent] = [node];
+      }
     }
-    return PhapdienDanhmucModel(nodes: nodes);
+    return PhapdienDanhmucModel(relatedMaps: relatedMaps);
   }
 
   Future<void> upsertChildrenOf(PhapdienNode parent) async {
     final value = state;
     if (value is! AsyncData) return;
 
-    final oldNodes = value.value!.nodes;
-    if (oldNodes[parent.id] != null) return;
+    final oldNodes = value.value!.relatedMaps;
+    if (oldNodes.containsKey(parent.id)) return;
 
     final repository = ref.watch(restPhapdienDanhmucRepositoryProvider);
     final children = await repository.getChildrenNodes(parent);
-    var nodes = <String, PhapdienNode>{};
-    for (final node in children) {
-      nodes[node.id] = node;
-    }
-    nodes = {
-      ...oldNodes,
-      ...nodes,
-    };
+
     state = AsyncData(
-      PhapdienDanhmucModel(nodes: nodes),
+      PhapdienDanhmucModel(
+        relatedMaps: {
+          ...oldNodes,
+          parent.id: children,
+        },
+      ),
     );
   }
 }

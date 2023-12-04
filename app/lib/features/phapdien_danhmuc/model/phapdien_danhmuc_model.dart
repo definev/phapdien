@@ -1,11 +1,11 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:shared/shared.dart';
 
-part 'phapdien_danhmuc_model.g.dart';
-
-@CopyWith()
 class PhapdienDanhmucModel {
-  const PhapdienDanhmucModel({required this.nodes});
+  const PhapdienDanhmucModel({required this.relatedMaps});
 
-  final Map<String, PhapdienNode> nodes;
+  final Map<String?, List<PhapdienNode>> relatedMaps;
+}
+
+extension PhapdienDanhmucModelX on PhapdienDanhmucModel {
+  List<PhapdienNode> get roots => relatedMaps[null] ?? [];
 }

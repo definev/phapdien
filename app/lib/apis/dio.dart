@@ -7,5 +7,5 @@ part 'dio.g.dart';
 @riverpod
 Dio dio(DioRef ref) {
   final env = ref.watch(environmentProvider);
-  return Dio(BaseOptions(baseUrl: env.baseUrl));
+  return Dio(BaseOptions(baseUrl: env.baseUrl))..interceptors.add(LogInterceptor());
 }

@@ -21,8 +21,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flexColorScheme = FlexColorScheme.dark(
-      scheme: FlexScheme.amber,
+    final flexColorTheme = FlexColorScheme.dark(
+      scheme: FlexScheme.deepBlue,
+      useMaterial3: true,
       subThemesData: FlexSubThemesData(
         thickBorderWidth: 1,
         thinBorderWidth: 1,
@@ -30,10 +31,21 @@ class MainApp extends StatelessWidget {
         inputDecoratorIsFilled: true,
         inputDecoratorBorderType: FlexInputBorderType.outline,
       ),
-      textTheme: GoogleFonts.eagleLakeTextTheme(),
-    );
+      textTheme: GoogleFonts.genosTextTheme(),
+    ).toTheme;
     return MaterialApp(
-      theme: flexColorScheme.toTheme,
+      theme: flexColorTheme.copyWith(
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: flexColorTheme.outlinedButtonTheme.style?.copyWith(
+            padding: MaterialStateProperty.all(
+              EdgeInsets.symmetric(
+                vertical: Spacings.sm.value,
+                horizontal: Spacings.md.value,
+              ),
+            ),
+          ),
+        ),
+      ),
       home: const PhapdienTreeView(),
     );
   }

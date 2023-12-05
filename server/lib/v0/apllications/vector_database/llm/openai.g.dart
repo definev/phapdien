@@ -154,5 +154,135 @@ class _OpenAIClientProviderElement
   @override
   String get apiKey => (origin as OpenAIClientProvider).apiKey;
 }
+
+String _$autoCountOpenAIClientHash() =>
+    r'd6ecc780458f659e91eaebfa18749f82342282a0';
+
+/// See also [autoCountOpenAIClient].
+@ProviderFor(autoCountOpenAIClient)
+const autoCountOpenAIClientProvider = AutoCountOpenAIClientFamily();
+
+/// See also [autoCountOpenAIClient].
+class AutoCountOpenAIClientFamily extends Family<OpenAIClient> {
+  /// See also [autoCountOpenAIClient].
+  const AutoCountOpenAIClientFamily();
+
+  /// See also [autoCountOpenAIClient].
+  AutoCountOpenAIClientProvider call(
+    int index,
+  ) {
+    return AutoCountOpenAIClientProvider(
+      index,
+    );
+  }
+
+  @override
+  AutoCountOpenAIClientProvider getProviderOverride(
+    covariant AutoCountOpenAIClientProvider provider,
+  ) {
+    return call(
+      provider.index,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'autoCountOpenAIClientProvider';
+}
+
+/// See also [autoCountOpenAIClient].
+class AutoCountOpenAIClientProvider extends AutoDisposeProvider<OpenAIClient> {
+  /// See also [autoCountOpenAIClient].
+  AutoCountOpenAIClientProvider(
+    int index,
+  ) : this._internal(
+          (ref) => autoCountOpenAIClient(
+            ref as AutoCountOpenAIClientRef,
+            index,
+          ),
+          from: autoCountOpenAIClientProvider,
+          name: r'autoCountOpenAIClientProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$autoCountOpenAIClientHash,
+          dependencies: AutoCountOpenAIClientFamily._dependencies,
+          allTransitiveDependencies:
+              AutoCountOpenAIClientFamily._allTransitiveDependencies,
+          index: index,
+        );
+
+  AutoCountOpenAIClientProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.index,
+  }) : super.internal();
+
+  final int index;
+
+  @override
+  Override overrideWith(
+    OpenAIClient Function(AutoCountOpenAIClientRef provider) create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: AutoCountOpenAIClientProvider._internal(
+        (ref) => create(ref as AutoCountOpenAIClientRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        index: index,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeProviderElement<OpenAIClient> createElement() {
+    return _AutoCountOpenAIClientProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is AutoCountOpenAIClientProvider && other.index == index;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, index.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin AutoCountOpenAIClientRef on AutoDisposeProviderRef<OpenAIClient> {
+  /// The parameter `index` of this provider.
+  int get index;
+}
+
+class _AutoCountOpenAIClientProviderElement
+    extends AutoDisposeProviderElement<OpenAIClient>
+    with AutoCountOpenAIClientRef {
+  _AutoCountOpenAIClientProviderElement(super.provider);
+
+  @override
+  int get index => (origin as AutoCountOpenAIClientProvider).index;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

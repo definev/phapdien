@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:server/api_docs/swagger.dart';
+import 'package:server/v0/routes/chat/chat_api.dart';
 import 'package:server/v0/routes/phapdien/get_children.dart';
 import 'package:server/v0/routes/phapdien/get_demuc_content.dart';
 import 'package:server/v0/routes/phapdien/get_root.dart';
@@ -17,7 +18,8 @@ final _router = Router()
   ..get('/v0/phapdien/root', getPhapdienRootNodesHandler)
   ..get('/v0/phapdien/children', getPhapdienChildrenNodesHandler)
   ..get('/v0/phapdien/demuc_content', getPhapdienDemucContentHandler)
-  ..get('/v0/phapdien/search', getPhapdienSearchHandler);
+  ..get('/v0/phapdien/search', getPhapdienSearchHandler)
+  ..post('/v0/chat/ask', askHandler);
 
 // A handler that responds to `/ping` requests.
 Response _pingHandler(Request request) => Response.ok('pong');

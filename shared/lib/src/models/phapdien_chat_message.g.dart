@@ -13,6 +13,9 @@ PhapdienChatMessage _$PhapdienChatMessageFromJson(Map<String, dynamic> json) =>
       sources: (json['sources'] as List<dynamic>)
           .map((e) => PhapdienNode.fromJson(e as Map<String, dynamic>))
           .toList(),
+      suggestionQuestions: (json['suggestion_questions'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$PhapdienChatMessageToJson(
@@ -21,4 +24,5 @@ Map<String, dynamic> _$PhapdienChatMessageToJson(
       'question': instance.question,
       'answer': instance.answer,
       'sources': instance.sources,
+      'suggestion_questions': instance.suggestionQuestions,
     };

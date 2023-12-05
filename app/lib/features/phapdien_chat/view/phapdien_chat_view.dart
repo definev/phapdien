@@ -18,26 +18,108 @@ class PhapdienChatView extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final messages = useState(<String>["hello world!!!"]);
 
+    final sessionPageController = usePageController();
+
     final searchTextController = useTextEditingController();
+
+    void onSearchSubmit() {
+      messages.value = [...messages.value, searchTextController.text];
+      searchTextController.clear();
+      sessionPageController.animateToPage(
+        messages.value.length - 1,
+        duration: 300.ms,
+        curve: Curves.decelerate,
+      );
+    }
 
     return Column(
       children: [
         Expanded(
-          child: PageView.builder(
-            itemCount: messages.value.length,
-            itemBuilder: (context, index) {
-              final message = messages.value[index];
-              return Consumer(
-                builder: (context, ref, child) {
-                  final chatMessage = ref.watch(askPhapdienChatProvider(message));
-                  return chatMessage.when(
-                    data: (data) => PhapdienChatMessageWidget(message: data),
-                    loading: () => const Center(child: CircularProgressIndicator()),
-                    error: (error, stackTrace) => const Center(child: Text('Error')),
-                  );
-                },
-              );
-            },
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Positioned.fill(
+                child: PageView.builder(
+                  scrollDirection: Axis.vertical,
+                  controller: sessionPageController,
+                  itemCount: messages.value.length,
+                  itemBuilder: (context, index) {
+                    final message = messages.value[index];
+                    return Consumer(
+                      builder: (context, ref, child) {
+                        final chatMessage = ref.watch(askPhapdienChatProvider(message));
+                        return chatMessage.when(
+                          data: (data) => PhapdienChatMessageWidget(
+                              message: data,
+                              onSelectSuggestion: (suggestion) {
+                                messages.value = [...messages.value, suggestion];
+                                sessionPageController.animateToPage(
+                                  messages.value.length - 1,
+                                  duration: 300.ms,
+                                  curve: Curves.decelerate,
+                                );
+                              }),
+                          loading: () => const Center(child: CircularProgressIndicator()),
+                          error: (error, stackTrace) => const Center(child: Text('Error')),
+                        );
+                      },
+                    );
+                  },
+                ),
+              ),
+              Positioned(
+                right: Spacings.md.value,
+                bottom: 0,
+                child: ListenableBuilder(
+                  listenable: sessionPageController,
+                  builder: (context, child) => switch (sessionPageController.positions.isEmpty) {
+                    true => const SizedBox(),
+                    false => switch (sessionPageController.page) {
+                        final page? => Column(
+                            children: [
+                              switch (page) {
+                                final page when page > 0 => Padding(
+                                    padding: EdgeInsets.only(bottom: Spacings.sm.value),
+                                    child: ElevatedButton(
+                                      style: FilledButton.styleFrom(
+                                        fixedSize: const Size.square(48),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                      onPressed: () => sessionPageController.previousPage(
+                                        duration: 300.ms,
+                                        curve: Curves.decelerate,
+                                      ),
+                                      child: const Icon(Icons.arrow_upward),
+                                    ),
+                                  ),
+                                final page when page < messages.value.length - 1 => const SizedBox(),
+                                final page when page == 0 => const SizedBox(),
+                                _ => const SizedBox(),
+                              },
+                              switch (page.round()) {
+                                final page when page < messages.value.length - 1 => Padding(
+                                    padding: EdgeInsets.only(bottom: Spacings.sm.value),
+                                    child: FilledButton.tonal(
+                                      style: FilledButton.styleFrom(
+                                        fixedSize: const Size.square(48),
+                                        padding: EdgeInsets.zero,
+                                      ),
+                                      onPressed: () =>
+                                          sessionPageController.nextPage(duration: 300.ms, curve: Curves.decelerate),
+                                      child: const Icon(Icons.arrow_downward),
+                                    ),
+                                  ),
+                                final page when page > 0 && page < 1 => const SizedBox(),
+                                _ => const SizedBox(),
+                              },
+                            ],
+                          ),
+                        _ => const SizedBox(),
+                      },
+                  },
+                ),
+              ),
+            ],
           ),
         ),
         Padding(
@@ -46,14 +128,14 @@ class PhapdienChatView extends HookConsumerWidget {
             children: [
               Expanded(
                 child: TextField(
-                    controller: searchTextController,
-                    decoration: const InputDecoration(
-                      hintText: 'Nhập câu hỏi của bạn',
-                    )),
+                  controller: searchTextController,
+                  onSubmitted: (_) => onSearchSubmit(),
+                  decoration: const InputDecoration(hintText: 'Nhập câu hỏi của bạn'),
+                ),
               ),
               Gap(Spacings.md.value),
               IconButton(
-                onPressed: () => messages.value = [...messages.value, searchTextController.text],
+                onPressed: onSearchSubmit,
                 icon: const Icon(Icons.send),
               ),
             ],
@@ -68,9 +150,11 @@ class PhapdienChatMessageWidget extends StatelessWidget {
   const PhapdienChatMessageWidget({
     super.key,
     required this.message,
+    required this.onSelectSuggestion,
   });
 
   final PhapdienChatMessage message;
+  final ValueChanged<String> onSelectSuggestion;
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +163,10 @@ class PhapdienChatMessageWidget extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverPadding(
-          padding: EdgeInsets.symmetric(
-            horizontal: Spacings.md.value,
-            vertical: Spacings.sm.value,
+          padding: EdgeInsets.only(
+            left: Spacings.md.value,
+            right: Spacings.md.value,
+            top: Spacings.sm.value,
           ),
           sliver: SliverList.list(
             children: [
@@ -121,7 +206,13 @@ class PhapdienChatMessageWidget extends StatelessWidget {
                             onPressed: () {},
                             icon: const Icon(Icons.help),
                           ),
-                        ],
+                        ]
+                            .animate() //
+                            .fadeIn(duration: 200.ms)
+                            .slideX(
+                              begin: 0.3,
+                              curve: Curves.easeOutBack,
+                            ),
                       ),
                     );
                   }
@@ -139,6 +230,22 @@ class PhapdienChatMessageWidget extends StatelessWidget {
                 },
                 separatorBuilder: (context, index) => Gap(Spacings.sm.value),
               ),
+            ),
+            const Divider(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: Spacings.md.value),
+              child: Text(message.answer),
+            ),
+            const Divider(),
+            SliverList.list(
+              children: [
+                for (final suggestion in message.suggestionQuestions)
+                  InputChip(
+                    onPressed: () => onSelectSuggestion(suggestion),
+                    padding: EdgeInsets.symmetric(horizontal: Spacings.md.value),
+                    label: Text(suggestion),
+                  ),
+              ],
             ),
           ],
         ),

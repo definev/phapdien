@@ -9,6 +9,7 @@ class PhapdienChatMessage {
     required this.question,
     required this.answer,
     required this.sources,
+    required this.suggestionQuestions,
   });
 
   factory PhapdienChatMessage.fromJson(Map<String, dynamic> json) => _$PhapdienChatMessageFromJson(json);
@@ -16,6 +17,7 @@ class PhapdienChatMessage {
   final String question;
   final String answer;
   final List<PhapdienNode> sources;
+  final List<String> suggestionQuestions;
 
   Map<String, dynamic> toJson() => _$PhapdienChatMessageToJson(this);
 }

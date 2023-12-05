@@ -21,6 +21,9 @@ dependencies:
   flutter_portal: ^1.1.4
   flutter_animate: ^4.3.0
   page_indicator_plus: ^1.0.3
+  animations: ^2.0.8
+  gap: ^3.0.1
+  sliver_tools: ^0.2.12
 
   google_fonts: ^6.1.0
 

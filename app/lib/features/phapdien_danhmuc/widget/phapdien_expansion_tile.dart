@@ -20,17 +20,35 @@ class PhapdienExpansionTile extends StatelessWidget {
       child: Card(
         child: InkWell(
           onTap: () => onNodeSelected(node),
-          child: Padding(
-            padding: EdgeInsets.all(
-              Spacings.md.value,
-            ),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                node.text,
-                textAlign: TextAlign.start,
+          child: Row(
+            children: [
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(Icons.chat_bubble_rounded),
               ),
-            ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(
+                    Spacings.md.value,
+                  ),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      node.text,
+                      textAlign: TextAlign.start,
+                    ),
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () => onNodeSelected(node),
+                    icon: const Icon(Icons.chevron_right_rounded),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

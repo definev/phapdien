@@ -7,7 +7,7 @@ part of 'fuzzy_search_phapdien.dart';
 // **************************************************************************
 
 String _$fuzzySearchPhapdienHash() =>
-    r'a7a721cc9c298dd76e383f7534dee61a5bbd4549';
+    r'b8f50126b2140598de821e3dfb15fe120f180a5b';
 
 /// Copied from Dart SDK
 class _SystemHash {

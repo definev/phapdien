@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:app/features/phapdien_danhmuc/providers/get_phapdien_nodes_child.dart';
 import 'package:app/features/phapdien_danhmuc/widget/phapdien_expansion_tile.dart';
+import 'package:app/utils/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -47,34 +48,31 @@ class PhapdienDanhmucView extends HookConsumerWidget {
                     },
                   );
                   return nodes.when(
-                    data: (roots) => ListView(
-                      children: [
-                        for (final root in roots)
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              PhapdienExpansionTile(
-                                node: root,
-                                onNodeSelected: (node) async {
-                                  if (index < selectedNodes.value.length) {
-                                    selectedNodes.value = selectedNodes.value.sublist(0, index);
-                                  }
-                                  selectedNodes.value = [...selectedNodes.value, node];
+                    data: (roots) => ListView.separated(
+                      padding: EdgeInsets.only(
+                        top: Spacings.md.value,
+                        bottom: Spacings.md.value + 68,
+                      ),
+                      itemCount: roots.length,
+                      separatorBuilder: (context, index) => const Divider(),
+                      itemBuilder: (context, index) => PhapdienExpansionTile(
+                        node: roots[index],
+                        onNodeSelected: (node) async {
+                          if (index < selectedNodes.value.length) {
+                            selectedNodes.value = selectedNodes.value.sublist(0, index);
+                          }
+                          selectedNodes.value = [...selectedNodes.value, node];
 
-                                  await Future.delayed(
-                                    250.ms,
-                                    () async => await sourcePageController.animateToPage(
-                                      selectedNodes.value.length,
-                                      duration: 250.ms,
-                                      curve: Curves.decelerate,
-                                    ),
-                                  );
-                                },
-                              ),
-                              const Divider(),
-                            ],
-                          ),
-                      ],
+                          await Future.delayed(
+                            250.ms,
+                            () async => await sourcePageController.animateToPage(
+                              selectedNodes.value.length,
+                              duration: 250.ms,
+                              curve: Curves.decelerate,
+                            ),
+                          );
+                        },
+                      ),
                     ),
                     error: (error, stackTrace) => Center(child: Text(error.toString())),
                     loading: () => const Center(child: CircularProgressIndicator()),

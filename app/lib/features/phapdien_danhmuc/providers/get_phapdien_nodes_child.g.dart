@@ -177,7 +177,7 @@ class _GetPhapdienNodesChildProviderElement
 }
 
 String _$cachedPhapdienNodesHash() =>
-    r'da0d3e833bc7c75a721b7b1663e2f0deccf7039c';
+    r'5809cf52c65b0c624cb253efb38140fa4e481a73';
 
 /// See also [CachedPhapdienNodes].
 @ProviderFor(CachedPhapdienNodes)

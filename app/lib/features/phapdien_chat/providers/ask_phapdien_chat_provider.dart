@@ -1,6 +1,5 @@
-import 'package:app/features/phapdien_chat/model/phapdien_chat_message.dart';
-import 'package:app/features/phapdien_danhmuc/providers/get_phapdien_nodes_child.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared/shared.dart';
 
 part 'ask_phapdien_chat_provider.g.dart';
 
@@ -46,7 +45,7 @@ This will fetch the specified package from the Git repository and make it availa
 
 Keep in mind that using packages directly from Git repositories can have its drawbacks, as the code may not be as stable as a released version on pub.dev. It's recommended to use this approach only if you need specific changes from the Git repository or if the package is not available on pub.dev.
 ''',
-      sources: ref.read(cachedPhapdienNodesProvider).toList(),
+      sources: [],
     ),
   );
 }

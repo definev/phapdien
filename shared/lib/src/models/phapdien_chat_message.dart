@@ -16,7 +16,7 @@ class PhapdienChatMessage {
 
   final String question;
   final String answer;
-  final List<PhapdienNode> sources;
+  final List<VBPLContent> sources;
   final List<String> suggestionQuestions;
 
   Map<String, dynamic> toJson() => _$PhapdienChatMessageToJson(this);

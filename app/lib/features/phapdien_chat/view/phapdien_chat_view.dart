@@ -1,4 +1,3 @@
-import 'package:app/features/phapdien_chat/model/phapdien_chat_message.dart';
 import 'package:app/features/phapdien_chat/providers/ask_phapdien_chat_provider.dart';
 import 'package:app/utils/spacing.dart';
 import 'package:boxy/padding.dart';
@@ -219,13 +218,13 @@ class PhapdienChatMessageWidget extends StatelessWidget {
                   index = index - 1;
                   return ConstrainedBox(
                     constraints: BoxConstraints.loose(const Size(200, 130)),
-                    child: PhapdienNodeCard(message.sources[index]) //
-                        .animate()
-                        .fadeIn(duration: 300.ms)
-                        .slideX(
-                          begin: 0.6,
-                          curve: Curves.easeOutBack,
-                        ),
+                    // child: PhapdienNodeCard(message.sources[index]) //
+                    //     .animate()
+                    //     .fadeIn(duration: 300.ms)
+                    //     .slideX(
+                    //       begin: 0.6,
+                    //       curve: Curves.easeOutBack,
+                    //     ),
                   );
                 },
                 separatorBuilder: (context, index) => Gap(Spacings.sm.value),

@@ -11,7 +11,7 @@ PhapdienChatMessage _$PhapdienChatMessageFromJson(Map<String, dynamic> json) =>
       question: json['question'] as String,
       answer: json['answer'] as String,
       sources: (json['sources'] as List<dynamic>)
-          .map((e) => PhapdienNode.fromJson(e as Map<String, dynamic>))
+          .map((e) => VBPLContent.fromJson(e as Map<String, dynamic>))
           .toList(),
       suggestionQuestions: (json['suggestion_questions'] as List<dynamic>)
           .map((e) => e as String)

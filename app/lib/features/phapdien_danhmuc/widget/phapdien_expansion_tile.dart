@@ -42,10 +42,11 @@ class PhapdienExpansionTile extends StatelessWidget {
               ),
               Row(
                 children: [
-                  IconButton(
-                    onPressed: () => onDocumentOpen(node),
-                    icon: const Icon(Icons.document_scanner),
-                  ),
+                  if (node.type is DeMucPhapdienNodeType)
+                    IconButton(
+                      onPressed: () => onDocumentOpen(node),
+                      icon: const Icon(Icons.document_scanner),
+                    ),
                   IconButton(
                     onPressed: () => onNodeSelected(node),
                     icon: const Icon(Icons.chevron_right_rounded),

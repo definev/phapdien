@@ -53,7 +53,6 @@
 - [Contributors](#contributors)
 - [Các tổ chức hỗ trợ](#các-tổ-chức-hỗ-trợ)
 - [Giấy phép](#giấy-phép)
-	- [Contributors ✨](#contributors-)
 
 </details>
 
@@ -140,15 +139,3 @@ Hướng dẫn đóng góp vào dự án
 # Giấy phép
 
 Dự án đuợc phát hành theo các quyền và điều khoản được đề cập trong giấy phép [Apache 2.0](LICENSE) license.
-## Contributors ✨
-
-Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

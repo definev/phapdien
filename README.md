@@ -60,6 +60,7 @@
 - [Contributors](#contributors)
 - [Các tổ chức hỗ trợ](#các-tổ-chức-hỗ-trợ)
 - [Giấy phép](#giấy-phép)
+	- [Contributors ✨](#contributors-)
 
 </details>
 
@@ -104,6 +105,8 @@ Hướng dẫn đóng góp vào dự án
 
 # Contributors
 
+<div align="center">
+
 <!-- ALL-CONTRIBUTORS-LIST:START -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -121,6 +124,8 @@ Hướng dẫn đóng góp vào dự án
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+</div>
 
 # Các tổ chức hỗ trợ
 

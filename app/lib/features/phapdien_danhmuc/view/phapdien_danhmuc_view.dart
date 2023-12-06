@@ -33,9 +33,9 @@ class PhapdienDanhmucView extends HookConsumerWidget {
         Positioned.fill(
           child: PageView.builder(
             controller: sourcePageController,
-            itemBuilder: (context, index) {
-              final node = index == 0 ? null : selectedNodes.value.elementAtOrNull(index - 1);
-              if (index > 0 && node == null) return null;
+            itemBuilder: (context, nodeIndex) {
+              final node = nodeIndex == 0 ? null : selectedNodes.value.elementAtOrNull(nodeIndex - 1);
+              if (nodeIndex > 0 && node == null) return null;
 
               return Consumer(
                 builder: (context, ref, child) {
@@ -44,7 +44,7 @@ class PhapdienDanhmucView extends HookConsumerWidget {
                     getPhapdienNodesChildProvider(node),
                     (previous, next) {
                       if (next is AsyncData && next.value!.isEmpty) {
-                        selectedNodes.value = selectedNodes.value.sublist(0, index);
+                        selectedNodes.value = selectedNodes.value.sublist(0, nodeIndex);
                       }
                     },
                   );
@@ -67,8 +67,8 @@ class PhapdienDanhmucView extends HookConsumerWidget {
                           );
                         },
                         onNodeSelected: (node) async {
-                          if (index < selectedNodes.value.length) {
-                            selectedNodes.value = selectedNodes.value.sublist(0, index);
+                          if (nodeIndex < selectedNodes.value.length) {
+                            selectedNodes.value = selectedNodes.value.sublist(0, nodeIndex);
                           }
                           selectedNodes.value = [...selectedNodes.value, node];
 

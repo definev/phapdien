@@ -30,9 +30,7 @@ class PhapdienExpansionTile extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(
-                    Spacings.md.value,
-                  ),
+                  padding: EdgeInsets.all(Spacings.md.value),
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Text(

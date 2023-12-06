@@ -9,18 +9,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - 7777:7777
-    depends_on:
-      - db
     networks:
       - net
-  db:
-    image: ghcr.io/chroma-core/chroma:0.4.18
-    volumes:
-      - index_data:/index_data
-    ports:
-      - 8000:8000
-    networks:
-      - net
+
 volumes:
   index_data:
     driver: local

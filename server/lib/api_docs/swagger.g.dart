@@ -6,7 +6,7 @@ part of 'swagger.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$swaggerUIHash() => r'dc46dd0c22904e9d21e12243fb98b87485bc4a16';
+String _$swaggerUIHash() => r'7def1e793fb6d8aecd1c29b480553a005f350a21';
 
 /// See also [swaggerUI].
 @ProviderFor(swaggerUI)

@@ -41,7 +41,7 @@ Phiên bản xem trước trang web của ứng dụng có sẵn tại đây:
 - Ghi lại lịch sử chat giữa người dùng và Chatbot để người dùng có thể xem lại và theo dõi các tương tác trước đó
 - Hỗ trợ việc tái tạo câu hỏi hoặc tra cứu thông tin đã trao đổi trước đó
 
-**📱💻 Đồng Bộ Dữ liệu trên Nhiều Thiết Bị**
+**🔄 Đồng Bộ Dữ liệu trên Nhiều Thiết Bị**
 
 - Cho phép người dùng tiếp tục trải nghiệm mà không bị mất dữ liệu khi chuyển đổi giữa các thiết bị
 
@@ -153,6 +153,8 @@ flutter pub get
 ```
 
 ### Bước 3: Cài Đặt Môi Trường
+
+Đảm bảo rằng bạn đã kết nối server theo các bước tại [đây](../server/README.md)
 
 Tạo tệp `local.json` trong thư mục `env`. Tệp này sẽ chứa các cấu hình cần thiết cho ứng dụng. Dưới đây là mô tả tổng quan về các trường chính trong `local.json`:
 

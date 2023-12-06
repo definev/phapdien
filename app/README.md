@@ -5,7 +5,7 @@
 
 > Dự án Tra cứu Pháp Điển Việt Nam được lấy tài liệu từ dựa trên [trang web Pháp Điển ](https://phapdien.moj.gov.vn/Pages/home.aspx) và [Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật](https://vbpl.vn/pages/portal.aspx).
 
-## Xem trước trang web Flutter
+## Xem trước trang web
 
 Phiên bản xem trước trang web của ứng dụng có sẵn tại đây:
 
@@ -40,7 +40,6 @@ Phiên bản xem trước trang web của ứng dụng có sẵn tại đây:
 
 6. **Đồng Bộ Dữ liệu trên Nhiều Thiết Bị**
 
-- Lưu trữ tất cả dữ liệu liên quan đến tài liệu, câu hỏi, và lịch sử chat trên Firestore để đảm bảo đồng bộ trên nhiều thiết bị.
 - Cho phép người dùng tiếp tục trải nghiệm mà không bị mất dữ liệu khi chuyển đổi giữa các thiết bị.
 
 Tính năng trên đảm bảo ứng dụng của bạn mang lại trải nghiệm tìm kiếm linh hoạt, thông tin chi tiết và tương tác hiệu quả với Chat Bot tích hợp LLM.
@@ -134,49 +133,9 @@ Xem tệp [pubspec.yaml](pubspec.yaml) để biết danh sách đầy đủ.
 
 ## Hướng dẫn cài đặt
 
-### Yêu cầu
-
-Để cài đặt Flutter và chuyển đổi phiên bản Flutter sang 3.16.0, bạn có thể sử dụng các lệnh sau:
-
-### Cài Đặt Flutter
-
-1. Trước tiên, tải gói cài đặt Flutter từ trang chính thức: [Flutter - Get Started](https://flutter.dev/docs/get-started/install)
-
-2. Sau khi tải xong, giải nén gói cài đặt và đặt đường dẫn đến thư mục `flutter/bin` vào biến môi trường `PATH` của hệ thống.
-
-3. Mở một terminal hoặc command prompt và chạy lệnh sau để kiểm tra việc cài đặt Flutter:
-
-   ```bash
-   flutter --version
-   ```
-
-### Chuyển Đổi Phiên Bản Flutter
-
-Để chuyển đổi phiên bản Flutter, bạn cần sử dụng công cụ quản lý phiên bản Flutter như `flutter channel` và `flutter upgrade`.
-
-1. Chạy lệnh sau để chuyển sang kênh stable (phiên bản 3.16.0 hiện đang ổn định):
-
-   ```bash
-   flutter channel stable
-   ```
-
-2. Chạy lệnh sau để nâng cấp Flutter lên phiên bản mới nhất của kênh stable:
-
-   ```bash
-   flutter upgrade
-   ```
-
-3. Sau khi nâng cấp xong, kiểm tra lại phiên bản Flutter để đảm bảo đã chuyển đổi thành công:
-
-   ```bash
-   flutter --version
-   ```
-
-Lưu ý: Phiên bản 3.16.0 có thể không phải là phiên bản mới nhất tại thời điểm bạn đọc hướng dẫn này. Để chọn phiên bản cụ thể, bạn có thể kiểm tra các phiên bản có sẵn bằng lệnh `flutter versions`.
+## Yêu cầu
 
 Để sử dụng dự án này, bạn cần cài đặt [Flutter](https://flutter.dev) trên máy tính của mình. Nếu bạn chưa cài đặt Flutter, bạn có thể làm theo hướng dẫn trên trang chính thức của Flutter.
-
-Để sử dụng dự án này, bạn cần cài đặt Flutter phiên bản 3.16.0 trở lên trên máy tính của mình.
 
 ### Bước 1: Clone Dự Án
 
@@ -184,6 +143,7 @@ Clone dự án từ repository GitHub bằng cách chạy lệnh sau trong termi
 
 ```bash
 git clone https://github.com/definev/phapdien.git
+cd app
 ```
 
 ### Bước 2: Cài Đặt Các Dependencies
@@ -194,7 +154,17 @@ Chạy lệnh sau để cài đặt tất cả các dependencies và packages c�
 flutter pub get
 ```
 
-### Bước 3: Chạy Ứng Dụng
+### Bước 3: Cài Đặt Môi Trường
+
+Tạo tệp `local.json` trong thư mục `env`. Tệp này sẽ chứa các cấu hình cần thiết cho ứng dụng. Dưới đây là mô tả tổng quan về các trường chính trong `local.json`:
+
+```json
+{
+  "BASE_URL": "http://localhost:7777"
+}
+```
+
+### Bước 4: Chạy Ứng Dụng
 
 #### Chế Độ Debug
 
@@ -224,4 +194,8 @@ Sau khi hoàn tất các bước trên, bạn sẽ có thể chạy ứng dụng
 
 Đó là tất cả. Chúc bạn vui vẻ!
 
-## [Giấy phép: MIT](LICENSE.md)
+## [Giấy phép: Apache 2.0](LICENSE.md)
+
+Ứng dụng Tra cứu Pháp Điển được phát hành dưới Giấy phép Apache 2.0 - một giấy phép mở rộng có thể tìm thấy tại [LICENSE.md](LICENSE.md).
+
+Đọc kỹ nội dung của [Giấy phép Apache 2.0](LICENSE.md) để hiểu rõ hơn về các điều khoản và điều kiện sử dụng.

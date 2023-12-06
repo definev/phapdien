@@ -10,7 +10,7 @@ Dự án Pháp điển là một hệ thống tra cứu pháp luật toàn diệ
 - [Pinecone](https://www.pinecone.io)
 - [Dart](https://dart.dev/get-dart)
 
-## Bước 1: Tạo `production.json` trong thư mục `env`
+## Bước 1: Tạo file `production.json` trong thư mục `env`
 
 Tạo tệp `production.json` trong thư mục `env`. Tệp này sẽ chứa các cấu hình cần thiết cho server. Dưới đây là mô tả tổng quan về các trường chính trong `production.json`:
 
@@ -57,7 +57,7 @@ Truy cập [Đăng Ký Pinecone](https://app.pinecone.io/?sessionType=signup) đ
 1. Chọn mô hình "OpenAI".
 2. Tạo các indexes như hình dưới đây:
 
-![Thiết Lập Pinecone](https://prod-files-secure.s3.us-west-2.amazonaws.com/93ec6950-f751-467e-a19b-2d79981b8848/218340d2-fad1-40fa-b0f6-7304ff092f57/Untitled.png)
+![Thiết Lập Pinecone](assets/pinecone.png)
 
 ## Bước 7: Cấu Hình Thông Tin Pinecone
 

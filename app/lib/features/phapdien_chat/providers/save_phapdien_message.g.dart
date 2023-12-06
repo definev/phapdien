@@ -7,7 +7,7 @@ part of 'save_phapdien_message.dart';
 // **************************************************************************
 
 String _$savePhapdienMessageHash() =>
-    r'796318df050f1901d7474810bdcdb1f4bb03c04d';
+    r'56823721708e80d78eb552ec1a35f29f1d7e7048';
 
 /// Copied from Dart SDK
 class _SystemHash {

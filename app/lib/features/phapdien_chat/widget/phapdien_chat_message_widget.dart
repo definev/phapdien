@@ -113,7 +113,11 @@ class PhapdienChatMessageWidget extends StatelessWidget {
               ),
             ),
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: Spacings.md.value),
+              padding: EdgeInsets.only(
+                left: Spacings.md.value,
+                right: Spacings.md.value,
+                bottom: Spacings.sm.value * 3 + 48 * 2,
+              ),
               sliver: SliverList.separated(
                 itemCount: message.suggestionQuestions.length,
                 separatorBuilder: (context, index) => Gap(Spacings.sm.value),

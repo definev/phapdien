@@ -30,7 +30,7 @@ class PhapdienChatView extends HookConsumerWidget {
     int messagesLength() => messages.value.length + (history?.messages.length ?? 0);
 
     final sessionId = useMemoized(() => history?.id ?? uuid.v4());
-    final phapdienChatMessages = useRef(<PhapdienChatMessage>[]);
+    final phapdienChatMessages = useRef(<PhapdienChatMessage>[if (history != null) ...history!.messages]);
     void addPhapdienChatMessage(PhapdienChatMessage message) {
       phapdienChatMessages.value = [...phapdienChatMessages.value, message];
       ref.read(savePhapdienMessageProvider(sessionId, messages: phapdienChatMessages.value));
@@ -63,7 +63,7 @@ class PhapdienChatView extends HookConsumerWidget {
                 fit: StackFit.expand,
                 children: [
                   Positioned.fill(
-                    child: switch (messages.value.length + (history?.messages.length ?? 0) == 0) {
+                    child: switch (messagesLength() == 0) {
                       true => Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -123,8 +123,8 @@ class PhapdienChatView extends HookConsumerWidget {
                       listenable: sessionPageController,
                       builder: (context, child) => switch (sessionPageController.positions.isEmpty) {
                         true => const SizedBox(),
-                        false => switch (sessionPageController.page) {
-                            final page? => Column(
+                        false => switch (sessionPageController.page ?? 0) {
+                            final page => Column(
                                 children: [
                                   switch (page) {
                                     final page when page > 0 => Padding(
@@ -165,7 +165,6 @@ class PhapdienChatView extends HookConsumerWidget {
                                   },
                                 ],
                               ),
-                            _ => const SizedBox(),
                           },
                       },
                     ),

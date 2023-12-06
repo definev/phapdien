@@ -33,9 +33,9 @@ class PhapdienHistoryView extends ConsumerWidget {
                     color: theme.colorScheme.primary,
                     fontWeight: FontWeight.bold,
                   ),
-                  child: switch (list.firstOrNull) {
+                  child: switch (item.messages.firstOrNull) {
                     null => const Text('Không có tiêu đề'),
-                    final first => Text(first.messages.firstOrNull?.question ?? 'Không có tiêu đề'),
+                    final first => Text(first.question),
                   },
                 ),
                 subtitle: Text('Cập nhât gần nhất: ${DateFormat('dd/MM/yyyy HH:mm').format(item.updatedAt)}'),

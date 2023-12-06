@@ -26,8 +26,11 @@
 <p align="center">
 	<br/>
 	<a href="">🐞 Báo lỗi </a>
+	-
 	<a href="">✈️ Yêu cầu tính năng </a>
+	-
 	<a href="">📚 Wiki</a>
+	-
 	<a href="">📋 Roadmap </a>
 </p>
 
@@ -35,12 +38,12 @@
 
 <h1> Tính năng hỗ trợ </h1>
 
-- 📖 Tra cứu pháp điển
-- 📦 Backend API
-- 🔍 Tìm kiếm chủ đề/đề mục/chương
-- 🤖 Hỏi đáp về các nội dung liên quan
-- 📱 UI di động
-- 🖥️ UI Web
+* 📖 Tra cứu pháp điển
+* 📦 Backend API
+* 🔍 Tìm kiếm chủ đề/đề mục/chương
+* 🤖 Hỏi đáp về các nội dung liên quan
+* 📱 UI di động
+* 🖥️ UI Web
 
 <h1>Mục lục</h1>
 
@@ -126,7 +129,7 @@ Các chức năng của ứng dụng:
 * Cho phép người dùung đặt nhiều câu hỏi về cùng một chủ đề.
 * Cho phép lưu lại các câu hỏi đã đặt cùng với câu trả lời.
 
-Việc cài đặt và sử dụng ứng dụng chi tiết được mô tả tại [chi tiết ứng dụng](./app/README.md).
+Việc cài đặt và sử dụng ứng dụng chi tiết được mô tả t  ại [chi tiết ứng dụng](./app/README.md).
 
 # CI/CD
 

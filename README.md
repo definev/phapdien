@@ -57,7 +57,7 @@
 	- [Ứng dụng](#ứng-dụng)
 - [CI/CD](#cicd)
 - [Đóng góp](#đóng-góp)
-- [Contributor](#contributor)
+- [Contributors](#contributors)
 - [Các tổ chức hỗ trợ](#các-tổ-chức-hỗ-trợ)
 - [Giấy phép](#giấy-phép)
 
@@ -77,10 +77,20 @@ Pháp điển ask cung cấp một hệ thống Backend giúp truy cập nhanh c
 * [Dart](https://dart.dev/): Ngôn ngữ lập trình đa nền tảng.
 * [Flutter](https://flutter.dev/): SDK phát triển ứng dụng di động đa nền tảng, được phát triển bởi Google.
 * [Docker](https://www.docker.com/): Nền tảng phần mềm để xây dựng, chuyển giao và chạy ứng dụng.
+* [Pinecone](https://www.pinecone.io)
 
 # Sử dụng
 
 ## Server
+
+Server cung cấp các API để truy cập nhanh các thông tin về pháp luật hiện hành của Việt Nam, đặt câu hỏi về các vấn đề liên quan đến pháp luật.
+
+Các chức năng của server:
+* Tải về và lưu trữ dữ liệu pháp luật hiện hành của Việt Nam.
+* Embed dữ liệu pháp luật hiện hành của Việt Nam vào Vector database.
+* Cung cấp RestAPI về pháp điển cho phép:
+  * Lấy thông tin các chủ đề -> đề tài -> đề mục trong pháp điển.
+  * Lấy 
 
 ## Ứng dụng
 
@@ -92,9 +102,9 @@ CI/CD
 
 Hướng dẫn đóng góp vào dự án
 
-# Contributor
+# Contributors
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:START -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>

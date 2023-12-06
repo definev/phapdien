@@ -6,7 +6,7 @@ part of 'ask_phapdien_chat_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$askPhapdienChatHash() => r'08799483727018e92fc3e67df1e099106c936507';
+String _$askPhapdienChatHash() => r'fb4c10a9045da787fa19ab9462321e25db3860d1';
 
 /// Copied from Dart SDK
 class _SystemHash {

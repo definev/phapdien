@@ -15,6 +15,9 @@ dependencies:
   flutter_hooks: ^0.20.3
   hooks_riverpod: ^2.4.8
 
+  # Html
+  flutter_widget_from_html_core: ^0.14.9
+
   # UI
   flextras: ^1.0.0 
   boxy: ^2.1.3

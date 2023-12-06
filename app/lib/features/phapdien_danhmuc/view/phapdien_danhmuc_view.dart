@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/features/phapdien_content/view/phapdien_content_view.dart';
 import 'package:app/features/phapdien_danhmuc/providers/get_phapdien_nodes_child.dart';
 import 'package:app/features/phapdien_danhmuc/widget/phapdien_expansion_tile.dart';
 import 'package:app/utils/spacing.dart';
@@ -57,6 +58,14 @@ class PhapdienDanhmucView extends HookConsumerWidget {
                       separatorBuilder: (context, index) => const Divider(),
                       itemBuilder: (context, index) => PhapdienExpansionTile(
                         node: roots[index],
+                        onDocumentOpen: (node) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PhapdienContentView(node),
+                            ),
+                          );
+                        },
                         onNodeSelected: (node) async {
                           if (index < selectedNodes.value.length) {
                             selectedNodes.value = selectedNodes.value.sublist(0, index);

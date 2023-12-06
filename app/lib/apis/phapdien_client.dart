@@ -18,6 +18,12 @@ abstract class PhapdienRestClient {
     @Query('id') String id,
     @Query('level') int level,
   );
+
+  @GET('/v0/phapdien/demuc_content')
+  Future<dynamic> getDemucContent(
+    @Query('id') String id,
+    @Query('show_raw') bool showRaw,
+  );
 }
 
 @riverpod

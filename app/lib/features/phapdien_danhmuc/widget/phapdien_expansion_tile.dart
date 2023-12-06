@@ -7,10 +7,12 @@ class PhapdienExpansionTile extends StatelessWidget {
   const PhapdienExpansionTile({
     super.key,
     required this.node,
+    required this.onDocumentOpen,
     required this.onNodeSelected,
   });
 
   final PhapdienNode node;
+  final PhapdienNodeSelectedCallback onDocumentOpen;
   final PhapdienNodeSelectedCallback onNodeSelected;
 
   @override
@@ -24,7 +26,7 @@ class PhapdienExpansionTile extends StatelessWidget {
             children: [
               IconButton(
                 onPressed: () {},
-                icon: const Icon(Icons.chat_bubble_rounded),
+                icon: const Icon(Icons.chat),
               ),
               Expanded(
                 child: Padding(
@@ -42,6 +44,10 @@ class PhapdienExpansionTile extends StatelessWidget {
               ),
               Row(
                 children: [
+                  IconButton(
+                    onPressed: () => onDocumentOpen(node),
+                    icon: const Icon(Icons.document_scanner),
+                  ),
                   IconButton(
                     onPressed: () => onNodeSelected(node),
                     icon: const Icon(Icons.chevron_right_rounded),

@@ -403,6 +403,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_widget_from_html_core:
+    dependency: "direct main"
+    description:
+      name: flutter_widget_from_html_core
+      sha256: "86d40a9f26d10011664df057c950e9c348ee1a7dbf141f295a07b0075ffd780b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.14.9"
   freezed_annotation:
     dependency: transitive
     description:

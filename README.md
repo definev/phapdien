@@ -1,4 +1,7 @@
 <p align="center">
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<img loading="lazy" src="./assets/images/logo.png" height="150">
 </p>
 
@@ -94,6 +97,13 @@ Hướng dẫn đóng góp vào dự án
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/fhihung"><img src="https://avatars.githubusercontent.com/u/103515218?v=4?s=100" width="100px;" alt="Nguyen Phi Hung"/><br /><sub><b>Nguyen Phi Hung</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=fhihung" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
@@ -120,3 +130,15 @@ Hướng dẫn đóng góp vào dự án
 # Giấy phép
 
 Dự án đuợc phát hành theo các quyền và điều khoản được đề cập trong giấy phép [Apache 2.0](LICENSE) license.
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!

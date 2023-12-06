@@ -100,6 +100,7 @@ Hướng dẫn đóng góp vào dự án
 <table>
   <tbody>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/fhihung"><img src="https://avatars.githubusercontent.com/u/103515218?v=4?s=100" width="100px;" alt="Nguyen Phi Hung"/><br /><sub><b>Nguyen Phi Hung</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=fhihung" title="Code">💻</a> <a href="https://github.com/definev/phapdien/commits?author=fhihung" title="Documentation">📖</a> <a href="#design-fhihung" title="Design">🎨</a> <a href="#promotion-fhihung" title="Promotion">📣</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/definev"><img src="https://avatars.githubusercontent.com/u/62325868?v=4?s=100" width="100px;" alt="Duong Bui Dai"/><br /><sub><b>Duong Bui Dai</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=definev" title="Code">💻</a></td>
     </tr>
   </tbody>

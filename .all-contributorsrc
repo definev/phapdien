@@ -8,6 +8,15 @@
   "commitConvention": "angular",
   "contributors": [
     {
+      "login": "fhihung",
+      "name": "Nguyen Phi Hung",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103515218?v=4",
+      "profile": "https://github.com/fhihung",
+      "contributions": [
+        "code",
+        "doc",
+        "design",
+        "promotion"
       "login": "definev",
       "name": "Duong Bui Dai",
       "avatar_url": "https://avatars.githubusercontent.com/u/62325868?v=4",

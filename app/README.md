@@ -1,96 +1,94 @@
-# Ứng dụng Tra cứu Pháp Điển
+# 🚀 Ứng dụng Tra cứu Pháp Điển
 
-![](/.github/images/time-tracker-screenshots.png)
-Đây là một ứng dụng hỗ trợ tra cứu [Pháp Điển Việt Nam](https://phapdien.moj.gov.vn/Pages/home.aspx)
+![Ảnh ứng dụng](.png)
 
-> Dự án Tra cứu Pháp Điển Việt Nam được lấy tài liệu từ dựa trên [trang web Pháp Điển ](https://phapdien.moj.gov.vn/Pages/home.aspx) và [Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật](https://vbpl.vn/pages/portal.aspx).
+Đây là một ứng dụng mã nguồn mở được phát triển để hỗ trợ cộng đồng trong việc tra cứu [Pháp Điển Việt Nam](https://phapdien.moj.gov.vn/Pages/home.aspx) 📚. Dự án Tra cứu Pháp Điển Việt Nam sử dụng tài liệu từ [trang web Pháp Điển](https://phapdien.moj.gov.vn/Pages/home.aspx) và [Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật](https://vbpl.vn/pages/portal.aspx) 📑, đồng thời tạo ra một nguồn thông tin pháp luật mở rộng và dễ tiếp cận cho cộng đồng.
+
+Ứng dụng này không chỉ là một công cụ tìm kiếm thông thường mà còn là một dự án mã nguồn mở, cho phép cộng đồng người dùng đóng góp và tận hưởng lợi ích của sự phát triển cộng đồng. Chúng tôi cam kết giữ cho mã nguồn mở, đảm bảo sự minh bạch và tính cộng đồng trong quá trình xây dựng và cải thiện dự án. 🌐
+
+Với ứng dụng Tra cứu Pháp Điển Việt Nam, chúng tôi mong muốn tạo ra một nguồn thông tin pháp luật mở, hữu ích và dễ tiếp cận cho mọi người, đồng thời khuyến khích sự đóng góp và sự chia sẻ kiến thức từ cộng đồng pháp lý. 🚀
 
 ## Xem trước trang web
 
 Phiên bản xem trước trang web của ứng dụng có sẵn tại đây:
 
-- [Pháp Điển | Demo Flutter Web](https://starter-architecture-flutter.web.app)
+- [Pháp Điển | Demo Flutter Web](https://example.app) 🌐
 
 ## Tính năng
 
-1. **Tra cứu Tổng quát Tài liệu:**
+**🔍 Tra cứu Tổng quát Tài liệu:**
 
 - Giúp tra cứu tài liệu dựa trên từ khóa cho dù không khớp từ khóa
 
-2. **Tra cứu theo Chủ đề và Đề mục:**
+**📂 Tra cứu theo Chủ đề và Đề mục:**
 
 - Cung cấp khả năng tìm kiếm tài liệu dựa trên các chủ đề và đề mục cụ thể.
-- Tích hợp hệ thống danh mục để người dùng dễ dàng lọc và tìm kiếm theo chủ đề mong muốn.
+- Tích hợp hệ thống danh mục để người dùng dễ dàng lọc và tìm kiếm theo chủ đề mong muốn
 
-3. **Tra cứu bằng Chat Bot**
+**🤖 Tra cứu bằng Chatbot**
 
-- Sử dụng Chat Bot tích hợp LLM để trả lời các câu hỏi của người dùng.
-- Hỗ trợ việc nhập câu hỏi tự do và cung cấp các câu trả lời thông tin chi tiết và chính xác.
+- Sử dụng Chatbot tích hợp LLM để trả lời các câu hỏi của người dùng
+- Hỗ trợ việc nhập câu hỏi tự do và cung cấp các câu trả lời thông tin chi tiết và chính xác
 - Thu nhỏ phạm vi tra cứu bằng cách chọn chủ đề hoặc để mục cụ thể giúp câu trả lời từ bot trở lên chính xác hơn
 
-4. **Câu Hỏi Gợi Ý**
+**Câu Hỏi Gợi Ý**
 
-- Cung cấp gợi ý câu hỏi cho người dùng dựa trên nhu cầu tìm kiếm và lịch sử trước đó.
-- Tối ưu hóa trải nghiệm người dùng bằng cách đề xuất câu hỏi phù hợp và liên quan.
+- Cung cấp gợi ý câu hỏi cho người dùng dựa trên nhu cầu tìm kiếm và lịch sử trước đó
+- Tối ưu hóa trải nghiệm người dùng bằng cách đề xuất câu hỏi phù hợp và liên quan 🌐
 
-5. **Lịch Sử Chat**
+**🗂️ Lịch Sử Chat**
 
-- Ghi lại lịch sử chat giữa người dùng và Chat Bot để người dùng có thể xem lại và theo dõi các tương tác trước đó.
-- Hỗ trợ việc tái tạo câu hỏi hoặc tra cứu thông tin đã trao đổi trước đó.
+- Ghi lại lịch sử chat giữa người dùng và Chatbot để người dùng có thể xem lại và theo dõi các tương tác trước đó
+- Hỗ trợ việc tái tạo câu hỏi hoặc tra cứu thông tin đã trao đổi trước đó
 
-6. **Đồng Bộ Dữ liệu trên Nhiều Thiết Bị**
+**📱💻 Đồng Bộ Dữ liệu trên Nhiều Thiết Bị**
 
-- Cho phép người dùng tiếp tục trải nghiệm mà không bị mất dữ liệu khi chuyển đổi giữa các thiết bị.
+- Cho phép người dùng tiếp tục trải nghiệm mà không bị mất dữ liệu khi chuyển đổi giữa các thiết bị
 
-Tính năng trên đảm bảo ứng dụng của bạn mang lại trải nghiệm tìm kiếm linh hoạt, thông tin chi tiết và tương tác hiệu quả với Chat Bot tích hợp LLM.
+Tính năng trên đảm bảo ứng dụng của bạn mang lại trải nghiệm tìm kiếm linh hoạt, thông tin chi tiết và tương tác hiệu quả với Chatbot tích hợp LLM.
 
 ## Kế Hoạch Phát Triển
 
 #### **1. Đánh Giá và Phản Hồi**
 
-- Tổ chức phiên đánh giá và thu thập phản hồi từ cộng đồng người dùng để hiểu rõ họ mong đợi và gặp phải những vấn đề gì.
-- Sử dụng các nền tảng như GitHub để theo dõi các vấn đề (issues) và yêu cầu tính năng (feature requests).
+- Tổ chức phiên đánh giá và thu thập phản hồi từ cộng đồng người dùng để hiểu rõ họ mong đợi và gặp phải những vấn đề gì. 📊
+- Sử dụng các nền tảng như GitHub để theo dõi các vấn đề (issues) và yêu cầu tính năng (feature requests). 🚀
 
 #### **2. Tối Ưu Hóa Hiệu Suất và Ổn Định**
 
-- Tiếp tục tối ưu hóa mã nguồn và tăng cường hiệu suất của ứng dụng.
-- Xử lý và khắc phục lỗi, vấn đề bảo mật, nếu có.
+- Tiếp tục tối ưu hóa mã nguồn và tăng cường hiệu suất của ứng dụng. 🛠️
+- Xử lý và khắc phục lỗi, vấn đề bảo mật, nếu có. 🔐
 
 #### **3. Mở Rộng Tính Năng**
 
-- Phát triển và thêm tính năng mới dựa trên phản hồi từ cộng đồng và xu hướng công nghệ mới.
-- Tăng cường tính năng tương tác, ví dụ: thêm khả năng tùy chỉnh giao diện người dùng, tích hợp các công nghệ mới, hoặc cải thiện trải nghiệm người dùng.
+- Phát triển và thêm tính năng mới dựa trên phản hồi từ cộng đồng và xu hướng công nghệ mới. 🚀
+- Tăng cường tính năng tương tác, ví dụ: thêm khả năng tùy chỉnh giao diện người dùng, tích hợp các công nghệ mới, hoặc cải thiện trải nghiệm người dùng. 🌈
 
 #### **4. Đa Ngôn Ngữ và Tích Hợp Phiên Dịch**
 
-- Hỗ trợ nhiều ngôn ngữ để mở rộng sự tiếp cận đối tượng.
-- Cung cấp tích hợp phiên dịch tự động để người dùng có thể sử dụng ứng dụng bằng nhiều ngôn ngữ khác nhau.
+- Hỗ trợ nhiều ngôn ngữ để mở rộng sự tiếp cận đối tượng. 🌐
+- Cung cấp tích hợp phiên dịch tự động để người dùng có thể sử dụng ứng dụng bằng nhiều ngôn ngữ khác nhau. 🌍
 
-#### **5. Tăng Cường An Toàn và Bảo Mật**
+#### **5. Hỗ Trợ Cộng Đồng**
 
-- Kiểm tra và nâng cấp các tính năng bảo mật của ứng dụng.
-- Áp dụng các biện pháp bảo mật mới và thường xuyên kiểm tra tính an toàn của mã nguồn.
+- Xây dựng và duy trì diễn đàn cộng đồng để người dùng có thể chia sẻ kiến thức và giúp đỡ nhau. 🤝
+- Tìm kiếm tài trợ và quảng bá để đảm bảo sự tiếp tục phát triển của dự án. 🌱
 
-#### **6. Hỗ Trợ Cộng Đồng và Tài Trợ**
+#### **6. Tích Hợp Đối Tác và API Mở Rộng**
 
-- Xây dựng và duy trì diễn đàn cộng đồng để người dùng có thể chia sẻ kiến thức và giúp đỡ nhau.
-- Tìm kiếm tài trợ và quảng bá để đảm bảo sự tiếp tục phát triển của dự án.
+- Hợp tác với các đối tác để tích hợp các dịch vụ và tính năng bổ sung. 🤝
+- Phát triển API để mở rộng khả năng tích hợp của ứng dụng với các dự án khác. 🔄
 
-#### **7. Tích Hợp Đối Tác và API Mở Rộng**
+#### **7. Tuân Thủ Bản Quyền và Giấy Phép**
 
-- Hợp tác với các đối tác để tích hợp các dịch vụ và tính năng bổ sung.
-- Phát triển API để mở rộng khả năng tích hợp của ứng dụng với các dự án khác.
-
-#### **8. Tuân Thủ Bản Quyền và Giấy Phép**
-
-- Kiểm tra và đảm bảo rằng mã nguồn mở của bạn tuân thủ các giấy phép mở rộng và các quy định của cộng đồng.
-- Giữ mã nguồn mở và đảm bảo rằng cộng đồng người dùng có thể tự do sử dụng và đóng góp vào dự án.
+- Kiểm tra và đảm bảo rằng mã nguồn mở của bạn tuân thủ các giấy phép mở rộng và các quy định của cộng đồng. ⚖️
+- Giữ mã nguồn mở và đảm bảo rằng cộng đồng người dùng có thể tự do sử dụng và đóng góp vào dự án. 🤲
 
 Kế hoạch này là một khung chung và có thể điều chỉnh tùy thuộc vào phản hồi và sự phát triển của dự án trong tương lai.
 
-> Đây là một kế hoạch tạm thời. Không có thời gian hoàn thành cụ thể cho bất kỳ điểm nào ở trên.
+> Đây là một kế hoạch tạm thời. Không có thời gian hoàn thành cụ thể cho bất kỳ điểm nào ở trên. ⏳
 
-## Tra cứu Pháp điển Flutter với LLM và Chat Bot
+## 📦 Tra cứu Pháp điển Flutter với LLM và Chatbot
 
 Dưới đây là một số package bạn đang sử dụng trong dự án và mô tả ngắn gọn về chúng.
 

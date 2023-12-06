@@ -4,6 +4,7 @@ import 'package:app/features/phapdien_chat/view/phapdien_chat_view.dart';
 import 'package:app/features/phapdien_danhmuc/providers/fuzzy_search_phapdien.dart';
 import 'package:app/features/phapdien_danhmuc/providers/get_phapdien_nodes_child.dart';
 import 'package:app/features/phapdien_danhmuc/view/phapdien_danhmuc_view.dart';
+import 'package:app/features/phapdien_history/view/phapdien_history_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -59,7 +60,7 @@ class PhapdienTreeView extends HookConsumerWidget {
             sourcePageController: sourcePageController,
             selectedNodes: selectedNodes,
           ),
-        1 => const PhapdienChatView(),
+        1 => const PhapdienHistoryView(),
         _ => const SizedBox.shrink(),
       },
       floatingActionButton: switch (selectedNavigationIndex.value) {

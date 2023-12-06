@@ -52,6 +52,10 @@ dependencies:
   # Dart
   fuzzy: ^0.5.1
   diacritic: ^0.1.4
+  uuid: ^4.2.1
+  
+  # Database
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

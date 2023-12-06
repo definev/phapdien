@@ -113,8 +113,8 @@ Hướng dẫn đóng góp vào dự án
 <table>
   <tbody>
     <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tripercy"><img src="https://avatars.githubusercontent.com/u/64069046?v=4?s=100" width="100px;" alt="Triperc:"/><br /><sub><b>Triperc:</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=tripercy" title="Code">💻</a> <a href="#data-tripercy" title="Data">🔣</a> <a href="https://github.com/definev/phapdien/commits?author=tripercy" title="Documentation">📖</a> <a href="#research-tripercy" title="Research">🔬</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/definev"><img src="https://avatars.githubusercontent.com/u/62325868?v=4?s=100" width="100px;" alt="Duong Bui Dai"/><br /><sub><b>Duong Bui Dai</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=definev" title="Code">💻</a> <a href="#data-definev" title="Data">🔣</a> <a href="https://github.com/definev/phapdien/commits?author=definev" title="Documentation">📖</a> <a href="#ideas-definev" title="Ideas, Planning, & Feedback">🤔</a> <a href="#projectManagement-definev" title="Project Management">📆</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tripercy"><img src="https://avatars.githubusercontent.com/u/64069046?v=4?s=100" width="100px;" alt="Triperc:"/><br /><sub><b>Triperc:</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=tripercy" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

@@ -1,6 +1,6 @@
 <p align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<img loading="lazy" src="./assets/images/logo.png" height="150">
 </p>
@@ -101,6 +101,7 @@ Hướng dẫn đóng góp vào dự án
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/definev"><img src="https://avatars.githubusercontent.com/u/62325868?v=4?s=100" width="100px;" alt="Duong Bui Dai"/><br /><sub><b>Duong Bui Dai</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=definev" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/tripercy"><img src="https://avatars.githubusercontent.com/u/64069046?v=4?s=100" width="100px;" alt="Triperc:"/><br /><sub><b>Triperc:</b></sub></a><br /><a href="https://github.com/definev/phapdien/commits?author=tripercy" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

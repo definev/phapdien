@@ -24,4 +24,10 @@ class RestPhapdienChatRepository implements PhapdienChatRepository {
     );
     return PhapdienChatMessage.fromJson(response as Map<String, dynamic>);
   }
+  
+  @override
+  Future<List<String>> getRandomSuggestionQuestions() async {
+    final response = await client.getRandomSuggestionQuestions();
+    return (response as List).map((e) => e as String).toList();
+  }
 }

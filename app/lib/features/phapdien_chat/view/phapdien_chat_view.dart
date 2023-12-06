@@ -1,15 +1,13 @@
 import 'package:app/features/phapdien_chat/providers/ask_phapdien_chat_provider.dart';
+import 'package:app/features/phapdien_chat/providers/get_random_suggestion_questions.dart';
+import 'package:app/features/phapdien_chat/widget/phapdien_chat_message_widget.dart';
 import 'package:app/utils/spacing.dart';
-import 'package:boxy/padding.dart';
 import 'package:flextras/flextras.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:gap/gap.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:shared/shared.dart';
-import 'package:sliver_tools/sliver_tools.dart';
 
 class PhapdienChatView extends HookConsumerWidget {
   const PhapdienChatView({super.key});
@@ -24,14 +22,18 @@ class PhapdienChatView extends HookConsumerWidget {
 
     final searchTextController = useTextEditingController();
 
-    void onSearchSubmit() {
-      messages.value = [...messages.value, searchTextController.text];
+    void onSearchSubmit(String text) {
+      messages.value = [...messages.value, text];
       searchTextController.clear();
       sessionPageController.animateToPage(
         messages.value.length - 1,
         duration: 300.ms,
         curve: Curves.decelerate,
       );
+    }
+
+    void fillMessageToTextController(String message) {
+      searchTextController.text = message;
     }
 
     return Column(
@@ -49,17 +51,8 @@ class PhapdienChatView extends HookConsumerWidget {
                         const Gap(8),
                         const Text('Hãy bắt đầu cuộc trò chuyện'),
                         Gap(Spacings.lg.value),
-                        Column(
-                          children: [
-                            FilledButton(
-                              onPressed: () {},
-                              child: const Text('Xin chào'),
-                            ),
-                            FilledButton(
-                              onPressed: () => messages.value = [...messages.value, 'Tôi muốn hỏi'],
-                              child: const Text('Tôi muốn hỏi'),
-                            ),
-                          ],
+                        RandomQuestionsWidget(
+                          onSelectQuestion: fillMessageToTextController,
                         ),
                       ],
                     ),
@@ -74,15 +67,9 @@ class PhapdienChatView extends HookConsumerWidget {
                             final chatMessage = ref.watch(askPhapdienChatProvider(message));
                             return chatMessage.when(
                               data: (data) => PhapdienChatMessageWidget(
-                                  message: data,
-                                  onSelectSuggestion: (suggestion) {
-                                    messages.value = [...messages.value, suggestion];
-                                    sessionPageController.animateToPage(
-                                      messages.value.length - 1,
-                                      duration: 300.ms,
-                                      curve: Curves.decelerate,
-                                    );
-                                  }),
+                                message: data,
+                                onSelectSuggestion: fillMessageToTextController,
+                              ),
                               loading: () => const Center(child: CircularProgressIndicator()),
                               error: (error, stackTrace) => const Center(child: Text('Error')),
                             );
@@ -154,13 +141,16 @@ class PhapdienChatView extends HookConsumerWidget {
               Expanded(
                 child: TextField(
                   controller: searchTextController,
-                  onSubmitted: (_) => onSearchSubmit(),
+                  onSubmitted: (_) => onSearchSubmit(searchTextController.text),
                   decoration: const InputDecoration(hintText: 'Nhập câu hỏi của bạn'),
+                  minLines: 1,
+                  maxLines: 3,
+                  maxLength: 300,
                 ),
               ),
               Gap(Spacings.md.value),
               IconButton(
-                onPressed: onSearchSubmit,
+                onPressed: () => onSearchSubmit(searchTextController.text),
                 icon: const Icon(Icons.send),
               ),
             ],
@@ -171,219 +161,42 @@ class PhapdienChatView extends HookConsumerWidget {
   }
 }
 
-class PhapdienChatMessageWidget extends StatelessWidget {
-  const PhapdienChatMessageWidget({
+class RandomQuestionsWidget extends HookConsumerWidget {
+  const RandomQuestionsWidget({
     super.key,
-    required this.message,
-    required this.onSelectSuggestion,
+    required this.onSelectQuestion,
   });
 
-  final PhapdienChatMessage message;
-  final ValueChanged<String> onSelectSuggestion;
+  final ValueChanged<String> onSelectQuestion;
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return CustomScrollView(
-      slivers: [
-        SliverPadding(
-          padding: EdgeInsets.only(
-            left: Spacings.md.value,
-            right: Spacings.md.value,
-            top: Spacings.sm.value,
-          ),
-          sliver: SliverList.list(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final questions = ref.watch(getRandomSuggestionQuestionsProvider);
+    return AnimatedSize(
+      duration: 350.ms,
+      curve: Curves.easeOutCubic,
+      child: questions.maybeWhen(
+        data: (data) => SeparatedColumn(
+            padding: EdgeInsets.symmetric(horizontal: Spacings.md.value),
+            separatorBuilder: () => Gap(Spacings.md.value),
             children: [
-              DefaultTextStyle(
-                style: theme.textTheme.titleLarge!,
-                child: Text(message.question),
-              ),
-              OverflowPadding(
-                padding: EdgeInsets.symmetric(horizontal: -Spacings.md.value),
-                child: const Divider(),
-              ),
-            ],
-          ),
-        ),
-        MultiSliver(
-          children: [
-            SizedBox(
-              height: 124,
-              child: ListView.separated(
-                padding: EdgeInsets.symmetric(horizontal: Spacings.sm.value),
-                scrollDirection: Axis.horizontal,
-                itemCount: message.sources.length + 1,
-                itemBuilder: (context, index) {
-                  if (index == 0) {
-                    return IntrinsicWidth(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          FilledButton.icon(
-                            label: const Text('Báo cáo'),
-                            onPressed: () {},
-                            icon: const Icon(Icons.report),
-                          ),
-                          ElevatedButton.icon(
-                            label: const Text('Lưu ý'),
-                            onPressed: () => showDialog(
-                              context: context,
-                              builder: (context) => const AlertDialog(
-                                title: Text('Lưu ý'),
-                                content: MarkdownBody(
-                                  data: '''
-Tiến bộ nhanh chóng trong lĩnh vực trí tuệ nhân tạo đã mang lại những mô hình ngôn ngữ lớn (LLM) mạnh mẽ, nhưng cũng đi kèm với những thách thức. Dưới đây là một số lưu ý quan trọng về việc nội dung của LLM có thể gây ra sự hiểu nhầm và không hiểu rõ câu hỏi của người dùng:
-
-### 1. **Giai đoạn đào tạo:**
-   - Mô hình được đào tạo trên dữ liệu lớn từ internet, nơi có sự đa dạng lớn về ngôn ngữ và nền văn hóa.
-   - Có thể tồn tại độ chệch và thiên lệch trong dữ liệu, dẫn đến mô hình hiểu sai hoặc phản ánh thành kiến thiên lệch.
-
-### 2. **Hiểu lầm ngữ cảnh:**
-   - LLM có thể hiểu sai ngữ cảnh hoặc đưa ra câu trả lời không chính xác nếu không có thông tin đầy đủ từ câu hỏi hoặc nếu có hiểu lầm về ngữ cảnh.
-
-### 3. **Khả năng sinh nội dung phổ quát:**
-   - Mô hình có thể tạo ra thông tin giả mạo hoặc không chính xác do khả năng sinh nội dung phổ quát mà không kiểm soát được.
-
-### 4. **Phản ứng theo ý của người dùng:**
-   - Mô hình có thể tạo ra nội dung có thể làm hiểu lầm ý muốn hoặc ý kiến của người dùng, đặc biệt nếu người dùng không diễn đạt rõ ràng.
-
-### 5. **Thiếu khả năng giải thích:**
-   - LLM thường khó giải thích cách nó đưa ra một quyết định hoặc câu trả lời, làm tăng khả năng người dùng không hiểu rõ lý do.
-
-### 6. **Đối mặt với câu hỏi lừa đảo:**
-   - Mô hình có thể không nhận diện được câu hỏi lừa đảo hoặc đặt ra vấn đề liên quan đến an ninh thông tin.
-
-### 7. **Cần sự kiểm soát và hỗ trợ:**
-   - Để đảm bảo sự chính xác và hiểu rõ, việc kết hợp LLM với kiểm soát con người và hệ thống hỗ trợ là cực kỳ quan trọng.
-
-### Kết luận:
-
-Trong khi LLM mang lại nhiều lợi ích, người sử dụng cần phải ý thức về những hạn chế và rủi ro liên quan. Sự cân nhắc kỹ lưỡng và sự giám sát là cần thiết để đảm bảo rằng mô hình được sử dụng một cách hiệu quả và an toàn.
-''',
-                                ),
-                              ),
-                            ),
-                            icon: const Icon(Icons.help),
-                          ),
-                        ]
-                            .animate() //
-                            .fadeIn(duration: 300.ms),
-                      ),
-                    );
-                  }
-                  index = index - 1;
-                  return HookBuilder(builder: (context) {
-                    useAutomaticKeepAlive();
-                    return ConstrainedBox(
-                      constraints: BoxConstraints.loose(const Size(200, 130)),
-                      child: VBPLContentNodeCard(message.sources[index]) //
-                          .animate()
-                          .fadeIn(duration: 300.ms)
-                          .slideX(
-                            begin: 0.6,
-                            curve: Curves.easeOutBack,
-                          ),
-                    );
-                  });
-                },
-                separatorBuilder: (context, index) => Gap(Spacings.sm.value),
-              ),
-            ),
-            const Divider(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: Spacings.md.value),
-              child: Text(message.answer),
-            ),
-            const Divider(),
-            Padding(
-              padding: EdgeInsets.only(
-                left: Spacings.md.value,
-                bottom: Spacings.md.value,
-              ),
-              child: DefaultTextStyle(
-                style: theme.textTheme.titleLarge!,
-                child: const Text('Câu hỏi gợi ý'),
-              ),
-            ),
-            SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: Spacings.md.value),
-              sliver: SliverList.separated(
-                itemCount: message.suggestionQuestions.length,
-                separatorBuilder: (context, index) => Gap(Spacings.sm.value),
-                itemBuilder: (context, index) {
-                  final suggestion = message.suggestionQuestions[index];
-                  return HookBuilder(
-                    builder: (context) {
-                      useAutomaticKeepAlive();
-                      return ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: Spacings.lg.value,
-                            vertical: Spacings.sm.value,
-                          ),
-                        ),
-                        onPressed: () => onSelectSuggestion(suggestion),
-                        child: Text(suggestion),
-                      ) //
-                          .animate(delay: (index * 100).ms)
-                          .fadeIn()
-                          .slideY();
-                    },
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
-class VBPLContentNodeCard extends StatelessWidget {
-  const VBPLContentNodeCard(this.node, {super.key});
-
-  final VBPLContent node;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: PaddedColumn(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        padding: EdgeInsets.all(Spacings.md.value),
-        children: [
-          Padding(
-            padding: EdgeInsets.only(bottom: Spacings.sm.value),
-            child: Text(
-              node.title,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-          const Divider(),
-          InputChip(
-            onPressed: () => showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                title: const Text('Xem chi tiết'),
-                content: SingleChildScrollView(
-                  child: Text(node.content),
-                ),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.of(context).pop(),
-                    child: const Text('Đóng'),
+              for (final (index, question) in data.indexed)
+                ElevatedButton(
+                  onPressed: () => onSelectQuestion(question),
+                  child: Padding(
+                    padding: EdgeInsets.all(Spacings.sm.value),
+                    child: Text(
+                      question,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
-                ],
-              ),
+                ) //
+                    .animate(delay: (350 + index * 150).ms)
+                    .fadeIn(curve: Curves.easeInOutCubic)
+                    .slideY(begin: 0.6, curve: Curves.easeInOutCubic),
+            ] //
             ),
-            label: const Center(
-              child: Text('Xem chi tiết'),
-            ),
-          ),
-        ],
+        orElse: () => const SizedBox(),
       ),
     );
   }

@@ -12,6 +12,8 @@ part 'phapdien_rest_client.g.dart';
 abstract class PhapdienRestClient {
   factory PhapdienRestClient(Dio dio, {String baseUrl}) = _PhapdienRestClient;
 
+  /// PHAPDIEN
+
   @GET('/v0/phapdien/root')
   Future<List<PhapdienNode>> getRoot();
 
@@ -27,8 +29,13 @@ abstract class PhapdienRestClient {
     @Query('show_raw') bool showRaw,
   );
 
+  /// CHAT
+
   @POST('/v0/chat/ask')
   Future<dynamic> askPhapdienChat(@Body() AskPhadienChatRequest request);
+
+  @GET('/v0/chat/rand_questions')
+  Future<dynamic> getRandomSuggestionQuestions();
 }
 
 @riverpod

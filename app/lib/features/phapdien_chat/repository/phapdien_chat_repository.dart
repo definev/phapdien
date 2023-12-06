@@ -11,4 +11,6 @@ PhapdienChatRepository phapdienChatRepository(PhapdienChatRepositoryRef ref) {
 
 abstract class PhapdienChatRepository {
   Future<PhapdienChatMessage> askPhapdienChat(String query);
+
+  Future<List<String>> getRandomSuggestionQuestions();
 }

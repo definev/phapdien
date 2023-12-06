@@ -124,7 +124,7 @@ paths:
   /chat/ask:
     post:
       tags:
-        - "Hỏi thông tin"
+        - "Chat"
       summary: "Tra cứu thông tin qua câu hỏi"
       operationId: "chat/ask"
       requestBody:
@@ -132,6 +132,20 @@ paths:
           application/json:
             schema:
               $ref: "#/components/schemas/AskRequest"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AskResponse"
+
+  /chat/rand_questions:
+    get:
+      tags:
+        - "Chat"
+      summary: "Sinh 3 câu hỏi ngẫu nhiên"
+      operationId: "chat/rand_questions"
       responses:
         200:
           description: "successful operation"

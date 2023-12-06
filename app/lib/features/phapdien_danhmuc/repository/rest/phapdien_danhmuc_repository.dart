@@ -1,4 +1,4 @@
-import 'package:app/apis/phapdien_client.dart';
+import 'package:app/apis/phapdien_rest_client.dart';
 import 'package:app/features/phapdien_danhmuc/repository/phapdien_danhmuc_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared/shared.dart';

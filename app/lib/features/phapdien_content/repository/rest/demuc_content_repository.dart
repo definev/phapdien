@@ -1,4 +1,4 @@
-import 'package:app/apis/phapdien_client.dart';
+import 'package:app/apis/phapdien_rest_client.dart';
 import 'package:app/features/phapdien_content/repository/demuc_content_repository.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared/src/models/vbpl_content.dart';

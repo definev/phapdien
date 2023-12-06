@@ -6,7 +6,22 @@ part of 'ask_phapdien_chat_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$askPhapdienChatHash() => r'fb4c10a9045da787fa19ab9462321e25db3860d1';
+String _$openChatSessionHash() => r'0bc2bd6e7b997b05188a9cde019a0b009feaab4d';
+
+/// See also [openChatSession].
+@ProviderFor(openChatSession)
+final openChatSessionProvider = AutoDisposeProvider<void>.internal(
+  openChatSession,
+  name: r'openChatSessionProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$openChatSessionHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef OpenChatSessionRef = AutoDisposeProviderRef<void>;
+String _$askPhapdienChatHash() => r'e0bae53b11d5dbb72d1e6492fd3fc36f98c11f8e';
 
 /// Copied from Dart SDK
 class _SystemHash {

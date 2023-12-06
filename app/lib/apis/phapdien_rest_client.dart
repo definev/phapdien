@@ -4,7 +4,9 @@ import 'package:retrofit/retrofit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared/shared.dart';
 
-part 'phapdien_client.g.dart';
+import 'phapdient_rest_client/params/ask_phapdien_chat_request.dart';
+
+part 'phapdien_rest_client.g.dart';
 
 @RestApi()
 abstract class PhapdienRestClient {
@@ -24,6 +26,9 @@ abstract class PhapdienRestClient {
     @Query('id') String id,
     @Query('show_raw') bool showRaw,
   );
+
+  @POST('/v0/chat/ask')
+  Future<dynamic> askPhapdienChat(@Body() AskPhadienChatRequest request);
 }
 
 @riverpod

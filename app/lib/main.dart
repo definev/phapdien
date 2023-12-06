@@ -21,8 +21,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flexColorTheme = FlexColorScheme.dark(
-      scheme: FlexScheme.deepBlue,
+    final flexColorTheme = FlexColorScheme.light(
+      scheme: FlexScheme.yellowM3,
       useMaterial3: true,
       subThemesData: FlexSubThemesData(
         thickBorderWidth: 1,

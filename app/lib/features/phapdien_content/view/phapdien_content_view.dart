@@ -14,7 +14,7 @@ class PhapdienContentView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(node.text),
+        title: const Text('Nội dung'),
       ),
       body: _buildBody(context, ref),
     );
@@ -28,31 +28,45 @@ class PhapdienContentView extends ConsumerWidget {
       case DeMucPhapdienNodeType():
         final raw = ref.watch(getDemucContentHtmlProvider(node));
         return raw.when(
-          data: (content) => CustomScrollView(
-            slivers: [
-              SliverPadding(
-                padding: EdgeInsets.all(Spacings.md.value),
-                sliver: HtmlWidget(
-                  content,
-                  renderMode: RenderMode.sliverList,
-                  customWidgetBuilder: (element) {
-                    if (element.localName == 'p' && element.className == 'pDieu') {
-                      return Padding(
-                        padding: EdgeInsets.only(
-                          top: Spacings.md.value,
-                          bottom: Spacings.md.value,
-                        ),
-                        child: Text(
-                          element.text,
-                          style: theme.textTheme.displayLarge,
-                        ),
-                      );
-                    }
-                    return null;
-                  },
+          data: (content) => RefreshIndicator(
+            onRefresh: () async => ref.refresh(getDemucContentHtmlProvider(node)),
+            child: CustomScrollView(
+              slivers: [
+                SliverPadding(
+                  padding: EdgeInsets.all(Spacings.md.value),
+                  sliver: HtmlWidget(
+                    content,
+                    renderMode: RenderMode.sliverList,
+                    customWidgetBuilder: (ele) {
+                      if (ele.localName == 'p' && ele.className == 'pDieu') {
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            top: Spacings.sm.value,
+                            bottom: Spacings.sm.value,
+                          ),
+                          child: Text(
+                            ele.text,
+                            style: theme.textTheme.titleLarge,
+                          ),
+                        );
+                      }
+                      if (ele.localName == 'p' && ele.className == 'pGhiChu') {
+                        return Text(
+                          ele.text,
+                          style: theme.textTheme.bodySmall!.copyWith(
+                            fontStyle: FontStyle.italic,
+                            decoration: TextDecoration.underline,
+                            color: theme.colorScheme.secondary,
+                            decorationColor: theme.colorScheme.secondary,
+                          ),
+                        );
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stack) => Center(child: Text(error.toString())),

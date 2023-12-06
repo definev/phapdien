@@ -20,6 +20,10 @@ docker:
 	chmod +x ./scripts/docker.sh
 	./scripts/docker.sh
 
+docker_down:
+	chmod +x ./scripts/docker_down.sh
+	./scripts/docker_down.sh
+
 # Dart-scripts
 start_local_server:
 	@dart run bin/server.dart

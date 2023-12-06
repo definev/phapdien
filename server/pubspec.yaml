@@ -3,6 +3,8 @@ description: A server app using the shelf package and Docker.
 version: 1.0.0
 # repository: https://github.com/my_org/my_repo
 
+publish_to: none
+
 environment:
   sdk: ^3.1.0
 
@@ -47,6 +49,12 @@ dependencies:
   # AI
   openai_dart: ^0.1.1+2
   pinecone: ^0.7.2
+  
+  shared:
+    git: 
+      url: https://github.com/definev/phapdien.git
+      ref: duong-branch
+      path: shared
 
 dev_dependencies:
   lints: ^2.1.0

@@ -1,5 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:server/utils/json_serializable.dart';
+import 'package:shared/shared.dart';
 
 part 'phapdien_demuc_content_request.g.dart';
 

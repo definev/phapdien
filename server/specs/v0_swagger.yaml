@@ -28,16 +28,31 @@ paths:
       deprecated: false
 
   /phapdien/children:
-    post:
+    parameters:
+      - name: id
+        in: query
+        description: id
+        required: true
+        schema:
+          type: string
+      - name: level
+        in: query
+        description: level
+        required: true
+        schema:
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+            - 4
+            - 5
+    get:
       tags:
         - "Dữ liệu pháp điển"
       summary: "Lấy danh sách con của một PhapdienNode"
-      operationId: "getChildren"
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/PhapdienChildrenRequest"
+      operationId: "phapdien/children"
+
       responses:
         200:
           description: "successful operation"
@@ -106,6 +121,25 @@ paths:
                 $ref: "#/components/schemas/PhapdienSearchResponse"
       deprecated: false
 
+  /chat/ask:
+    post:
+      tags:
+        - "Hỏi thông tin"
+      summary: "Tra cứu thông tin qua câu hỏi"
+      operationId: "chat/ask"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AskRequest"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AskResponse"
+
 components:
   schemas:
     VBPLContent:
@@ -169,6 +203,12 @@ components:
             - 3
             - 4
             - 5
+    
+    AskRequest:
+      type: object
+      properties:
+        query:
+          type: string
 
     PhapdienChildrenResponse:
       type: array
@@ -184,3 +224,6 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/VBPLContent"
+    
+    AskResponse:
+      type: object

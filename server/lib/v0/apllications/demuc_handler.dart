@@ -3,8 +3,7 @@ import 'dart:convert';
 import 'package:html/dom.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
-import 'package:server/utils/dom.dart';
-import 'package:server/v0/domain/vbpl_content.dart';
+import 'package:shared/shared.dart';
 
 void main() async {
   final demucId = '0cf69ad9-6f29-4ee4-8e16-2c3aa65c3a52';

@@ -7,6 +7,7 @@ import 'package:server/v0/apllications/vector_database/embedding_function/embedd
 import 'package:server/v0/data/chroma.dart';
 import 'package:server/v0/data/provider_container.dart';
 import 'package:server/v0/domain/vbpl_content.dart';
+import 'package:shared/shared.dart';
 
 const sourceUrl = 'http://localhost:7777';
 

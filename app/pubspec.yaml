@@ -15,18 +15,55 @@ dependencies:
   flutter_hooks: ^0.20.3
   hooks_riverpod: ^2.4.8
 
+  # Html
+  flutter_widget_from_html_core: ^0.14.9
+
   # UI
   flextras: ^1.0.0 
   boxy: ^2.1.3
   flutter_portal: ^1.1.4
   flutter_animate: ^4.3.0
+  page_indicator_plus: ^1.0.3
+  animations: ^2.0.8
+  gap: ^3.0.1
+  sliver_tools: ^0.2.12
+
+  google_fonts: ^6.1.0
 
   flex_color_scheme: ^7.3.1
+
+  # Shared
+  shared:
+    path: ../shared
+
+  # Generated
+  json_annotation: ^4.8.1
+  copy_with_extension: ^5.0.4
+  riverpod_annotation: ^2.3.3
+
+  # Network
+  dio: ^5.4.0
+  awesome_dio_interceptor: ^1.0.0 
+  curl_logger_dio_interceptor: ^1.0.0
+
+  retrofit: ^4.0.3 
+
+  # Dart
+  fuzzy: ^0.5.1
+  diacritic: ^0.1.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.0
+  build_runner: ^2.4.7 
+  json_serializable: ^6.7.1
+  copy_with_extension_gen: ^5.0.4
+  riverpod_generator: ^2.3.9
+
+  riverpod_lint: ^2.3.7
+  custom_lint: ^0.5.7
+  retrofit_generator: ^8.0.4
 
 flutter:
   uses-material-design: true

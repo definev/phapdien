@@ -1,9 +1,10 @@
-import 'package:app/features/search/presentation/search_view.dart';
+import 'package:app/features/phapdien_home/view/phapdien_tree_view.dart';
 import 'package:app/utils/spacing.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(
@@ -20,8 +21,9 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final flexColorScheme = FlexColorScheme.dark(
-      scheme: FlexScheme.amber,
+    final flexColorTheme = FlexColorScheme.dark(
+      scheme: FlexScheme.deepBlue,
+      useMaterial3: true,
       subThemesData: FlexSubThemesData(
         thickBorderWidth: 1,
         thinBorderWidth: 1,
@@ -29,11 +31,22 @@ class MainApp extends StatelessWidget {
         inputDecoratorIsFilled: true,
         inputDecoratorBorderType: FlexInputBorderType.outline,
       ),
-      
-    );
+      textTheme: GoogleFonts.genosTextTheme(),
+    ).toTheme;
     return MaterialApp(
-      theme: flexColorScheme.toTheme,
-      home: const SearchView(),
+      theme: flexColorTheme.copyWith(
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: flexColorTheme.outlinedButtonTheme.style?.copyWith(
+            padding: MaterialStateProperty.all(
+              EdgeInsets.symmetric(
+                vertical: Spacings.sm.value,
+                horizontal: Spacings.md.value,
+              ),
+            ),
+          ),
+        ),
+      ),
+      home: const PhapdienTreeView(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:pinecone/pinecone.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:server/utils/env.dart';
+import 'package:server/internal/env.dart';
 import 'package:server/v0/data/vector_database.dart';
 
 part 'pinecone_vector_database.g.dart';

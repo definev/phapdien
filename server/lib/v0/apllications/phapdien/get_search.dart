@@ -4,7 +4,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:server/v0/apllications/vector_database/embedding_function/embedding_function.dart';
 import 'package:server/v0/data/phapdien_db/phapdien_db.dart';
 import 'package:server/v0/data/vector_database.dart';
-import 'package:server/v0/domain/vbpl_content.dart';
+import 'package:shared/shared.dart';
 
 part 'get_search.g.dart';
 

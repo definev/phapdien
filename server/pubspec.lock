@@ -101,10 +101,10 @@ packages:
     dependency: "direct dev"
     description:
       name: build_runner
-      sha256: "10c6bcdbf9d049a0b666702cf1cee4ddfdc38f02a19d35ae392863b47519848b"
+      sha256: "67d591d602906ef9201caf93452495ad1812bea2074f04e25dbd7c133785821b"
       url: "https://pub.dev"
     source: hosted
-    version: "2.4.6"
+    version: "2.4.7"
   build_runner_core:
     dependency: transitive
     description:
@@ -221,10 +221,10 @@ packages:
     dependency: transitive
     description:
       name: cross_file
-      sha256: "2f9d2cbccb76127ba28528cb3ae2c2326a122446a83de5a056aaa3880d3882c5"
+      sha256: fedaadfa3a6996f75211d835aaeb8fede285dae94262485698afd832371b9a5e
       url: "https://pub.dev"
     source: hosted
-    version: "0.3.3+7"
+    version: "0.3.3+8"
   crypto:
     dependency: transitive
     description:
@@ -381,10 +381,10 @@ packages:
     dependency: "direct main"
     description:
       name: http
-      sha256: "38dce67ce909c338754840e2a1479c2c11347a2fc7ec3d5b166a5118a8a201db"
+      sha256: d4872660c46d929f6b8a9ef4e7a7eff7e49bbf0c4ec3f385ee32df5119175139
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.1"
+    version: "1.1.2"
   http_methods:
     dependency: transitive
     description:
@@ -549,10 +549,10 @@ packages:
     dependency: "direct main"
     description:
       name: openai_dart
-      sha256: "3dae6b44880f3815a33d1d0a672ea456cbbf722111a20118084146f6a9758bb6"
+      sha256: "665496a702345b1f0088aae1c7732cf2ae83db7e37a9b6d9b75d2fd7d83066a3"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1+2"
+    version: "0.1.2"
   package_config:
     dependency: transitive
     description:
@@ -565,18 +565,18 @@ packages:
     dependency: transitive
     description:
       name: path
-      sha256: "8829d8a55c13fc0e37127c29fedf290c102f4e40ae94ada574091fe0ff96c917"
+      sha256: "087ce49c3f0dc39180befefc60fdb4acd8f8620e5682fe2476afd0b3688bb4af"
       url: "https://pub.dev"
     source: hosted
-    version: "1.8.3"
+    version: "1.9.0"
   petitparser:
     dependency: transitive
     description:
       name: petitparser
-      sha256: eeb2d1428ee7f4170e2bd498827296a18d4e7fc462b71727d111c0ac7707cfa6
+      sha256: c15605cd28af66339f8eb6fbe0e541bfe2d1b72d5825efc6598f3e0a31b9ad27
       url: "https://pub.dev"
     source: hosted
-    version: "6.0.1"
+    version: "6.0.2"
   pinecone:
     dependency: "direct main"
     description:
@@ -665,6 +665,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.27.7"
+  shared:
+    dependency: "direct main"
+    description:
+      path: shared
+      ref: duong-branch
+      resolved-ref: b2df11f505014f87b9d211b5b724897baee18c20
+      url: "https://github.com/definev/phapdien.git"
+    source: git
+    version: "1.0.0"
   shelf:
     dependency: "direct main"
     description:

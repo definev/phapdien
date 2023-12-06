@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:riverpod/riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:server/v0/data/phapdien_db/phapdien_db.dart';
-import 'package:server/v0/domain/vbpl_content.dart';
+import 'package:shared/shared.dart';
 
 part 'file_phapdien_db.g.dart';
 

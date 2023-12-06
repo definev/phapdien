@@ -25,6 +25,7 @@ class PhapdienDanhmucView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final sm = ScaffoldMessenger.of(context);
 
     useListenable(selectedNodes);
 
@@ -44,7 +45,12 @@ class PhapdienDanhmucView extends HookConsumerWidget {
                     getPhapdienNodesChildProvider(node),
                     (previous, next) {
                       if (next is AsyncData && next.value!.isEmpty) {
-                        selectedNodes.value = selectedNodes.value.sublist(0, nodeIndex);
+                        selectedNodes.value = selectedNodes.value.sublist(0, nodeIndex - 1);
+                        sm.showSnackBar(
+                          const SnackBar(
+                            content: Text('Không có nội dung cho mục này'),
+                          ),
+                        );
                       }
                     },
                   );

@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:server/api_docs/swagger.dart';
-import 'package:server/v0/routes/chat/chat_api.dart';
+import 'package:server/v0/routes/chat/post_ask.dart';
 import 'package:server/v0/routes/chat/get_random_question.dart';
+import 'package:server/v0/routes/chat/post_stream_ask.dart';
 import 'package:server/v0/routes/phapdien/get_children.dart';
 import 'package:server/v0/routes/phapdien/get_demuc_content.dart';
 import 'package:server/v0/routes/phapdien/get_root.dart';
@@ -21,6 +22,7 @@ final _router = Router()
   ..get('/v0/phapdien/demuc_content', getPhapdienDemucContentHandler)
   ..get('/v0/phapdien/search', getPhapdienSearchHandler)
   ..post('/v0/chat/ask', askHandler)
+  ..post('/v0/chat/stream_ask', streamAskHandler)
   ..get('/v0/chat/rand_questions', getRandQuestionsHandler);
 
 // A handler that responds to `/ping` requests.

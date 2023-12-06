@@ -171,5 +171,139 @@ class _AskPhapdienChatProviderElement
   @override
   String get question => (origin as AskPhapdienChatProvider).question;
 }
+
+String _$streamAskPhapdienChatHash() =>
+    r'c056d93249ee3bfa303f5677179a3ec45fb89897';
+
+/// See also [streamAskPhapdienChat].
+@ProviderFor(streamAskPhapdienChat)
+const streamAskPhapdienChatProvider = StreamAskPhapdienChatFamily();
+
+/// See also [streamAskPhapdienChat].
+class StreamAskPhapdienChatFamily
+    extends Family<AsyncValue<PhapdienChatMessage>> {
+  /// See also [streamAskPhapdienChat].
+  const StreamAskPhapdienChatFamily();
+
+  /// See also [streamAskPhapdienChat].
+  StreamAskPhapdienChatProvider call(
+    String question,
+  ) {
+    return StreamAskPhapdienChatProvider(
+      question,
+    );
+  }
+
+  @override
+  StreamAskPhapdienChatProvider getProviderOverride(
+    covariant StreamAskPhapdienChatProvider provider,
+  ) {
+    return call(
+      provider.question,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'streamAskPhapdienChatProvider';
+}
+
+/// See also [streamAskPhapdienChat].
+class StreamAskPhapdienChatProvider
+    extends AutoDisposeStreamProvider<PhapdienChatMessage> {
+  /// See also [streamAskPhapdienChat].
+  StreamAskPhapdienChatProvider(
+    String question,
+  ) : this._internal(
+          (ref) => streamAskPhapdienChat(
+            ref as StreamAskPhapdienChatRef,
+            question,
+          ),
+          from: streamAskPhapdienChatProvider,
+          name: r'streamAskPhapdienChatProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$streamAskPhapdienChatHash,
+          dependencies: StreamAskPhapdienChatFamily._dependencies,
+          allTransitiveDependencies:
+              StreamAskPhapdienChatFamily._allTransitiveDependencies,
+          question: question,
+        );
+
+  StreamAskPhapdienChatProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.question,
+  }) : super.internal();
+
+  final String question;
+
+  @override
+  Override overrideWith(
+    Stream<PhapdienChatMessage> Function(StreamAskPhapdienChatRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: StreamAskPhapdienChatProvider._internal(
+        (ref) => create(ref as StreamAskPhapdienChatRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        question: question,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<PhapdienChatMessage> createElement() {
+    return _StreamAskPhapdienChatProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is StreamAskPhapdienChatProvider && other.question == question;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, question.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin StreamAskPhapdienChatRef
+    on AutoDisposeStreamProviderRef<PhapdienChatMessage> {
+  /// The parameter `question` of this provider.
+  String get question;
+}
+
+class _StreamAskPhapdienChatProviderElement
+    extends AutoDisposeStreamProviderElement<PhapdienChatMessage>
+    with StreamAskPhapdienChatRef {
+  _StreamAskPhapdienChatProviderElement(super.provider);
+
+  @override
+  String get question => (origin as StreamAskPhapdienChatProvider).question;
+}
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member

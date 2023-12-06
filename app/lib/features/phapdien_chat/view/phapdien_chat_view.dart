@@ -31,8 +31,15 @@ class PhapdienChatView extends HookConsumerWidget {
 
     final sessionId = useMemoized(() => history?.id ?? uuid.v4());
     final phapdienChatMessages = useRef(<PhapdienChatMessage>[if (history != null) ...history!.messages]);
-    void addPhapdienChatMessage(PhapdienChatMessage message) {
-      phapdienChatMessages.value = [...phapdienChatMessages.value, message];
+    void upsertPhapdienChatMessage(int index, PhapdienChatMessage message) {
+      if (phapdienChatMessages.value.length > index) {
+        final newMessages = [...phapdienChatMessages.value];
+        newMessages[index] = message;
+        phapdienChatMessages.value = newMessages;
+      } else {
+        phapdienChatMessages.value = [...phapdienChatMessages.value, message];
+      }
+
       ref.read(savePhapdienMessageProvider(sessionId, messages: phapdienChatMessages.value));
     }
 
@@ -90,16 +97,17 @@ class PhapdienChatView extends HookConsumerWidget {
                               );
                             }
 
+                            final realIndex = index;
                             index = index - historyMessages.length;
 
                             final message = messages.value[index];
                             return Consumer(
                               builder: (context, ref, child) {
-                                final chatMessage = ref.watch(askPhapdienChatProvider(message));
+                                final chatMessage = ref.watch(streamAskPhapdienChatProvider(message));
                                 ref.listen(
-                                  askPhapdienChatProvider(message),
+                                  streamAskPhapdienChatProvider(message),
                                   (_, next) {
-                                    if (next is AsyncData) addPhapdienChatMessage(next.value!);
+                                    if (next is AsyncData) upsertPhapdienChatMessage(realIndex, next.value!);
                                   },
                                 );
                                 return chatMessage.when(
@@ -108,7 +116,7 @@ class PhapdienChatView extends HookConsumerWidget {
                                     onSelectSuggestion: fillMessageToTextController,
                                   ),
                                   loading: () => const Center(child: CircularProgressIndicator()),
-                                  error: (error, stackTrace) => const Center(child: Text('Error')),
+                                  error: (error, stackTrace) => Center(child: Text(error.toString())),
                                 );
                               },
                             );

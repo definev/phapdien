@@ -41,11 +41,11 @@ Future<void> handleAskingStream(Request req, StreamController<String> streamCont
 
   final client = providerContainer.read(openAIClientProvider(keys[index]));
 
-  CreateChatCompletionResponse? answerResponse;
+  Stream<CreateChatCompletionStreamResponse>? answerResponseStream;
 
-  while (answerResponse == null) {
+  while (answerResponseStream == null) {
     try {
-      answerResponse = await client.createChatCompletion(
+      answerResponseStream = client.createChatCompletionStream(
         request: CreateChatCompletionRequest(
           model: ChatCompletionModel.model(ChatCompletionModels.gpt35Turbo),
           messages: [
@@ -66,8 +66,10 @@ Chỉ dùng thông tin được cung cấp trong Tài liệu.''',
         ),
       );
 
-      final answer = answerResponse.choices.first.message.content.toString();
-      streamController.add(answer);
+      await for (final event in answerResponseStream) {
+        final answer = event.choices.first.delta.content ?? '';
+        streamController.add(answer);
+      }
       streamController.add(delimiterForAnswers);
     } catch (error) {
       print(error);

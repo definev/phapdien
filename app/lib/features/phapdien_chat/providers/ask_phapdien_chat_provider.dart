@@ -23,3 +23,12 @@ Future<PhapdienChatMessage> askPhapdienChat(
   final repository = ref.watch(phapdienChatRepositoryProvider);
   return repository.askPhapdienChat(question);
 }
+
+@riverpod
+Stream<PhapdienChatMessage> streamAskPhapdienChat(
+  StreamAskPhapdienChatRef ref,
+  String question,
+) {
+  final repository = ref.watch(phapdienChatRepositoryProvider);
+  return repository.streamAskPhapdienChat(question);
+}

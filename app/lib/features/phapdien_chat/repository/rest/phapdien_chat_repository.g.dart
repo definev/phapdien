@@ -7,7 +7,7 @@ part of 'phapdien_chat_repository.dart';
 // **************************************************************************
 
 String _$restPhapdienChatRepositoryHash() =>
-    r'791e24de2dba3385631634987a6e1f3f29f2eb8c';
+    r'6e43bd4b131e672f7963c461685b87316188e22a';
 
 /// See also [restPhapdienChatRepository].
 @ProviderFor(restPhapdienChatRepository)

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/apis/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -36,6 +38,21 @@ abstract class PhapdienRestClient {
 
   @GET('/v0/chat/rand_questions')
   Future<dynamic> getRandomSuggestionQuestions();
+}
+
+extension PhapdienRestClientX on PhapdienRestClient {
+  Stream<String> streamAskPhapdienChat(
+    Dio dio,
+    @Body() AskPhadienChatRequest request,
+  ) async* {
+    final rs = await dio.post(
+      '/v0/chat/stream_ask',
+      data: request.toJson(),
+      options: Options(responseType: ResponseType.stream),
+    );
+    final stream = rs.data.stream as Stream<List<int>>;
+    yield* stream.map((event) => utf8.decode(event));
+  }
 }
 
 @riverpod

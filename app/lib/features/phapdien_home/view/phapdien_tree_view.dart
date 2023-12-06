@@ -15,6 +15,7 @@ class PhapdienTreeView extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final size = MediaQuery.sizeOf(context);
+    final navigator = Navigator.of(context);
 
     final selectedNavigationIndex = useState(0);
     final searchAnchorController = useMemoized(() => SearchController());
@@ -65,7 +66,11 @@ class PhapdienTreeView extends HookConsumerWidget {
         0 => FloatingActionButton.extended(
             icon: const Icon(Icons.question_answer),
             label: const Text('Hỏi đáp'),
-            onPressed: () {},
+            onPressed: () => navigator.push(
+              MaterialPageRoute(
+                builder: (context) => const PhapdienChatView(),
+              ),
+            ),
           ),
         _ => null,
       },

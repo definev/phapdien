@@ -2,7 +2,9 @@
 
 | ![Pháp Điển APP](../assets/images/app/1_phapdien.gif)       | ![Pháp Điển APP](../assets/images/app/2_fuzzy_search.gif)  | ![Pháp Điển APP](../assets/images/app/3_chat.gif) |
 | ----------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------- |
+| Danh sách Pháp Điển                                         | Tìm kiếm theo từ khóa                                      | Hỏi đáp về Pháp Điển                              |
 | ![Pháp Điển APP](../assets/images/app/4_follow_up_chat.gif) | ![Pháp Điển APP](../assets/images/app/5_local_history.gif) |                                                   |
+| Các câu hỏi liên quan                                       | Lịch sử tìm kiếm                                           |                                                   |
 
 Đây là một ứng dụng mã nguồn mở được phát triển để hỗ trợ cộng đồng trong việc tra cứu [Pháp Điển Việt Nam](https://phapdien.moj.gov.vn/Pages/home.aspx) 📚. Dự án Tra cứu Pháp Điển Việt Nam sử dụng tài liệu từ [trang web Pháp Điển](https://phapdien.moj.gov.vn/Pages/home.aspx) và [Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật](https://vbpl.vn/pages/portal.aspx) 📑, đồng thời tạo ra một nguồn thông tin pháp luật mở rộng và dễ tiếp cận cho cộng đồng.
 

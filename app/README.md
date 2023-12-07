@@ -16,7 +16,8 @@ Với ứng dụng Tra cứu Pháp Điển Việt Nam, chúng tôi mong muốn t
 
 Phiên bản xem trước trang web của ứng dụng có sẵn tại đây:
 
-- [Pháp Điển | Demo Flutter App](https://github.com/definev/phapdien/releases) 🌐
+- [Pháp Điển | Demo Flutter App](https://github.com/definev/phapdien/releases) | [Demo Flutter Web](https://phapdien.vercel.app)
+  🌐
 
 ## Tính năng
 

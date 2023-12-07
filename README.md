@@ -192,36 +192,10 @@ Dự án đuợc phát hành theo các quyền và điều khoản được đ�
 
 * [Bài thuyết trình](https://www.canva.com/design/DAF2O3WpvzM/en2sc-I5Wu7Ul1QDb7ZklQ/edit?utm_content=DAF2O3WpvzM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 * [Tải sản phẩm Demo](https://github.com/definev/phapdien/releases)
-* Demo
+* [Demo](https://phapdien.vercel.app/)
 
-<p align="center">
-	<a> Tra cứu pháp điển </a>
-	<br/>
-	<a target="_blank">
-		<img loading="lazy" src="./assets/images/app/1_phapdien.gif">
-	</a>
-	<br/>
-	<a> Tìm kiếm đề mục </a>
-	<br/>
-	<a target="_blank">
-		<img loading="lazy" src="./assets/images/app/2_fuzzy_search.gif">
-	</a>
-	<br/>
-	<a> Chat </a>
-	<br/>
-	<a target="_blank">
-		<img loading="lazy" src="./assets/images/app/3_chat.gif">
-	</a>
-	<br/>
-	<a> Follow up chat </a>
-	<br/>
-	<a target="_blank">
-		<img loading="lazy" src="./assets/images/app/4_follow_up_chat.gif">
-	</a>
-	<br/>
-	<a> Lịch sử chat </a>
-	<br/>
-	<a target="_blank">
-		<img loading="lazy" src="./assets/images/app/5_local_history.gif">
-	</a>
-</p>
+| ![Pháp Điển APP](/assets/images/app/1_phapdien.gif)       | ![Pháp Điển APP](/assets/images/app/2_fuzzy_search.gif)  | ![Pháp Điển APP](/assets/images/app/3_chat.gif) |
+| --------------------------------------------------------- | -------------------------------------------------------- | ----------------------------------------------- |
+| Danh sách Pháp Điển                                       | Tìm kiếm theo từ khóa                                    | Hỏi đáp về Pháp Điển                            |
+| ![Pháp Điển APP](/assets/images/app/4_follow_up_chat.gif) | ![Pháp Điển APP](/assets/images/app/5_local_history.gif) |                                                 |
+| Các câu hỏi liên quan                                     | Lịch sử tìm kiếm                                         |                                                 |

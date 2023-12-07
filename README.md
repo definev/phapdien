@@ -58,7 +58,6 @@
 	- [🌐 Server](#-server)
 	- [📱 Ứng dụng](#-ứng-dụng)
 - [CI/CD](#cicd)
-- [Đóng góp](#đóng-góp)
 - [Contributors](#contributors)
 - [Các tổ chức hỗ trợ](#các-tổ-chức-hỗ-trợ)
 - [Giấy phép](#giấy-phép)
@@ -134,11 +133,7 @@ Việc cài đặt và sử dụng ứng dụng chi tiết được mô tả t  
 
 # CI/CD
 
-CI/CD
-
-# Đóng góp
-
-Hướng dẫn đóng góp vào dự án
+![CI/CD](./assets/images/cicd.webp)
 
 # Contributors
 

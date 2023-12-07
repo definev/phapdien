@@ -21,6 +21,8 @@ Future<Response> getPhapdienSearchHandler(Request request) async {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type',
       },
     );
   } catch (error, statckTrace) {

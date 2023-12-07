@@ -6,5 +6,8 @@ part 'get_random_suggestion_questions.g.dart';
 @riverpod
 Future<List<String>> getRandomSuggestionQuestions(GetRandomSuggestionQuestionsRef ref) async {
   final repository = ref.watch(phapdienChatRepositoryProvider);
-  return repository.getRandomSuggestionQuestions();
+  return [
+    ...(await repository.getRandomSuggestionQuestions()),
+    'Quy định về quản lý sử dụng vũ khí vật liệu nổ tại việt nam?'
+  ];
 }

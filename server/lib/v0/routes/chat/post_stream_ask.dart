@@ -153,6 +153,8 @@ Future<Response> streamAskHandler(Request req) async {
     headers: {
       'Content-Type': 'text/plain; charset=UTF-8',
       'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type',
     },
     context: {"shelf.io.buffer_output": false},
   );

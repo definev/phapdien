@@ -101,6 +101,8 @@ Phê duyệt danh sách cộng tác viên dịch thuật? | Cộng tác viên d�
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Origin, Content-Type',
         },
         json.encode(response.toJson()),
       );

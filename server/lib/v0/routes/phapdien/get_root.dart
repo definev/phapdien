@@ -11,6 +11,9 @@ Future<Response> getPhapdienRootNodesHandler(Request req) async {
 
   return Response.ok(
     json.encode(response.toJson()),
-    headers: {'Content-Type': 'application/json; charset=UTF-8'},
+    headers: {
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Access-Control-Allow-Origin': '*',
+    },
   );
 }

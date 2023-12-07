@@ -1,9 +1,9 @@
 import 'dart:convert';
 
+import 'package:openai_dart/openai_dart.dart';
 import 'package:server/internal/env.dart';
 import 'package:server/v0/data/provider_container.dart';
 import 'package:shelf/shelf.dart';
-import 'package:openai_dart/openai_dart.dart';
 
 Future<Response> getRandQuestionsHandler(Request req) async {
   int index = 0;
@@ -45,15 +45,14 @@ Phê duyệt danh sách cộng tác viên dịch thuật? | Cộng tác viên d�
         ),
       );
 
-      List<String> suggestionQuestions = relatedQuests
-          .choices.first.message.content
-          .toString()
-          .split("|")
-          .map((e) => e.trim())
-          .toList();
+      List<String> suggestionQuestions =
+          relatedQuests.choices.first.message.content.toString().split("|").map((e) => e.trim()).toList();
 
       return Response.ok(
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
         json.encode(suggestionQuestions),
       );
     } catch (error) {

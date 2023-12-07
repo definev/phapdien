@@ -1,22 +1,19 @@
 import 'dart:convert';
 
+import 'package:openai_dart/openai_dart.dart';
 import 'package:server/internal/env.dart';
 import 'package:server/v0/apllications/phapdien/get_search.dart';
 import 'package:server/v0/data/provider_container.dart';
-import 'package:shelf/shelf.dart';
-import 'package:openai_dart/openai_dart.dart';
-
 import 'package:shared/shared.dart';
+import 'package:shelf/shelf.dart';
 
 Future<Response> askHandler(Request req) async {
   int index = 0;
 
   final keys = providerContainer.read(environmentProvider).openAIKeys;
-  final query = (json.decode(await req.readAsString())
-      as Map<String, dynamic>)['query'] as String;
+  final query = (json.decode(await req.readAsString()) as Map<String, dynamic>)['query'] as String;
 
-  final controller =
-      providerContainer.read(getPhapdienSearchControllerProvider);
+  final controller = providerContainer.read(getPhapdienSearchControllerProvider);
   final result = await controller.searchByQuery(query, 5);
 
   var context = '';
@@ -50,12 +47,10 @@ Tìm thông tin trong văn bản được cung cấp để trả lời câu hỏ
 Chỉ dùng thông tin được cung cấp trong Tài liệu.''',
             ),
             ChatCompletionMessage.user(
-              content: ChatCompletionUserMessageContent.string(
-                  "Tài liệu:\n$context"),
+              content: ChatCompletionUserMessageContent.string("Tài liệu:\n$context"),
             ),
             ChatCompletionMessage.user(
-              content:
-                  ChatCompletionUserMessageContent.string("Câu hỏi: $query"),
+              content: ChatCompletionUserMessageContent.string("Câu hỏi: $query"),
             ),
           ],
           temperature: 0.7,
@@ -85,15 +80,15 @@ Phê duyệt danh sách cộng tác viên dịch thuật? | Cộng tác viên d�
 ''',
             ),
             ChatCompletionMessage.user(
-              content: ChatCompletionUserMessageContent.string(
-                  "Các câu hỏi liên quan đến câu hỏi sau là gì?: $query"),
+              content: ChatCompletionUserMessageContent.string("Các câu hỏi liên quan đến câu hỏi sau là gì?: $query"),
             ),
           ],
           temperature: 0.7,
         ),
       );
 
-      List<String> suggestionQuestions = relatedQuests.choices.first.message.content.toString().split("|").map((e) => e.trim()).toList();
+      List<String> suggestionQuestions =
+          relatedQuests.choices.first.message.content.toString().split("|").map((e) => e.trim()).toList();
 
       final answer = res.choices.first.message.content.toString();
       final response = PhapdienChatMessage(
@@ -103,7 +98,10 @@ Phê duyệt danh sách cộng tác viên dịch thuật? | Cộng tác viên d�
         suggestionQuestions: suggestionQuestions,
       );
       return Response.ok(
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
         json.encode(response.toJson()),
       );
     } catch (error) {

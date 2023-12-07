@@ -7,24 +7,25 @@ import 'package:shelf/shelf.dart';
 
 Future<Response> getPhapdienSearchHandler(Request request) async {
   try {
-    
-  final GetPhapdienSearchRequest entity;
-  try {
-    entity = GetPhapdienSearchRequest.fromJson(request.url.queryParameters);
-  } catch (_) {
-    return Response(400, body: 'Invalid request');
-  }
+    final GetPhapdienSearchRequest entity;
+    try {
+      entity = GetPhapdienSearchRequest.fromJson(request.url.queryParameters);
+    } catch (_) {
+      return Response(400, body: 'Invalid request');
+    }
 
-  final controller = providerContainer.read(getPhapdienSearchControllerProvider);
-  final result = await controller.searchByQuery(entity.query, entity.count);
-  return Response.ok(
-    json.encode(result.map((e) => e.toJson()).toList()),
-    headers: {'Content-Type': 'application/json'},
-  );
+    final controller = providerContainer.read(getPhapdienSearchControllerProvider);
+    final result = await controller.searchByQuery(entity.query, entity.count);
+    return Response.ok(
+      json.encode(result.map((e) => e.toJson()).toList()),
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    );
   } catch (error, statckTrace) {
     print(error);
     print(statckTrace);
     return Response.internalServerError();
-    
   }
 }

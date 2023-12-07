@@ -150,7 +150,10 @@ Future<Response> streamAskHandler(Request req) async {
   final body = await req.readAsString();
   return Response.ok(
     handleAskingStream(body).map((event) => utf8.encode(event)),
-    headers: {'Content-Type': 'text/plain; charset=UTF-8'},
+    headers: {
+      'Content-Type': 'text/plain; charset=UTF-8',
+      'Access-Control-Allow-Origin': '*',
+    },
     context: {"shelf.io.buffer_output": false},
   );
 }

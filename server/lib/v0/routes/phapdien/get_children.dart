@@ -19,7 +19,10 @@ Future<Response> getPhapdienChildrenNodesHandler(Request req) async {
 
     return Response.ok(
       json.encode(nodes.map((e) => e.toJson()).toList()),
-      headers: {'Content-Type': 'application/json; charset=UTF-8'},
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Access-Control-Allow-Origin': '*',
+      },
     );
   } catch (error) {
     return Response.internalServerError(body: 'Internal server error: ${error.toString()}');

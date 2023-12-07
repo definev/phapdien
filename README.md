@@ -62,6 +62,7 @@
 - [Contributors](#contributors)
 - [Các tổ chức hỗ trợ](#các-tổ-chức-hỗ-trợ)
 - [Giấy phép](#giấy-phép)
+- [Giới thiệu sản phẩm](#giới-thiệu-sản-phẩm)
 
 </details>
 
@@ -178,8 +179,16 @@ Hướng dẫn đóng góp vào dự án
 	<a href="https://olp.husc.edu.vn/" target="_blank">
 		<img loading="lazy" src="./assets/images/olp_icpc.jpg" height="60px" alt="ICPC">
 	</a>
+	<a href="https://www.facebook.com/phenikaa.gdsc.dev" target="_blank">
+		<img loading="lazy" src="./assets/images/gdsc_pka.jpg" height="60px" alt="GDSC-PKA">
+	</a>
 </p>
 
 # Giấy phép
 
 Dự án đuợc phát hành theo các quyền và điều khoản được đề cập trong giấy phép [Apache 2.0](LICENSE) license.
+
+# Giới thiệu sản phẩm
+
+* [Bài thuyết trình](https://www.canva.com/design/DAF2O3WpvzM/en2sc-I5Wu7Ul1QDb7ZklQ/edit?utm_content=DAF2O3WpvzM&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+* [Tải sản phẩm Demo](https://github.com/definev/phapdien/releases)

@@ -13,11 +13,22 @@ const delimiterForSources = '_done_sources_';
 const delimiterForAnswers = '_done_answers_';
 const delimiterForSuggestionQuestions = '_done_suggestion_questions_';
 
-Future<void> handleAskingStream(Request req, StreamController<String> streamController) async {
+List<String> chunkString(String inputString, {int chunkSize = 100}) {
+  List<String> chunks = [];
+
+  for (int i = 0; i < inputString.length; i += chunkSize) {
+    int end = (i + chunkSize < inputString.length) ? i + chunkSize : inputString.length;
+    chunks.add(inputString.substring(i, end));
+  }
+
+  return chunks;
+}
+
+Stream<String> handleAskingStream(String body) async* {
   int index = 0;
 
   final keys = providerContainer.read(environmentProvider).openAIKeys;
-  final query = (json.decode(await req.readAsString()) as Map<String, dynamic>)['query'] as String;
+  final query = (json.decode(body) as Map<String, dynamic>)['query'] as String;
 
   final controller = providerContainer.read(getPhapdienSearchControllerProvider);
   final result = await controller.searchByQuery(query, 5);
@@ -36,14 +47,19 @@ Future<void> handleAskingStream(Request req, StreamController<String> streamCont
 
   sources = sources.toSet().toList();
 
-  streamController.add(json.encode(sources.map((e) => e.toJson()).toList()));
-  streamController.add(delimiterForSources);
+  String sentJson = json.encode(sources.map((e) => e.toJson()).toList());
+  final sentJsonChunks = chunkString(sentJson);
 
-  final client = providerContainer.read(openAIClientProvider(keys[index]));
+  for (final chunk in sentJsonChunks) {
+    yield chunk;
+  }
+
+  yield delimiterForSources;
 
   Stream<CreateChatCompletionStreamResponse>? answerResponseStream;
 
   while (answerResponseStream == null) {
+    final client = providerContainer.read(openAIClientProvider(keys[index]));
     try {
       answerResponseStream = client.createChatCompletionStream(
         request: CreateChatCompletionRequest(
@@ -66,11 +82,8 @@ Chỉ dùng thông tin được cung cấp trong Tài liệu.''',
         ),
       );
 
-      await for (final event in answerResponseStream) {
-        final answer = event.choices.first.delta.content ?? '';
-        streamController.add(answer);
-      }
-      streamController.add(delimiterForAnswers);
+      yield* answerResponseStream.map((event) => event.choices.first.delta.content ?? '');
+      yield delimiterForAnswers;
     } catch (error) {
       print(error);
       index++;
@@ -81,6 +94,7 @@ Chỉ dùng thông tin được cung cấp trong Tài liệu.''',
   index = 0;
   CreateChatCompletionResponse? relatedQuestions;
   while (relatedQuestions == null) {
+    final client = providerContainer.read(openAIClientProvider(keys[index]));
     try {
       relatedQuestions = await client.createChatCompletion(
         request: CreateChatCompletionRequest(
@@ -122,19 +136,21 @@ Phê duyệt danh sách cộng tác viên dịch thuật? | Cộng tác viên d�
           .map((e) => e.trim())
           .toList();
 
-      streamController.add(json.encode(suggestionQuestions));
+      yield json.encode(suggestionQuestions);
+      yield delimiterForSuggestionQuestions;
     } catch (error) {
       print(error);
       index++;
       if (index >= keys.length) break;
     }
   }
-
-  streamController.close();
 }
 
 Future<Response> streamAskHandler(Request req) async {
-  final responseStreamController = StreamController<String>();
-  handleAskingStream(req, responseStreamController);
-  return Response.ok(responseStreamController.stream.map((event) => event.codeUnits));
+  final body = await req.readAsString();
+  return Response.ok(
+    handleAskingStream(body).map((event) => utf8.encode(event)),
+    headers: {'Content-Type': 'text/plain; charset=UTF-8'},
+    context: {"shelf.io.buffer_output": false},
+  );
 }

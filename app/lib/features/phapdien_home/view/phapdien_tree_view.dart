@@ -5,6 +5,7 @@ import 'package:app/features/phapdien_danhmuc/providers/fuzzy_search_phapdien.da
 import 'package:app/features/phapdien_danhmuc/providers/get_phapdien_nodes_child.dart';
 import 'package:app/features/phapdien_danhmuc/view/phapdien_danhmuc_view.dart';
 import 'package:app/features/phapdien_history/view/phapdien_history_view.dart';
+import 'package:app/utils/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,6 +24,16 @@ class PhapdienTreeView extends HookConsumerWidget {
 
     final sourcePageController = usePageController();
     final selectedNodes = useMemoized<ValueNotifier<List<PhapdienNode>>>(() => ValueNotifier([]));
+    final showNavigationDrawer = MediaQuery.sizeOf(context).width >= 900;
+
+    final body = switch (selectedNavigationIndex.value) {
+      0 => PhapdienDanhmucView(
+          sourcePageController: sourcePageController,
+          selectedNodes: selectedNodes,
+        ),
+      1 => const PhapdienHistoryView(),
+      _ => const SizedBox.shrink(),
+    };
 
     return Scaffold(
       appBar: AppBar(
@@ -55,13 +66,39 @@ class PhapdienTreeView extends HookConsumerWidget {
           ),
         ],
       ),
-      body: switch (selectedNavigationIndex.value) {
-        0 => PhapdienDanhmucView(
-            sourcePageController: sourcePageController,
-            selectedNodes: selectedNodes,
+      body: switch (showNavigationDrawer) {
+        true => Row(
+            children: [
+              NavigationDrawer(
+                selectedIndex: selectedNavigationIndex.value,
+                tilePadding: EdgeInsets.only(
+                  left: Spacings.md.value,
+                  right: Spacings.md.value,
+                  top: Spacings.md.value,
+                ),
+                onDestinationSelected: (value) => selectedNavigationIndex.value = value,
+                children: const [
+                  NavigationDrawerDestination(
+                    icon: Icon(Icons.menu),
+                    label: Text('Danh mục'),
+                  ),
+                  NavigationDrawerDestination(
+                    icon: Icon(Icons.history),
+                    label: Text('Lịch sử chat'),
+                  ),
+                ],
+              ),
+              Expanded(
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints.loose(const Size.fromWidth(1028)),
+                    child: body,
+                  ),
+                ),
+              ),
+            ],
           ),
-        1 => const PhapdienHistoryView(),
-        _ => const SizedBox.shrink(),
+        false => body,
       },
       floatingActionButton: switch (selectedNavigationIndex.value) {
         0 => FloatingActionButton.extended(
@@ -75,21 +112,24 @@ class PhapdienTreeView extends HookConsumerWidget {
           ),
         _ => null,
       },
-      bottomNavigationBar: NavigationBar(
-        selectedIndex: selectedNavigationIndex.value,
-        onDestinationSelected: (value) => selectedNavigationIndex.value = value,
-        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.menu),
-            label: 'Danh mục',
+      bottomNavigationBar: switch (showNavigationDrawer) {
+        false => NavigationBar(
+            selectedIndex: selectedNavigationIndex.value,
+            onDestinationSelected: (value) => selectedNavigationIndex.value = value,
+            labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
+            destinations: const [
+              NavigationDestination(
+                icon: Icon(Icons.menu),
+                label: 'Danh mục',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.history),
+                label: 'Lịch sử chat',
+              ),
+            ],
           ),
-          NavigationDestination(
-            icon: Icon(Icons.history),
-            label: 'Lịch sử chat',
-          ),
-        ],
-      ),
+        true => null,
+      },
     );
   }
 }

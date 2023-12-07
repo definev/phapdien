@@ -21,7 +21,8 @@ final openChatSessionProvider = AutoDisposeProvider<void>.internal(
 );
 
 typedef OpenChatSessionRef = AutoDisposeProviderRef<void>;
-String _$askPhapdienChatHash() => r'e0bae53b11d5dbb72d1e6492fd3fc36f98c11f8e';
+String _$generalAskPhapdienChatHash() =>
+    r'15ef9dec251c06b4cef1a5f8605e7ad306e4ae78';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -43,6 +44,140 @@ class _SystemHash {
     return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
   }
 }
+
+/// See also [generalAskPhapdienChat].
+@ProviderFor(generalAskPhapdienChat)
+const generalAskPhapdienChatProvider = GeneralAskPhapdienChatFamily();
+
+/// See also [generalAskPhapdienChat].
+class GeneralAskPhapdienChatFamily
+    extends Family<AsyncValue<PhapdienChatMessage>> {
+  /// See also [generalAskPhapdienChat].
+  const GeneralAskPhapdienChatFamily();
+
+  /// See also [generalAskPhapdienChat].
+  GeneralAskPhapdienChatProvider call(
+    String question,
+  ) {
+    return GeneralAskPhapdienChatProvider(
+      question,
+    );
+  }
+
+  @override
+  GeneralAskPhapdienChatProvider getProviderOverride(
+    covariant GeneralAskPhapdienChatProvider provider,
+  ) {
+    return call(
+      provider.question,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'generalAskPhapdienChatProvider';
+}
+
+/// See also [generalAskPhapdienChat].
+class GeneralAskPhapdienChatProvider
+    extends AutoDisposeStreamProvider<PhapdienChatMessage> {
+  /// See also [generalAskPhapdienChat].
+  GeneralAskPhapdienChatProvider(
+    String question,
+  ) : this._internal(
+          (ref) => generalAskPhapdienChat(
+            ref as GeneralAskPhapdienChatRef,
+            question,
+          ),
+          from: generalAskPhapdienChatProvider,
+          name: r'generalAskPhapdienChatProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$generalAskPhapdienChatHash,
+          dependencies: GeneralAskPhapdienChatFamily._dependencies,
+          allTransitiveDependencies:
+              GeneralAskPhapdienChatFamily._allTransitiveDependencies,
+          question: question,
+        );
+
+  GeneralAskPhapdienChatProvider._internal(
+    super._createNotifier, {
+    required super.name,
+    required super.dependencies,
+    required super.allTransitiveDependencies,
+    required super.debugGetCreateSourceHash,
+    required super.from,
+    required this.question,
+  }) : super.internal();
+
+  final String question;
+
+  @override
+  Override overrideWith(
+    Stream<PhapdienChatMessage> Function(GeneralAskPhapdienChatRef provider)
+        create,
+  ) {
+    return ProviderOverride(
+      origin: this,
+      override: GeneralAskPhapdienChatProvider._internal(
+        (ref) => create(ref as GeneralAskPhapdienChatRef),
+        from: from,
+        name: null,
+        dependencies: null,
+        allTransitiveDependencies: null,
+        debugGetCreateSourceHash: null,
+        question: question,
+      ),
+    );
+  }
+
+  @override
+  AutoDisposeStreamProviderElement<PhapdienChatMessage> createElement() {
+    return _GeneralAskPhapdienChatProviderElement(this);
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is GeneralAskPhapdienChatProvider &&
+        other.question == question;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, question.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+mixin GeneralAskPhapdienChatRef
+    on AutoDisposeStreamProviderRef<PhapdienChatMessage> {
+  /// The parameter `question` of this provider.
+  String get question;
+}
+
+class _GeneralAskPhapdienChatProviderElement
+    extends AutoDisposeStreamProviderElement<PhapdienChatMessage>
+    with GeneralAskPhapdienChatRef {
+  _GeneralAskPhapdienChatProviderElement(super.provider);
+
+  @override
+  String get question => (origin as GeneralAskPhapdienChatProvider).question;
+}
+
+String _$askPhapdienChatHash() => r'e0bae53b11d5dbb72d1e6492fd3fc36f98c11f8e';
 
 /// See also [askPhapdienChat].
 @ProviderFor(askPhapdienChat)

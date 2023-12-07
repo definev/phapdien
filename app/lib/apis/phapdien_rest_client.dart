@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:app/apis/dio.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
@@ -41,7 +39,7 @@ abstract class PhapdienRestClient {
 }
 
 extension PhapdienRestClientX on PhapdienRestClient {
-  Stream<String> streamAskPhapdienChat(
+  Stream<List<int>> streamAskPhapdienChat(
     Dio dio,
     @Body() AskPhadienChatRequest request,
   ) async* {
@@ -50,8 +48,7 @@ extension PhapdienRestClientX on PhapdienRestClient {
       data: request.toJson(),
       options: Options(responseType: ResponseType.stream),
     );
-    final stream = rs.data.stream as Stream<List<int>>;
-    yield* stream.map((event) => utf8.decode(event));
+    yield* rs.data.stream as Stream<List<int>>;
   }
 }
 

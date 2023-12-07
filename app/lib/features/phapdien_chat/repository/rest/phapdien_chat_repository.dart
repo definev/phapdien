@@ -45,7 +45,7 @@ class RestPhapdienChatRepository implements PhapdienChatRepository {
   }
 
   @override
-  Stream<PhapdienChatMessage> streamAskPhapdienChat(String query) {
+  Stream<PhapdienChatMessage> streamAskPhapdienChat(String query) async* {
     final rawStream = client.streamAskPhapdienChat(
       dio,
       AskPhadienChatRequest(query: query),
@@ -59,25 +59,41 @@ class RestPhapdienChatRepository implements PhapdienChatRepository {
     );
 
     var buffer = '';
+    // 0: sources
+    // 1: answers
+    // 2: suggestion questions
+    // 3: done
+    int state = 0;
 
-    return rawStream.map(
-      (chunk) {
-        print('chunk: $chunk');
-        if (chunk == delimiterForSources) {
-          final raw = json.decode(buffer) as List;
-          final sources = raw.map((e) => VBPLContent.fromJson(e)).toList(); 
-          chatMessage = chatMessage.copyWith(sources: sources);
-          buffer = '';
-          return chatMessage;
-        }
-        if (chunk == delimiterForAnswers) {
-          chatMessage = chatMessage.copyWith(answer: buffer);
-          buffer = '';
-          return chatMessage;
-        }
-
-        buffer += chunk;
-        return chatMessage;
+    yield* rawStream.map(
+      (chunk) => switch (utf8.decode(chunk)) {
+        delimiterForSources => () {
+            final raw = json.decode(buffer) as List;
+            final sources = raw.map((e) => VBPLContent.fromJson(e)).toList();
+            chatMessage = chatMessage.copyWith(sources: sources);
+            buffer = '';
+            state = 1;
+            return chatMessage;
+          }(),
+        delimiterForAnswers => () {
+            chatMessage = chatMessage.copyWith(answer: buffer);
+            buffer = '';
+            state = 2;
+            return chatMessage;
+          }(),
+        delimiterForSuggestionQuestions => () {
+            final raw = json.decode(buffer) as List<dynamic>;
+            final suggestionQuestions = raw.cast<String>();
+            chatMessage = chatMessage.copyWith(suggestionQuestions: suggestionQuestions);
+            buffer = '';
+            state = 3;
+            return chatMessage;
+          }(),
+        final chunk => () {
+            buffer += chunk;
+            if (state == 1) return chatMessage.copyWith(answer: buffer);
+            return chatMessage;
+          }(),
       },
     );
   }

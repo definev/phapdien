@@ -16,12 +16,13 @@ docker_clean:
 docker_build:
 	@docker-compose build
 
-docker_up:
-	@docker-compose up -d
+docker:
+	chmod +x ./scripts/docker.sh
+	./scripts/docker.sh
 
 docker_down:
-	@docker-compose down
-
+	chmod +x ./scripts/docker_down.sh
+	./scripts/docker_down.sh
 
 # Dart-scripts
 start_local_server:

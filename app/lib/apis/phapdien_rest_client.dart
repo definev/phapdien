@@ -4,11 +4,15 @@ import 'package:retrofit/retrofit.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:shared/shared.dart';
 
-part 'phapdien_client.g.dart';
+import 'phapdient_rest_client/params/ask_phapdien_chat_request.dart';
+
+part 'phapdien_rest_client.g.dart';
 
 @RestApi()
 abstract class PhapdienRestClient {
   factory PhapdienRestClient(Dio dio, {String baseUrl}) = _PhapdienRestClient;
+
+  /// PHAPDIEN
 
   @GET('/v0/phapdien/root')
   Future<List<PhapdienNode>> getRoot();
@@ -24,6 +28,28 @@ abstract class PhapdienRestClient {
     @Query('id') String id,
     @Query('show_raw') bool showRaw,
   );
+
+  /// CHAT
+
+  @POST('/v0/chat/ask')
+  Future<dynamic> askPhapdienChat(@Body() AskPhadienChatRequest request);
+
+  @GET('/v0/chat/rand_questions')
+  Future<dynamic> getRandomSuggestionQuestions();
+}
+
+extension PhapdienRestClientX on PhapdienRestClient {
+  Stream<List<int>> streamAskPhapdienChat(
+    Dio dio,
+    @Body() AskPhadienChatRequest request,
+  ) async* {
+    final rs = await dio.post(
+      '/v0/chat/stream_ask',
+      data: request.toJson(),
+      options: Options(responseType: ResponseType.stream),
+    );
+    yield* rs.data.stream as Stream<List<int>>;
+  }
 }
 
 @riverpod

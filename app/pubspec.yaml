@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
 
+  intl: ^0.18.1
+
   # State management
   flutter_riverpod: ^2.4.8
   flutter_hooks: ^0.20.3
@@ -17,6 +19,7 @@ dependencies:
 
   # Html
   flutter_widget_from_html_core: ^0.14.9
+  flutter_markdown: ^0.6.18+2
 
   # UI
   flextras: ^1.0.0 
@@ -51,6 +54,10 @@ dependencies:
   # Dart
   fuzzy: ^0.5.1
   diacritic: ^0.1.4
+  uuid: ^4.2.1
+  
+  # Database
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

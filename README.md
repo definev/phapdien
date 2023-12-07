@@ -25,11 +25,11 @@
 
 <p align="center">
 	<br/>
-	<a href="">🐞 Báo lỗi </a>
+	<a href="https://github.com/definev/phapdien/issues">🐞 Báo lỗi </a>
 	-
 	<a href="">✈️ Yêu cầu tính năng </a>
 	-
-	<a href="">📚 Wiki</a>
+	<a href="https://github.com/definev/phapdien/wiki">📚 Wiki</a>
 	-
 	<a href="">📋 Roadmap </a>
 </p>
@@ -72,7 +72,7 @@
 <p align="justify">
 Pháp điển ask cung cấp một hệ thống Backend giúp truy cập nhanh các thông tin về pháp luật hiện hành của Việt Nam, đặt câu hỏi về các vấn đề liên quan đến pháp luật. Đồng thời cung cấp hệ thống UI điện thoại và Web cho phép người dùng tương tác với hệ thống và truy cập nhanh tới hệ thống pháp luật hiện hành của Việt Nam.
 
-> Dự án này là sản phẩm dự thi trong cuộc thi phần mềm mã nguồn mở tổ chức bởi Câu lạc bộ Phần mềm Tự do Nguồn mở Việt Nam (Vietnam Free & Open Source Software Association - viết tắt là VFOSSA). Để tìm hiểu thêm vê thông tin cuộc thi, truy cập vào trang chủ [VFOSSA](https://vfossa.vn/tin-tuc/de-thi-phan-mem-nguon-mo-olp-2023-688.html).
+> Dự án này là sản phẩm dự thi trong cuộc thi phần mềm mã nguồn mở tổ chức bởi Câu lạc bộ Phần mềm Tự do Nguồn mở Việt Nam (Vietnam Free & Open Source Software Association - viết tắt là VFOSSA). Để tìm hiểu thêm về thông tin cuộc thi, truy cập vào trang chủ [VFOSSA](https://vfossa.vn/tin-tuc/de-thi-phan-mem-nguon-mo-olp-2023-688.html).
 </p>
 
 ## 🔎 Các chức năng chính
@@ -129,7 +129,7 @@ Các chức năng của ứng dụng:
 * Cho phép người dùung đặt nhiều câu hỏi về cùng một chủ đề.
 * Cho phép lưu lại các câu hỏi đã đặt cùng với câu trả lời.
 
-Việc cài đặt và sử dụng ứng dụng chi tiết được mô tả t  ại [chi tiết ứng dụng](./app/README.md).
+Việc cài đặt và sử dụng ứng dụng chi tiết được mô tả tại [chi tiết ứng dụng](./app/README.md).
 
 # CI/CD
 

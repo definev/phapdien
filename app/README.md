@@ -1,6 +1,8 @@
 # 🚀 Ứng dụng Tra cứu Pháp Điển
 
-![Ảnh ứng dụng](.png)
+| ![Pháp Điển APP](../assets/images/app/1_phapdien.gif)       | ![Pháp Điển APP](../assets/images/app/2_fuzzy_search.gif)  | ![Pháp Điển APP](../assets/images/app/3_chat.gif) |
+| ----------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------- |
+| ![Pháp Điển APP](../assets/images/app/4_follow_up_chat.gif) | ![Pháp Điển APP](../assets/images/app/5_local_history.gif) |                                                   |
 
 Đây là một ứng dụng mã nguồn mở được phát triển để hỗ trợ cộng đồng trong việc tra cứu [Pháp Điển Việt Nam](https://phapdien.moj.gov.vn/Pages/home.aspx) 📚. Dự án Tra cứu Pháp Điển Việt Nam sử dụng tài liệu từ [trang web Pháp Điển](https://phapdien.moj.gov.vn/Pages/home.aspx) và [Cơ sở dữ liệu Quốc gia về Văn bản Pháp luật](https://vbpl.vn/pages/portal.aspx) 📑, đồng thời tạo ra một nguồn thông tin pháp luật mở rộng và dễ tiếp cận cho cộng đồng.
 
@@ -194,8 +196,8 @@ Sau khi hoàn tất các bước trên, bạn sẽ có thể chạy ứng dụng
 
 Đó là tất cả. Chúc bạn vui vẻ!
 
-## [Giấy phép: Apache 2.0](LICENSE.md)
+## [Giấy phép: Apache 2.0](../LICENSE.md)
 
-Ứng dụng Tra cứu Pháp Điển được phát hành dưới Giấy phép Apache 2.0 - một giấy phép mở rộng có thể tìm thấy tại [LICENSE.md](LICENSE.md).
+Ứng dụng Tra cứu Pháp Điển được phát hành dưới Giấy phép Apache 2.0 - một giấy phép mở rộng có thể tìm thấy tại [LICENSE.md](../LICENSE.md).
 
-Đọc kỹ nội dung của [Giấy phép Apache 2.0](LICENSE.md) để hiểu rõ hơn về các điều khoản và điều kiện sử dụng.
+Đọc kỹ nội dung của [Giấy phép Apache 2.0](../LICENSE.md) để hiểu rõ hơn về các điều khoản và điều kiện sử dụng.
